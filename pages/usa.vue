@@ -1,0 +1,270 @@
+<template>
+  <div id="content">
+    <app-header :data="header" />
+    <main>
+
+      <app-about />
+
+      <app-advantages :data="advantages" />
+
+      <div class="cars-bg">
+
+        <section class="what pos-r">
+            <div class="container">
+                <div class="what__title pos-r c-after">
+                    <p class="opacity left-animate">Почему</p>
+                    <p class="what__title_large opacity right-animate">автомобили</p>
+                    <p class="what__title_last opacity left-animate">с США?</p>
+                    <svg class="svg-animate  pos-a">
+                        <line x1="0" y1="5" x2="100%" y2="5" stroke-width="9" stroke="#cc9557"></line>
+                        <line x1="100%" y1="5" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
+                    </svg>
+                </div>
+            </div>
+            <div class="what__block pos-r c-before c-after blk-block-USA">
+                <div class="flex fw-w jc-sa">
+                    <div class="what__box-first">
+                        <div class="what__item pos-r c-after what__item-width w50-md w100-esm">
+                            <h4>Хорошая цена</h4>
+                            <p>экономия в сравнении с рынком Украины до 40%</p>
+                        </div>
+                        <div class="what__item pos-r c-after what__item-width w50-md w100-esm">
+                            <h4>Минимальный пробег</h4>
+                            <p>на аукционах представлены авто преимущественно с небольшим пробегом</p>
+                        </div>
+
+                        <div class="what__item pos-r c-after what__item-width w50-md w100-esm">
+                            <h4>Богатая комплектация</h4>
+                            <p>практически все автомобили в хорошей комплектации</p>
+                        </div>
+                        <div class="what__item pos-r c-after what__item-width w50-md w100-esm">
+                            <h4>Реальный пробег</h4>
+                            <p>в США введена уголовная ответственность за изменения данных о пробеге. 
+                                Открытые базы данных страховых компаний позволяют узнать почти все о авто</p>
+                        </div>
+                        <div class="what__item pos-r c-after what__item-width w50-md w100-esm">
+                            <h4>Качественная сборка</h4>
+                            <p>стандарты США существенно отличаются от остальных стран, поэтому на их рынок 
+                               поставляются узлы и агрегаты лучшего качества</p>
+                        </div>
+                        
+                        <div class="what__item pos-r c-after what__item-width w50-md w100-esm">
+                            <h4>Возможность оценки повреждений</h4>
+                            <p>на аукционе видны повреждения на авто, возможно заказать инспекционный 
+                                осмотр авто и реально просчитать бюджет на ремонт и купить авто с минимальными 
+                                дефектами</p>
+                        </div>
+                    </div>
+
+                    <div class="what__box-second">
+                        <div class="what__item pos-r c-after">
+                            <h4>Таможенная оценка</h4>
+                            <p>методика контроля таможенной стоимости автомобилей с США таможней достаточно 
+                                прозрачна, что существенно минимизирует риск повышение таможенной стоимости 
+                                при таможенном оформлении</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <svg class="svg-animate work__svg pos-a">
+                <line x1="100%" y1="-100" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
+                <line x1="100%" y1="100%" x2="0" y2="100%" stroke-width="18" stroke="#cc9557"></line>
+
+            </svg>
+        </section>
+
+        <app-working-schema :items="schemaItems" />
+
+      </div>
+
+      <app-blog :posts="blogPosts" />
+
+      <app-consultation :title="consultationTitle" />
+      
+    </main>
+    <app-footer :data="footer" />
+  </div>
+</template>
+
+<script>
+import AppHeader from '@/components/Header.vue'
+import AppAbout from '@/components/section/About.vue'
+import AppAdvantages from '@/components/section/Advantages.vue'
+import AppWorkingSchema from '@/components/section/WorkingSchema.vue'
+import AppBlog from '@/components/section/Blog.vue'
+import AppConsultation from '@/components/section/Consultation.vue'
+import AppFooter from '@/components/Footer.vue'
+
+export default {
+  components: {
+    AppHeader,
+    AppAbout,
+    AppAdvantages,
+    AppWorkingSchema,
+    AppBlog,
+    AppConsultation,
+    AppFooter
+  },
+  data() {
+    return {
+      header: {
+        title: 'Автомобили с США',
+        subtitle: 'Профессиональные подбор, покупка, доставка и таможенное оформление <br> транспортных средств со всех аукционов США «под ключ»',
+        backImage: 'images/new-bg-usa.jpg',
+        frontImage: 'images/new-avto-usa.png',
+        multilang: false,
+        showAboutImport: true,
+        bannerLinks: [
+          {title: 'Автомобили из США', href: '/usa'},
+          {title: 'Автомобили из Грузии', href: '/georgia'},
+          {title: 'Автомобили из ЕС', href: '/eu'}
+        ]
+      },
+      advantages: {
+        backgroundImage: 'images/bg-about-USA.png',
+        items: [
+          {
+            icon: 'images/why-2.png',
+            text: 'Более 10 лет опыта работы в сфере внешнеэкономической деятельности'
+          },
+          {
+            icon: 'images/about-USA-2.png',
+            text: 'Профессиональный подбор и проверка автомобилей (бесплатный отчет Carfax)'
+          },
+          {
+            icon: 'images/about-USA-4.png',
+            text: 'Работаем без посредников и "под ключ"'
+          },
+          {
+            icon: 'images/about-USA-5.png',
+            text: 'Прозрачная система оплаты за авто напрямую аукциону'
+          },
+          {
+            icon: 'images/about-USA-7.png',
+            text: 'Предлагаем лучшую цену на рынке (у нас нет скрытых и дополнительных платежей)'
+          },
+          {
+            icon: 'images/about-USA-9.png',
+            text: 'Особые условия для постоянных и системных клиентов'
+          },
+          {
+            icon: 'images/about-USA-10.png',
+            text: 'Официальные юридические отношения с клиентами'
+          },
+          {
+            icon: 'images/about-USA-11.png',
+            text: 'Являемся лицензированным <a href="http://sfs.gov.ua/dovidniki--reestri--perelik/reestri/94921.html"> таможенным брокером</a> (Таможенное оформление любого автомобиля всего за 3 часа)'
+          },
+          {
+            icon: 'images/about-USA-12.png',
+            text: 'У нас на счету более тысячи растаможенных авто'
+          }
+        ],
+        withSvg: false
+      },
+      schemaItems: [
+          {
+              title: 'Заключение официального договора',
+              text: `<p>с целью минимизации рисков для клиента, закрепления цены услуг, 
+                    законности и прозрачности всех операций, мы осуществляем официальные 
+                    юридические отношения с клиентами</p>`
+          },
+          {
+              title: 'Подбор и проверка авто с аукционов США',
+              text: `<p>профессионально подберем автомобиль на аукционах США либо поможем 
+                    вам подобрать самостоятельно без каких-либо рисков. Проведем 
+                    проверку авто по базе данных США CarFax, осуществим при необходимости 
+                    выездной инспекционный осмотр. Подбор автомобиля будет осуществляться 
+                    до полного удовлетворение условиям клиента</p>`
+          },
+          {
+              title: 'Участие в аукционе',
+              text: `<p>участие в торгах проводится при полном онлайн взаимодействии с клиентом. 
+                    Все финансовые решения на торгах, в том числе о повышение цены лота, 
+                    максимально допустимой цене, принимается лично заказчиком</p>`
+          },
+          {
+              title: 'Покупка',
+              text: `<p>после окончания торгов на аукционе клиент на протяжении 3 дней лично 
+                    осуществляет оплату за автомобиль через международную межбанковскую 
+                    систему SWIFT в любом банке Украины непосредственно на счет аукциона 
+                    в США</p>`
+          },
+          {
+              title: 'Проверка авто в порту США',
+              text: `<p>с целью фиксации состояния автомобиля перед погрузкой в контейнер, 
+                    осуществим полную его фото фиксацию</p>`
+          },
+          {
+              title: 'Доставка автомобиля в Украину',
+              text: `<p>доставим автомобиль из США в Украину морем либо авиатранспортом в 
+                    кратчайшие строки</p>`
+          },
+          {
+              title: 'Экспедирование груза в порту Украины',
+              text: `<p>проведем выгрузку автомобиля с контейнера и доставку его в таможню 
+                    без задержек. С целью фиксации состояния автомобиля после выгрузки 
+                    с контейнера, осуществим повторную полную его фото фиксацию</p>`
+          },
+          {
+              title: 'Таможенное оформление',
+              text: `<p>в отличии от большинства  фирм по доставке авто из-за рубежа, мы являемся 
+                    лицензированным
+                    <a href=" http://sfs.gov.ua/dovidniki--reestri--perelik/reestri/94921.html" target="_blank">таможенным брокером</a>
+                    с большим опытом растаможки всех видов товаров в Украине.  Проведем 
+                    таможенное оформление любого авто до 3 часов без каких-либо рисков 
+                    для клиента</p>`
+          }
+      ],
+      blogPosts: [
+        {
+          title: 'Lorem ipsum dolor sit amet.',
+          slug: 'post1',
+          date: new Date(),
+          category: 'Таможня',
+          imageSrc: 'images/blog.jpg',
+          text: `<p>Lorem ipsum dolor sit amet.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <p>Lorem ipsum dolor.</p>`
+        },
+        {
+          title: 'Lorem ipsum dolor sit amet.',
+          slug: 'post1',
+          date: new Date(),
+          category: 'Таможня',
+          imageSrc: 'images/blog.jpg',
+          text: `<p>Lorem ipsum dolor sit amet.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <p>Lorem ipsum dolor.</p>`
+        },
+        {
+          title: 'Lorem ipsum dolor sit amet.',
+          slug: 'post1',
+          date: new Date(),
+          category: 'Таможня',
+          imageSrc: 'images/blog.jpg',
+          text: `<p>Lorem ipsum dolor sit amet.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <p>Lorem ipsum dolor.</p>`
+        },
+        {
+          title: 'Lorem ipsum dolor sit amet.',
+          slug: 'post1',
+          date: new Date(),
+          category: 'Таможня',
+          imageSrc: 'images/blog.jpg',
+          text: `<p>Lorem ipsum dolor sit amet.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <p>Lorem ipsum dolor.</p>`
+        }
+      ],
+      consultationTitle: 'Нужна квалифицированная помощь?',
+      footer: {
+        slogan: 'Пока вы думаете, остальные уже ездят!',
+        backgroundImage: 'images/footer-bg.jpg'
+      }
+    }
+  }
+}
+</script>
