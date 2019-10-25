@@ -138,6 +138,10 @@ export default {
     .help__svg_2 {
         height: 308px
     }
+    .help > img {
+        top: 310px;
+        width: calc(50vw - 100px);
+    }
 }
 
 @media screen and (max-width:991px) {    
@@ -156,10 +160,13 @@ export default {
     .help__container::before {
         display: none
     }
+    .help__wrap {
+        padding: 10px 20px 0 50px;
+    }
     .help>img {
         left: calc(50vw + 80px);
         width: calc(50vw - 80px);
-        top: 150px
+        top: 250px
     }
     .help .btn {
         margin: 0
@@ -168,7 +175,7 @@ export default {
 
 @media screen and (max-width:767px) {
     .help {
-        padding-bottom: 40vw
+        padding-bottom: 200px
     }
     .help__title {
         font-size: 24px;
@@ -177,8 +184,8 @@ export default {
     }
     .help>img {
         top: initial;
-        width: 60vw;
-        left: 40vw;
+        width: 450px;
+        left: 30vw;
         bottom: 100px
     }
     .help__container {
@@ -206,7 +213,7 @@ export default {
 @media screen and (max-width:575px) {
     .help {
         padding-top: 30px;
-        padding-bottom: 50vw
+        padding-bottom: 100px
     }
     .help .container {
         padding: 0
@@ -236,13 +243,17 @@ export default {
         width: 100%;
         padding: 30px 14px 60px
     }
+    .help__wrap {
+        padding: 10px;
+    }
     .help__title {
         margin-bottom: 25px;
         line-height: 32px
     }
     .help>img {
         bottom: 77px;
-        width: 70vw
+        width: 70vw;
+        min-width: 350px;
     }
 }
 </style>

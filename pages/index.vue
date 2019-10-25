@@ -175,7 +175,8 @@ export default {
       header: {
         title: 'Таможенно-брокерские услуги',
         subtitle: 'Грамотные решения для внешнеэкономической деятельности',
-        backImage: 'images/tb.jpg',
+        backImage: 'images/tb-bg.jpg',
+        frontImage: 'images/dude.png',
         multilang: true,
         showAboutImport: false,
         bannerLinks: [
@@ -222,6 +223,19 @@ export default {
         backgroundImage: 'images/footer-tb.jpg'
       }
     }
+  },
+  async asyncData({store}) {
+      const meta = await store.dispatch('meta/fetchByPageName', 'index')
+      return {meta}
+  },
+  head() {
+      return {
+          title: this.meta.title,
+          meta: [
+            { hid: 'description', name: 'description', content: this.meta.description },
+            { hid: 'keywords', name: 'keywords', content: this.meta.keywords }
+          ]
+      }
   },
   mounted() {
     const questionsScene = document.getElementsByClassName('questions')[0]
@@ -356,7 +370,7 @@ export default {
 
 .work__block {
     position: relative;
-    padding-top: 40px;
+    padding: 40px 0;
     background-image: url(~static/images/schema-tb.png);
     background-size: 100% 100%;
     color: #fff;
@@ -556,6 +570,35 @@ export default {
     }
 }
 
+@media screen and (max-width:767px) {
+    .problems .questions {
+        margin: 20px auto;
+    }
+    .problems .questions__list.text-bg-left,
+    .problems .questions__list.text-bg-right {
+        display: none
+    }
+    .problems .questions__list li:nth-of-type(1) {
+        transform: translateX(80px);
+    }
+    .problems .questions__list li:nth-of-type(2) {
+        transform: translateX(-30px);
+    }
+    .problems .questions__list li:nth-of-type(3) {
+        transform: translateX(50px);
+    }
+    .problems .questions__list li:nth-of-type(4) {
+        transform: translateX(150px);
+    }
+    .problems .questions__list li:nth-of-type(5) {
+        transform: translateX(-80px);
+    }
+
+    .work__block {
+        background-size: cover;
+    }
+}
+
 @media screen and (max-width:575px) {
     .work {
         padding-bottom: 25px;
@@ -578,7 +621,7 @@ export default {
         line-height: 18px
     }
     .work__about {
-        line-height: 17px
+        line-height: 20px
     }
     .work__title div {
         font-size: 21px;
@@ -605,6 +648,44 @@ export default {
     }
     .work__block svg {
         display: none
+    }
+
+    .problems .white-text {
+        font-size: 16px;
+        margin-left: 10px;
+    }
+    .problems .white-text.text-right {
+        margin-right: 10px;
+    }
+    .problems .questions {
+        margin: 10px auto;
+    }
+    .problems .questions__list {
+        padding: 0 5px;
+    }
+    .problems .questions__list li:nth-of-type(1) {
+        font-size: 11px;
+        text-align: right;
+        transform: translateX(0);
+    }
+    .problems .questions__list li:nth-of-type(2) {
+        font-size: 15px;
+        text-align: left;
+        transform: translateX(0);
+    }
+    .problems .questions__list li:nth-of-type(3) {
+        font-size: 19px;
+        transform: translateX(0);
+    }
+    .problems .questions__list li:nth-of-type(4) {
+        font-size: 12px;
+        text-align: right;
+        transform: translateX(0);
+    }
+    .problems .questions__list li:nth-of-type(5) {
+        font-size: 14px;
+        text-align: left;
+        transform: translateX(0);
     }
 }
 </style>

@@ -3,7 +3,7 @@
         <div class="container">
             <div class="blog__box pos-r c-after flex ai-c fw-w-sm">
                 <div class="flex ai-c w100-sm opacity left-animate">
-                    <span class="blog__title">Блог&nbsp;</span>
+                    <span class="blog__title">Блог</span>
                     <span class="pos-r blog__descr">Новости, аналитика в сфере  <br>импорта автомобилей
                 </span>
                 </div>
@@ -22,16 +22,15 @@
                     :to="'/blog/' + post.slug" 
                     class="blog__item pos-r block"
                 >
-                    <img :src="post.imageSrc" :alt="post.title">
-                    <div class="blog__category pos-a">
-                        {{post.category}}
-                    </div>
+                    <img :src="'/uploads' + post.imageUrl" :alt="post.title">
                     <div class="blog__text">
                         <div class="blog__name">
                             {{post.title}}
                         </div>
-                        <div class="blog__date">{{post.date | date}}</div>
-                        <div v-html="post.text" class="blog__content" />
+                        <div class="blog__date">{{new Date(post.date) | date}}</div>
+                        <div class="blog__content">
+                            {{ post.description }}
+                        </div>
                     </div>
                 </nuxt-link>
 
@@ -42,7 +41,14 @@
 
 <script>
 export default {
-    props: ['posts']
+    props: ['posts'],
+    mounted() {
+        this.posts.forEach(post => {
+            if(post.description.length > 200) {
+                post.description = post.description.slice(0, 200) + '...'
+            }
+        })
+    }
 }
 </script>
 
@@ -74,6 +80,7 @@ export default {
 
 .blog__title {
     position: relative;
+    padding-right: 10px;
     color: #a19699;
     font-family: muller-b;
     font-size: 60px;
@@ -145,8 +152,10 @@ export default {
 }
 
 .blog__item img {
+    display: block;
     width: 100%;
-    height: auto!important
+    height: 200px;
+    object-fit: cover;
 }
 
 .blog__text p {

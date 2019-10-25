@@ -1,37 +1,40 @@
 <template>
-    <section class="why pos-r" :style="{backgroundImage: `url(${data.backgroundImage})`}">
-        <div class="container">
-            <div class="why__title why__title">
-                <div class="why__title-main opacity left-animate">Почему</div>
-                <div class="pos-r why__sub-title opacity right-animate">мы лучше?
-                    <svg class="svg-animate pos-a animate" height="6">
-                        <line x1="0" y1="3" x2="100%" y2="3" stroke-width="6" stroke="#cc9557"></line>
-                    </svg>
-                </div>
-            </div>
-            <div class="why__block flex fw-w ai-c pos-r">
-
-                <div
-                    v-for="(item, index) of data.items" 
-                    :key="index"
-                    class="why__item flex ai-c w33 w50-md w100-sm"
-                >
-                    <div class="why__img pos-r c-before flex jc-c ai-c">
-                        <div class="why__img-wrap">
-                            <img :src="item.icon" alt="icon">
-                        </div>
+    <div>
+        <section class="why pos-r" :style="{backgroundImage: `url(${data.backgroundImage})`}">
+            <div class="container">
+                <div class="why__title why__title">
+                    <div class="why__title-main opacity left-animate">Почему</div>
+                    <div class="pos-r why__sub-title opacity right-animate">мы лучше?
+                        <svg class="svg-animate pos-a animate" height="6">
+                            <line x1="0" y1="3" x2="100%" y2="3" stroke-width="6" stroke="#cc9557"></line>
+                        </svg>
                     </div>
-                    <p v-html="item.text" class="why__about" />
                 </div>
+                <div class="why__block flex fw-w ai-c pos-r">
 
+                    <div
+                        v-for="(item, index) of data.items" 
+                        :key="index"
+                        class="why__item flex ai-c w33 w50-md w100-sm"
+                    >
+                        <div class="why__img pos-r c-before flex jc-c ai-c">
+                            <div class="why__img-wrap">
+                                <img :src="item.icon" alt="icon">
+                            </div>
+                        </div>
+                        <p v-html="item.text" class="why__about" />
+                    </div>
+
+                </div>
             </div>
-
+        </section>
+        <div class="container pos-r">
             <svg v-if="data.withSvg" class="bottom-svg svg-animate pos-a " width="250" height="250">
                 <line x1="5" y1="0" x2="5" y2="100%" stroke-width="9" stroke="#cc9557"></line>
                 <line x1="1" y1="100%" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
             </svg>
         </div>
-    </section>
+    </div>
 </template>
 
 <script>
@@ -115,7 +118,7 @@ export default {
 .bottom-svg {
     left: calc(100% - 20px);
     bottom: 0;
-    height: 57px;
+    height: 200px;
     z-index: -1
 }
 
@@ -233,11 +236,18 @@ export default {
 }
 
 @media screen and (max-width:767px) {
+    .why {
+        padding-bottom: 20px;
+    }
     .why__item {
-        padding: 0!important
+        padding: 0!important;
+        margin-bottom: 40px;
     }
     .why__img {
         margin-right: 30px
+    }
+    .why__about {
+        width: auto;
     }
     .why__title .svg-animate {
         display: block

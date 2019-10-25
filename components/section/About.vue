@@ -74,7 +74,7 @@
     right: -22px;
     top: calc(100% - 38px);
     stroke-dasharray: 0 200%;
-    height: calc(100% - 91px);
+    height: calc(100% - 80px);
 }
 
 .about__description svg.animate line:nth-child(2) {
@@ -91,11 +91,8 @@
 }
 
 @media screen and (max-width:1300px) {
-    .about__title-USA svg {
-        width: 470px
-    }
     .about__title svg {
-        width: 470px
+        width: 230px
     }
 }
 
@@ -117,6 +114,9 @@
         -ms-flex-item-align: end;
         align-self: flex-end
     }
+    .about__title svg {
+        width: 430px
+    }
 }
 
 @media screen and (max-width:575px) {
@@ -124,13 +124,16 @@
         padding-top: 30px;
         background-position: 75% -30px
     }
+    .about__title {
+        margin-bottom: 10px;
+    }
     .about__title p {
         font-size: 25px;
         line-height: 20px
     }
     .about__title:after {
         width: 7px;
-        height: 350px;
+        height: 460px;
         background-color: #cc9557;
         top: 65px;
         left: 1px
@@ -144,7 +147,7 @@
         font-size: 17px
     }
     .about__description p {
-        margin-bottom: 51px
+        margin-bottom: 30px
     }
     .about__description svg {
         display: none

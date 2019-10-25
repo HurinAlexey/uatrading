@@ -212,54 +212,81 @@ export default {
                         регистрации в органах полиции после завершения таможенного оформления.</p>`
           }
       ],
-      blogPosts: [
-        {
-          title: 'Lorem ipsum dolor sit amet.',
-          slug: 'post1',
-          date: new Date(),
-          category: 'Таможня',
-          imageSrc: 'images/blog.jpg',
-          text: `<p>Lorem ipsum dolor sit amet.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <p>Lorem ipsum dolor.</p>`
-        },
-        {
-          title: 'Lorem ipsum dolor sit amet.',
-          slug: 'post1',
-          date: new Date(),
-          category: 'Таможня',
-          imageSrc: 'images/blog.jpg',
-          text: `<p>Lorem ipsum dolor sit amet.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <p>Lorem ipsum dolor.</p>`
-        },
-        {
-          title: 'Lorem ipsum dolor sit amet.',
-          slug: 'post1',
-          date: new Date(),
-          category: 'Таможня',
-          imageSrc: 'images/blog.jpg',
-          text: `<p>Lorem ipsum dolor sit amet.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <p>Lorem ipsum dolor.</p>`
-        },
-        {
-          title: 'Lorem ipsum dolor sit amet.',
-          slug: 'post1',
-          date: new Date(),
-          category: 'Таможня',
-          imageSrc: 'images/blog.jpg',
-          text: `<p>Lorem ipsum dolor sit amet.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <p>Lorem ipsum dolor.</p>`
-        }
-      ],
       consultationTitle: 'Нужна квалифицированная помощь?',
       footer: {
         slogan: 'Пока вы думаете, остальные уже ездят!',
         backgroundImage: 'images/footer-bg.jpg'
       }
     }
+  },
+  async asyncData({store}) {
+    const meta = await store.dispatch('meta/fetchByPageName', 'georgia')
+    let {posts} = await store.dispatch('post/fetchByPageNumber', 1)
+    posts = posts.slice(0, 4)
+    return {meta, blogPosts: posts}
+  },
+  head() {
+    return {
+      title: this.meta.title,
+      meta: [
+        { hid: 'description', name: 'description', content: this.meta.description },
+        { hid: 'keywords', name: 'keywords', content: this.meta.keywords }
+      ]
+    }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@media screen and (max-width: 1920px) {
+  .work__svg {
+    height: 297px;
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .what__box-first,
+  .what__box-second {
+    width: 100%;
+  }
+  .what__box-second .what__item {
+    max-width: 650px;
+  }
+  .work__svg {
+    height: 337px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .what__box-second {
+    justify-content: flex-start;
+  }
+  .what__box-second .what__item {
+    width: 66%;
+  }
+  .work__svg {
+    height: 361px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .what__box-second .what__item {
+    width: 100%;
+  }
+  .what__block.blk-block-georgia {
+    background-size: 100% 150%;
+  }
+  .work__svg {
+    height: 156px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .what__block.blk-block-georgia {
+    padding: 30px 0;
+  }
+  .work__svg {
+    height: 51px;
+  }
+}
+</style>

@@ -1,9 +1,9 @@
 <template>
   <div id="page">
+    <script v-html="schema" type="application/ld+json" />
     <nuxt />
     <app-callback-form v-if="formVisible" />
-    <app-message v-if="messageVisible" />
-    <button id="scroll-up" class="scroll-up display-n" />
+    <button id="scroll-up" class="scroll-up display-n" @click="scrollUp" />
     <app-customs-calculator v-if="customsCalculatorVisible" />
   </div>
 </template>
@@ -11,28 +11,38 @@
 <script>
 import $ from 'jquery'
 import AppCallbackForm from '@/components/CallbackForm.vue'
-import AppMessage from '@/components/Message.vue'
 import AppCustomsCalculator from '@/components/CustomsCalculator.vue'
 
 export default {
   components: {
     AppCallbackForm,
-    AppMessage,
     AppCustomsCalculator
   },
   data() {
+    const schema = {
+      "@context" : "http://schema.org",
+      "@type" : "Organization",
+      "url" : "http://site.com",
+      "logo" : "http://site.com/logo.png",
+      "description": "Описание компании",
+      "address" : {
+        "@type" : "PostalAddress",
+        "streetAddress" : "Физический адрес",
+        "addressLocality" : "Киев",
+        "postalCode" : "0200",
+        "addressCountry" : "Страна"
+      },
+      "telephone": "(093) 958 00 34",
+      "email": "info@ubtrading.com.ua"
+    }
+
     return {
+      schema: JSON.stringify(schema),
       formVisible: false,
-      messageVisible: false,
-      messageText: '',
       customsCalculatorVisible: false
     }
   },
   methods: {
-    showMessage(text) {
-      this.messageText = text
-      this.showMessage = true
-    },
     svgAnimate() {
       $('.svg-animate').each(function () {
         if($(this).offset().top < $(document).scrollTop() + $(window).height() - 50 && !$(this).hasClass('animate')) {
@@ -51,15 +61,28 @@ export default {
               $(this).addClass(animationClass)
           }
       })
+    },
+    scrollUp() {
+      $('body,html').animate({scrollTop: 0}, 1000)
     }
   },
   mounted() {
+    
     $(window).on('load scroll', () => {
       this.svgAnimate()
       this.elemAnimate('main-animate', 'animate')
       this.elemAnimate('right-animate', 'r-animate')
       this.elemAnimate('left-animate', 'l-animate')
       this.elemAnimate('stop-animate', 'animate-stop')
+
+      let scroll = $('#scroll-up')
+      if(window.innerWidth > 250) {
+          if ($(window).scrollTop() > window.innerHeight) {
+              scroll.removeClass('display-n')
+          } else {
+              scroll.addClass('display-n')
+          }
+      }
     })
 
     this.$root.$on('toggleform', isVisible => {
@@ -89,9 +112,12 @@ export default {
     right: 5%;
     width: 40px;
     height: 40px;
+    background-color: transparent;
     background-image:url(~static/images/up.png);
     background-size: contain;
     background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
     z-index: 11
 }
 </style>

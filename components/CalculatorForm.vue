@@ -51,10 +51,44 @@
                     </ul>
                 </div>
             </div>
+
+            <div class="form-control-wrap">
+                <label>Расчет доставки по США</label>
+                <div class="checkbox-wrap">
+                    <div class="checkbox" @click="onCheck($event)">
+                        <input type="checkbox" name="delivery" class="display-n" />
+                        <img src="images/check.png" alt="check">
+                    </div>
+                </div>
+            </div>
+            <div v-if="showDelivery" class="delivery-calculator w100">
+                <div 
+                    v-for="(control, index) of deliveryControls"
+                    :key="index"
+                    class="form-control-wrap"
+                >
+                    <label>{{control.label}}</label>
+                    <div class="dropdown">
+                        <input type="hidden" :name="control.name" :value="control.options[0]" />
+                        <div class="form-control" @click="toggleDropdown($event)">
+                            <span v-if="control.staticText" class="static-text">{{control.staticText}}</span>
+                            {{control.options[0]}}
+                        </div>
+                        <ul class="dropdown-list">
+                            <li
+                                v-for="(option, index) of control.options"
+                                :key="index"
+                                :class="{'active': index === 0}"
+                                @click="selectOption($event)"
+                            >{{option}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             <button type="submit" class="input btn-input">Рассчитать</button>
         </form>
 
-        <div v-if="errorMessage.length" class="error-massage">{{errorMessage}}</div>
+        <div v-if="errorMessage.length" class="message-invalid">{{errorMessage}}</div>
     </div>
 </template>
 
@@ -63,7 +97,35 @@ export default {
     props: ['data'],
     data() {
         return {
-            errorMessage: ''
+            errorMessage: '',
+            showDelivery: false,
+            deliveryControls: [
+                {
+                    label: 'Аукцион',
+                    name: 'auction',
+                    options: [
+                        'IAAI', 
+                        'Copart',
+                        'Manheim'
+                    ]
+                },
+                {
+                    label: 'Доставка по США',
+                    name: 'delivery-from',
+                    staticText: 'от',
+                    options: [
+                        'TX Texas'
+                    ]
+                },
+                {
+                    label: '',
+                    name: 'delivery-to',
+                    staticText: 'до',
+                    options: [
+                        'GA Savannah'
+                    ]
+                }
+            ]
         }
     },
     methods: {
@@ -114,6 +176,19 @@ export default {
 
             if (isValid) this.setErrorMessage('')
         },
+        onCheck($event) {
+            let target = $event.target.closest('.checkbox')
+            let input = target.getElementsByTagName('input')[0]
+            if (input.checked) {
+                target.classList.remove('checked')
+                input.checked = false
+                this.showDelivery = false
+            } else {
+                target.classList.add('checked')
+                input.checked = true
+                this.showDelivery = true
+            }
+        },
         setErrorMessage(text) {
             this.errorMessage = text
         },
@@ -124,7 +199,11 @@ export default {
             }
 
             for (let control of controls) {
-                data[control.name] = control.value
+                if (control.type === 'checkbox') {
+                    data[control.name] = control.checked
+                } else {
+                    data[control.name] = control.value
+                }
 
                 if (control.value.length === 0) {
                     this.setErrorMessage('Все поля обязательные для заполнения')

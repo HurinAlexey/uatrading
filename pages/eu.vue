@@ -201,54 +201,41 @@ export default {
                         на право регистрации в органах полиции после завершения таможенного оформления.</p>`
           }
       ],
-      blogPosts: [
-        {
-          title: 'Lorem ipsum dolor sit amet.',
-          slug: 'post1',
-          date: new Date(),
-          category: 'Таможня',
-          imageSrc: 'images/blog.jpg',
-          text: `<p>Lorem ipsum dolor sit amet.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <p>Lorem ipsum dolor.</p>`
-        },
-        {
-          title: 'Lorem ipsum dolor sit amet.',
-          slug: 'post1',
-          date: new Date(),
-          category: 'Таможня',
-          imageSrc: 'images/blog.jpg',
-          text: `<p>Lorem ipsum dolor sit amet.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <p>Lorem ipsum dolor.</p>`
-        },
-        {
-          title: 'Lorem ipsum dolor sit amet.',
-          slug: 'post1',
-          date: new Date(),
-          category: 'Таможня',
-          imageSrc: 'images/blog.jpg',
-          text: `<p>Lorem ipsum dolor sit amet.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <p>Lorem ipsum dolor.</p>`
-        },
-        {
-          title: 'Lorem ipsum dolor sit amet.',
-          slug: 'post1',
-          date: new Date(),
-          category: 'Таможня',
-          imageSrc: 'images/blog.jpg',
-          text: `<p>Lorem ipsum dolor sit amet.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <p>Lorem ipsum dolor.</p>`
-        }
-      ],
       consultationTitle: 'Нужна квалифицированная помощь?',
       footer: {
         slogan: 'Пока вы думаете, остальные уже ездят!',
         backgroundImage: 'images/footer-bg.jpg'
       }
     }
+  },
+  async asyncData({store}) {
+    const meta = await store.dispatch('meta/fetchByPageName', 'eu')
+    let {posts} = await store.dispatch('post/fetchByPageNumber', 1)
+    posts = posts.slice(0, 4)
+    return {meta, blogPosts: posts}
+  },
+  head() {
+    return {
+      title: this.meta.title,
+      meta: [
+        { hid: 'description', name: 'description', content: this.meta.description },
+        { hid: 'keywords', name: 'keywords', content: this.meta.keywords }
+      ]
+    }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@media screen and (min-width: 992px) {
+  .work__svg {
+    height: 160px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .what__block {
+    background-size: 100% 100%;
+  }
+}
+</style>

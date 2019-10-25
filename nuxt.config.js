@@ -31,7 +31,10 @@ module.exports = {
   */
   plugins: [
     '@/plugins/global',
-    { src: '~plugins/draggable.js', ssr: false }
+    '@/plugins/axios',
+    // '@/plugins/element',
+    { src: '~plugins/draggable.js', ssr: false },
+    { src: '~plugins/quill-editor.js', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules

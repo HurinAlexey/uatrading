@@ -34,7 +34,7 @@
             <tbody>
                 <tr>
                     <td class="title">Ввозная пошлина</td>
-                    <td>{{costUah | float(2)}}</td>
+                    <td>{{finalBid | float(2)}}</td>
                     <td>10 %</td>
                     <td>{{importTax | float(2)}}</td>
                 </tr>
@@ -73,11 +73,12 @@ export default {
         }
     },
     computed: {
-        costUah() {
-            return +this.data['cost'] * this.currency[this.data['currency']]
+        finalBid() {
+            let costUah = +this.data['cost'] * this.currency[this.data['currency']]
+            return costUah + 500 * this.currency['USD']
         },
         importTax() {
-            return this.data['engine-type'] === 'electro' ? 0 : this.costUah * 0.1
+            return this.data['engine-type'] === 'electro' ? 0 : this.finalBid * 0.1
         },
         exciseTax() {
             return this.calculateExciseTax(this.data['transport-type'])
@@ -86,7 +87,7 @@ export default {
             return this.exciseTax * this.currency['EUR']
         },
         costWithTax() {
-            return this.costUah + this.importTax + this.exciseTaxUah
+            return this.finalBid + this.importTax + this.exciseTaxUah
         },
         vat() {
             return this.data['engine-type'] === 'electro' ? 0 : this.costWithTax * 0.2
@@ -116,13 +117,21 @@ export default {
                     engineType = 'Неверный тип двигателя'
             }
 
-            return [
+            let result =  [
                 {title: 'Дата расчета', value: new Date().toLocaleDateString()},
                 {title: 'Тип двигателя', value: engineType},
                 {title: 'Объем двигателя', value: this.data['engine-volume']},
-                {title: 'Год выпуска', value: this.data['year']},
                 {title: 'Стоимость', value: this.data['cost'] + ' ' + this.data['currency']}
             ]
+
+            if (this.data['year']) {
+                result.push({title: 'Год выпуска', value: this.data['year']})
+            }
+            if (this.data['age']) {
+                result.push({title: 'Возраст', value: this.data['age']})
+            }
+
+            return result
         }
     },
     methods: {
@@ -184,31 +193,52 @@ export default {
             }
         },
         calculateTruckExciseTax() {
-
+            let engineVolume = this.data['engine-volume']
+            let taxPerUnit = 0
+            if (this.data['weight'] === 'не более 5 т') {
+                taxPerUnit = this.data['age'] === 'Новый' ? 0.01 : 0.02
+            } else if (this.data['weight'] === 'более 5 т' || this.data['weight'] === 'более 5 т, но не более 20 т') {
+                taxPerUnit = this.data['age'] === 'Новый' ? 0.013 : 0.026
+            } else if (this.data['weight'] === 'более 20 т') {
+                taxPerUnit = this.data['age'] === 'Новый' ? 0.016 : 0.033
+            } else {
+                throw new Error('Неверный вес автомобиля')
+            }
+            let yearCoefficient = 1
+            if (this.data['age'] === 'В использовании с 5 до 8 лет') {
+                yearCoefficient = 40
+            } else if (this.data['age'] === 'В использовании более 8 лет') {
+                yearCoefficient = 50
+            }
+            return engineVolume * taxPerUnit * yearCoefficient
         },
         calculateMotoExciseTax() {
-            switch (this.data['engine-volume-range']) {
-                case 'не более 50 см3':
-                    return 1
-                    break
-                case 'более 50 см3, но не более 250 см3':
-                    return 2
-                    break
-                case 'более 250 см3, но не более 500 см3':
-                    return 3
-                    break
-                case 'более 500 см3, но не более як 800 см3':
-                    return 4
-                    break
-                case 'более 800 см3':
-                    return 5
-                    break
-                default:
-                    throw new Error('Неверный объем двигателя')
+            let engineVolume = this.data['engine-volume']
+            let taxPerUnit = 0
+            if (engineVolume <= 500) {
+                taxPerUnit = 0.062
+            } else if (engineVolume <= 800) {
+                taxPerUnit = 0.443
+            } else {
+                taxPerUnit = 0.447
             }
+            return engineVolume * taxPerUnit
         },
         calculateBusExciseTax() {
-
+            let engineVolume = this.data['engine-volume']
+            let taxPerUnit = 0
+            if (this.data['age'] === 'В использовании более 8 лет') {
+                taxPerUnit = 0.003
+            } else if (this.data['engine-type'] === 'diesel' && engineVolume > 2500 && engineVolume <= 5000) {
+                taxPerUnit = 0.003
+            } else {
+                taxPerUnit = 0.007
+            }
+            let yearCoefficient = 1 
+            if (this.data['age'] === 'В использовании более 8 лет') {
+                yearCoefficient = 50
+            }
+            return engineVolume * taxPerUnit * yearCoefficient
         }
     },
     mounted() {

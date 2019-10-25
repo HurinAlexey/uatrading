@@ -1,9 +1,9 @@
 <template>
     <vue-draggable-resizable
-      :w="500"
-      :h="500"
-      :draggable="true"
-      :resizable="false"
+      :w="dragOptions.w"
+      :h="dragOptions.h"
+      :draggable="dragOptions.draggable"
+      :resizable="dragOptions.resizable"
       class-name="calculator-wrap"
       class-name-draggable="draggable"
     >
@@ -48,6 +48,12 @@ export default {
     },
     data() {
         return {
+            dragOptions: {
+                w: 600,
+                h: 600,
+                draggable: true,
+                resizable: false
+            },
             transportTabs: [
                 {
                     title: 'Легковой',
@@ -189,19 +195,13 @@ export default {
                                 name: 'weight',
                                 options: [
                                     'не более 5 т', 
-                                    'более 5 т', 
-                                    'более 5 т, но не более 20 т', 
-                                    'более 20 т'
+                                    'более 5 т'
                                 ]
                             },
                             {
                                 label: 'Объем двигателя, см3',
-                                type: 'select',
-                                name: 'engine-volume-range',
-                                options: [
-                                    'более 2 800 см3',
-                                    'не более 2 800 см3'
-                                ]
+                                type: 'input',
+                                name: 'engine-volume'
                             },
                             {
                                 label: 'Возраст автомобиля ',
@@ -237,19 +237,14 @@ export default {
                                 name: 'weight',
                                 options: [
                                     'не более 5 т', 
-                                    'более 5 т', 
                                     'более 5 т, но не более 20 т', 
                                     'более 20 т'
                                 ]
                             },
                             {
                                 label: 'Объем двигателя, см3',
-                                type: 'select',
-                                name: 'engine-volume-range',
-                                options: [
-                                    'более 2 500 см3',
-                                    'не более 2 500 см3'
-                                ]
+                                type: 'input',
+                                name: 'engine-volume'
                             },
                             {
                                 label: 'Возраст автомобиля ',
@@ -289,15 +284,8 @@ export default {
                         controls: [
                             {
                                 label: 'Объем двигателя, см3',
-                                type: 'select',
-                                name: 'engine-volume-range',
-                                options: [
-                                    'не более 50 см3', 
-                                    'более 50 см3, но не более 250 см3', 
-                                    'более 250 см3, но не более 500 см3', 
-                                    'более 500 см3, но не более як 800 см3', 
-                                    'более 800 см3'
-                                ]
+                                type: 'input',
+                                name: 'engine-volume'
                             },
                             {
                                 label: 'Валюта',
@@ -327,12 +315,8 @@ export default {
                         controls: [
                             {
                                 label: 'Объем двигателя, см3',
-                                type: 'select',
-                                name: 'engine-volume-range',
-                                options: [
-                                    'более 2 800 см3',
-                                    'не более 2 800 см3'
-                                ]
+                                type: 'input',
+                                name: 'engine-volume'
                             },
                             {
                                 label: 'Возраст автомобиля ',
@@ -340,7 +324,8 @@ export default {
                                 name: 'age',
                                 options: [
                                     'Новый', 
-                                    'В использовании'
+                                    'В использовании до 8 лет',
+                                    'В использовании более 8 лет'
                                 ]
                             },
                             {
@@ -362,13 +347,8 @@ export default {
                         controls: [
                             {
                                 label: 'Объем двигателя, см3',
-                                type: 'select',
-                                name: 'engine-volume-range',
-                                options: [
-                                    'более 2 500 см3',
-                                    'не более 5 000 см3',
-                                    'более 5 000 см3'
-                                ]
+                                type: 'input',
+                                name: 'engine-volume'
                             },
                             {
                                 label: 'Возраст автомобиля ',
@@ -376,7 +356,8 @@ export default {
                                 name: 'age',
                                 options: [
                                     'Новый', 
-                                    'В использовании'
+                                    'В использовании до 8 лет',
+                                    'В использовании более 8 лет'
                                 ]
                             },
                             {
@@ -430,13 +411,14 @@ export default {
 
 <style lang="scss">
 .calculator-wrap {
-  position: fixed !important;
-  z-index: 100 !important;
+    position: fixed !important;
+    padding-bottom: 20px;
+    perspective: 1200px;
+    z-index: 100 !important;
 }
 
 .calculator {
     position: relative;
-    perspective: 600px;
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -474,7 +456,8 @@ export default {
 
     .calculator-content {
         width: calc(100% - 40px);
-        margin: 70px auto 0;
+        height: 100%;
+        margin: 60px auto 0;
     }
 
     form {
@@ -500,9 +483,8 @@ export default {
 
         label {
             position: relative;
-            top: 5px;
             display: block;
-            padding: 5px 15px 5px 5px;
+            padding: 5px 15px 0 5px;
             font-size: 14px;
             line-height: 18px;
             color: rgba(255, 255, 255, .7);
@@ -511,10 +493,11 @@ export default {
 
         .form-control {
             background-color: rgba(255, 255, 255, .5);
-            padding: 10px;
+            padding: 7.5px;
             color: #fff;
             font-size: 16px;
             line-height: 18px;
+            text-align: center;
             border: none;
 
             &:focus {
@@ -537,6 +520,13 @@ export default {
 
            .form-control {
                cursor: pointer;
+
+               .static-text {
+                   display: block;
+                   position: absolute;
+                   top: 10px;
+                   left: 30px;
+               }
            }
 
            .dropdown-list {
@@ -555,6 +545,7 @@ export default {
                    line-height: 18px;
                    background-color: #333;
                    color: #fff;
+                   text-align: center;
                    cursor: pointer;
 
                    &.active,
@@ -572,18 +563,29 @@ export default {
            }
         }
 
+        .checkbox {
+            width: 18px;
+            height: 18px;
+            margin-top: 5px;
+            padding: 2px;
+            background-color: rgba(255, 255, 255, .5);
+            cursor: pointer;
+
+            img {
+                display: none;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+
+            &.checked img {
+                display: block;
+            }
+        }
+
         .btn-input {
             text-transform: uppercase;
         }
-    }
-
-    .error-massage {
-        width: 100%;
-        margin-top: 20px;
-        padding: 5px 10px;
-        text-align: center;
-        border: 2px solid #b04e50;
-        color: #b04e50;
     }
 }
 

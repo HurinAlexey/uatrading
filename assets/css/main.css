@@ -68,6 +68,12 @@ button:focus {
     outline: none;
 }
 
+blockquote {
+    padding: 5px 5px 5px 20px;
+    background-color: #f8f8f8;
+    border-left: 4px solid #dbdbdb;
+}
+
 .page-enter-active, .page-leave-active {
     transition: all .5s;
 }
@@ -469,6 +475,13 @@ button:focus {
     filter: blur(20px)
 }
 
+.form-title {
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-align: center;
+    color: #fff;
+}
+
 .form-block {
     padding-bottom: 15px;
     z-index: 1
@@ -506,6 +519,24 @@ button:focus {
     color: #fff
 }
 
+.message-invalid {
+    width: 100%;
+    margin-top: 20px;
+    padding: 5px 10px;
+    text-align: center;
+    border: 2px solid #b04e50;
+    color: #b04e50;
+}
+
+.message-valid {
+    width: 100%;
+    margin-top: 20px;
+    padding: 5px 10px;
+    text-align: center;
+    border: 2px solid #3a992c;
+    color: #3a992c;
+}
+
 .btn-input {
     background-color: #cc9557;
     color: #fff;
@@ -518,6 +549,10 @@ button:focus {
 .btn-input:hover {
     background: #8e683d;
     cursor: pointer
+}
+
+.post-text a {
+    color: #cc9557;
 }
 
 @media screen and (max-width:1920px) {
@@ -576,31 +611,48 @@ button:focus {
     }
 }
 
+@media screen and (max-width:1240px) {
+    .work__svg {
+        width: calc(100% - 540px)
+    }
+}
+
 @media screen and (max-width:991px) {
     .what {
         padding-top: 55px
     }
     .what__item {
-        padding: 20px 5px 20px 25px;
+        padding: 20px 5px 20px 35px;
         left: 0!important
     }
     .what__item::after {
+        left: 5px;
         top: 22px
     }
     .blk-block-USA {
         background-size: auto
     }
     .what__box-second {
-        width: 100%;
+        width: 66%;
         -webkit-box-pack: center;
         -ms-flex-pack: center;
-        justify-content: center
+        justify-content: center;
+    }
+    .work__svg {
+        height: 156px;
     }
 }
 
 @media screen and (max-width:767px) {
+    .what__block {
+        padding-bottom: 60px;
+        background-size: cover;
+    }
+    .what__box-second {
+        width: 100%;
+    }
     .footer__form {
-        width: 240px
+        width: 300px
     }
 }
 
@@ -619,7 +671,6 @@ button:focus {
     }
     .what {
         padding-top: 20px;
-        padding-bottom: 25px
     }
     .what__title {
         font-size: 17px;
@@ -641,7 +692,7 @@ button:focus {
         top: 40px;
         left: 135px;
         width: calc(100% - 135px);
-        height: 46px
+        height: 60px
     }
     .what__title svg line:first-child {
         stroke-width: 6px
@@ -686,7 +737,7 @@ button:focus {
     }
     .work__svg {
         right: 30px;
-        height: 27px;
+        height: 50px;
         bottom: -51px;
         width: calc(100% - 174px)
     }

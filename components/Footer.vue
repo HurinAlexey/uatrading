@@ -1,11 +1,11 @@
 <template>
     <footer 
-        class="footer footer--tb flex-sm fd-cr-sm pos-r"
+        class="footer footer--tb pos-r"
         :style="{backgroundImage: `url(${data.backgroundImage})`}"
     >
         <nav class="footer__nav">
             <div class="container">
-                    <ul class="footer__menu flex fw-w jc-sb">
+                    <ul class="footer__menu flex fw-w jc-sa">
                         <li 
                             v-for="(link, index) of links"
                             :key="index"
@@ -89,7 +89,7 @@
         </div>
         <div class="footer__bottom">
             <div class="think">
-                <p class="think__descr">{{data.slogan}}</p>
+                <p class="think__descr opacity left-animate">{{data.slogan}}</p>
             </div>
         </div>
     </footer>
@@ -179,7 +179,7 @@ export default {
 
 .footer__nav {
     font-family: muller-ultra;
-    padding: 10px 0;
+    padding: 0;
     line-height: 20px;
     background-color: #000;
 }
@@ -187,6 +187,10 @@ export default {
 .footer__menu-column {
     width: 50%;
     padding-right: 10px;
+}
+
+.footer__menu-item {
+    padding: 10px;
 }
 
 .footer__menu-item span {
@@ -253,6 +257,9 @@ export default {
         background:url(~static/images/footer-bg-mob.png) no-repeat center top;
         background-size: cover
     }
+    .footer__menu {
+        display: none;
+    }
     .footer__item {
         width: 240px;
         -webkit-box-pack: center;
@@ -260,14 +267,11 @@ export default {
         justify-content: center
     }
     .footer__bottom {
-        padding: 0
+        padding: 0 0 100px;
     }
     .footer__reestr {
-        position: relative;
-        margin-top: 35px;
+        margin-top: 15px;
         font-size: 10px;
-        width: 150px;
-        left: 0
     }
     .think {
         display: -webkit-box;
@@ -283,8 +287,12 @@ export default {
 }
 
 @media screen and (max-width:575px) {
-    .footer__top {
-        padding-bottom: 30px
+    .footer__bottom {
+        padding-bottom: 130px;
+    }
+    .footer__reestr {
+        margin-top: 0;
+        top: calc(75% - 20px);
     }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div class="head pos-r c-before c-after flex fd-c jc-sb">
 
-      <div class="parallax">
+      <div class="parallax" v-if="data.backImage">
           <div class="parallax__wrap">
               <div id="scene">
                   <img :src="data.backImage" data-depth="-0.05" alt="back image" />
@@ -124,7 +124,7 @@
           </div>
       </header>
 
-      <div :class="titleWrapClasses">
+      <div :class="titleWrapClasses" v-if="data.title && data.subtitle">
           <h1>{{data.title}}</h1>
           <h2 v-html="data.subtitle"></h2>
       </div>
@@ -133,7 +133,7 @@
           <button class="block btn">Бесплатная консультация</button>
       </div>
 
-      <ul class="flex pos-r category container fd-c-sm" :class="{'two-items': data.bannerLinks.length === 2}">
+      <ul v-if="data.bannerLinks" class="flex pos-r category container fd-c-sm" :class="{'two-items': data.bannerLinks.length === 2}">
           <li 
             v-for="(link, index) of data.bannerLinks"
             :key="index"
@@ -195,14 +195,16 @@ export default {
   },
   mounted() {
     const scene = document.getElementById('scene')
-    var parallaxInstance = new Parallax(scene)
+    var parallaxInstance
+    if (scene) parallaxInstance = new Parallax(scene)    
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .head {
-    min-height: 100vh;
+    height: 100vh;
+    min-height: 650px;
     color: #fff
 }
 
@@ -345,7 +347,7 @@ header {
 
 .nav>li {
     margin-right: 45px;
-    padding-bottom: 40px
+    // padding-bottom: 40px
 }
 
 .nav>li:hover .nav__dropdown {
@@ -407,7 +409,7 @@ header {
     line-height: 20px;
 }
 
-.info__tel .info__tel-wrap {
+.info__tel-wrap {
     position: relative;
     top: -2px;
 }
@@ -738,7 +740,7 @@ h2 {
         display: block;
         position: absolute;
         right: 0;
-        background-color: rgba(255, 255, 255, .3);
+        background-color: rgba(0, 0, 0, .7);
         width: auto;
         top: 120%;
         white-space: nowrap;
@@ -748,17 +750,11 @@ h2 {
 }
 
 @media screen and (max-width:767px) {
-    .parallax {
-        bottom: 196px
-    }
     .parallax .bg {
         background-position: 20% center
     }
     .parallax .avto {
         background-position: 20% center
-    }
-    .head {
-        min-height: calc(100vh + 196px)
     }
     .title-wrap {
         padding-left: 14px;
@@ -781,22 +777,31 @@ h2 {
     .category li::after {
         display: none
     }
+    .category.two-items {
+        max-width: 100%;
+    }
     .cons-mobile {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        padding: 20px;
+        display: block;
+        position: absolute;
+        top: 70px;
+        right: 20px;
     }
     .cons-mobile .btn {
-        background-color: transparent;
+        padding: 4px 8px;
+        font-size: 14px;
+        background-color: rgba(0, 0, 0, .2);
+        border-width: 1px;
     }
     .category {
         padding: 0!important;
-        background-color: #fff;
+        background-color: rgba(0, 0, 0, .7);
         border-top: 1px solid #cbcac9;
         -o-border-image: 0;
         border-image: 0;
         text-align: center
+    }
+    .category__title {
+        top: 0;
     }
     .category__text {
         display: none
@@ -818,7 +823,7 @@ h2 {
         -o-border-image: 0!important;
         border-image: 0!important;
         border-right: none!important;
-        padding: 20px
+        padding: 15px
     }
 }
 
@@ -836,6 +841,8 @@ h2 {
     h1 {
         font-size: 26px;
         line-height: 30px;
+    }
+    .title-wrap h1 {
         padding-left: 8px;
         border-left: 8px solid #cc9557
     }
@@ -849,12 +856,6 @@ h2 {
     }
     .logo img {
         width: 33px
-    }
-    .head {
-        min-height: calc(100vh + 187px)
-    }
-    .parallax {
-        bottom: 187px
     }
 }
 

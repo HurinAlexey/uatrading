@@ -217,54 +217,27 @@ export default {
                     для клиента</p>`
           }
       ],
-      blogPosts: [
-        {
-          title: 'Lorem ipsum dolor sit amet.',
-          slug: 'post1',
-          date: new Date(),
-          category: 'Таможня',
-          imageSrc: 'images/blog.jpg',
-          text: `<p>Lorem ipsum dolor sit amet.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <p>Lorem ipsum dolor.</p>`
-        },
-        {
-          title: 'Lorem ipsum dolor sit amet.',
-          slug: 'post1',
-          date: new Date(),
-          category: 'Таможня',
-          imageSrc: 'images/blog.jpg',
-          text: `<p>Lorem ipsum dolor sit amet.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <p>Lorem ipsum dolor.</p>`
-        },
-        {
-          title: 'Lorem ipsum dolor sit amet.',
-          slug: 'post1',
-          date: new Date(),
-          category: 'Таможня',
-          imageSrc: 'images/blog.jpg',
-          text: `<p>Lorem ipsum dolor sit amet.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <p>Lorem ipsum dolor.</p>`
-        },
-        {
-          title: 'Lorem ipsum dolor sit amet.',
-          slug: 'post1',
-          date: new Date(),
-          category: 'Таможня',
-          imageSrc: 'images/blog.jpg',
-          text: `<p>Lorem ipsum dolor sit amet.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <p>Lorem ipsum dolor.</p>`
-        }
-      ],
       consultationTitle: 'Нужна квалифицированная помощь?',
       footer: {
         slogan: 'Пока вы думаете, остальные уже ездят!',
         backgroundImage: 'images/footer-bg.jpg'
       }
     }
+  },
+  async asyncData({store}) {
+      const meta = await store.dispatch('meta/fetchByPageName', 'usa')
+      let {posts} = await store.dispatch('post/fetchByPageNumber', 1)
+      posts = posts.slice(0, 4)
+      return {meta, blogPosts: posts}
+  },
+  head() {
+      return {
+          title: this.meta.title,
+          meta: [
+            { hid: 'description', name: 'description', content: this.meta.description },
+            { hid: 'keywords', name: 'keywords', content: this.meta.keywords }
+          ]
+      }
   }
 }
 </script>
