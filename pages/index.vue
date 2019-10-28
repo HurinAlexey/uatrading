@@ -225,7 +225,14 @@ export default {
     }
   },
   async asyncData({store}) {
-      const meta = await store.dispatch('meta/fetchByPageName', 'index')
+      let meta = await store.dispatch('meta/fetchByPageName', 'index')
+      if(!meta) {
+        meta = {
+          title: 'UBTrading',
+          description: 'Таможено-брокерскик услуги.',
+          keywords: ''
+        }
+      }
       return {meta}
   },
   head() {

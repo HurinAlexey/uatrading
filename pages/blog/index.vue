@@ -103,7 +103,14 @@ export default {
     },
     async asyncData({store, query}) {
         const currentPage = query.page
-        const meta = await store.dispatch('meta/fetchByPageName', 'blog')
+        let meta = await store.dispatch('meta/fetchByPageName', 'blog')
+        if(!meta) {
+            meta = {
+                title: 'UBTrading',
+                description: 'Таможено-брокерскик услуги.',
+                keywords: ''
+            }
+        }
         let data = await store.dispatch('post/fetchByPageNumber', currentPage)
         let {posts, pages} = data
         let categories = await store.dispatch('category/fetch')

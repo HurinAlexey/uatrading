@@ -220,7 +220,14 @@ export default {
     }
   },
   async asyncData({store}) {
-    const meta = await store.dispatch('meta/fetchByPageName', 'georgia')
+    let meta = await store.dispatch('meta/fetchByPageName', 'georgia')
+    if(!meta) {
+      meta = {
+        title: 'UBTrading',
+        description: 'Таможено-брокерскик услуги.',
+        keywords: ''
+      }
+    }
     let {posts} = await store.dispatch('post/fetchByPageNumber', 1)
     posts = posts.slice(0, 4)
     return {meta, blogPosts: posts}
