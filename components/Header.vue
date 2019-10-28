@@ -205,7 +205,19 @@ export default {
 .head {
     height: 100vh;
     min-height: 650px;
-    color: #fff
+    color: #fff;
+
+    &.blog-header {
+        height: auto;
+        min-height: 0;
+        padding-bottom: 60px;
+        margin-bottom: -80px;
+        background-image: url(~static/images/blog-header.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: right bottom;
+        z-index: 10;
+    }
 }
 
 .head>* {
@@ -281,7 +293,7 @@ header {
     right: -35px;
     bottom: -35px;
     z-index: -1;
-    background-image:url(~static/images/blur-service-es.png);
+    background-image:url(~static/images/blur-service-es.jpg);
 }
 
 .nav__dropdown_1 {
@@ -601,6 +613,12 @@ h2 {
 }
 
 /* Media queries */
+@media screen and (max-width:1600px) {
+    .blog-header {
+        background-size: auto;
+    }
+}
+
 @media screen and (max-width:1281px) {
     .nav>li {
         margin-right: 20px
@@ -750,6 +768,11 @@ h2 {
 }
 
 @media screen and (max-width:767px) {
+    .blog-header {
+        background-size: cover;
+        background-position: 70% bottom;
+    }
+
     .parallax .bg {
         background-position: 20% center
     }

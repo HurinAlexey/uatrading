@@ -47,10 +47,13 @@ module.exports.getByPageNumber = async (req, res) => {
     if (from < 0) from = 0
     let to = Number(from + count)
     const posts = await Post.find().sort({date: -1})
-    const result = {
-      posts: posts.slice(from, to),
-      pages: Math.ceil(posts.length / count)
+    const result = {}
+    if (posts.length <= count) {
+      result.posts = posts
+    } else {
+      result.posts = posts.slice(from, to)
     }
+    result.pages = Math.ceil(posts.length / count)
     res.json(result)
   } catch (e) {
     res.status(500).json(e)

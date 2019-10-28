@@ -173,7 +173,7 @@ export default {
     right: 0;
     top: calc(100% - 20px);
     font-size: 13px;
-    background-image:url(~static/images/blur-es-schema.png);
+    background-image:url(~static/images/blur-es-schema.jpg);
     background-size: cover;
     opacity: 0;
     transform: rotateX(96deg);
@@ -199,7 +199,7 @@ export default {
     right: 0;
     top: calc(100% - 20px);
     font-size: 13px;
-    background-image:url(~static/images/blur-schema-usa.png);
+    background-image:url(~static/images/blur-schema-usa.jpg);
     background-size: cover;
     opacity: 0;
     transform: rotateX(96deg);

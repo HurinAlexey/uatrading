@@ -11,7 +11,7 @@
                 <a href="#" class="inl-block btn t-center" @click.prevent="showForm">Получить бесплатную консультацию</a>
             </div>
         </div>
-        <img src="images/new-success.png" alt="consultation" class="help__img pos-a">
+        <img src="images/new-success.jpg" alt="consultation" class="help__img pos-a">
     </section>
 </template>
 

@@ -66,7 +66,7 @@
                 </div>
             </div>
         </section>
-        <div class="pagination">
+        <div v-if="pages.length > 1" class="pagination">
             <span
                 v-for="page in pages"
                 :key="page"
@@ -150,18 +150,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.blog-header {
-    height: auto;
-    min-height: 0;
-    padding-bottom: 60px;
-    margin-bottom: -80px;
-    background-image: url(~static/images/blog-header.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: right bottom;
-    z-index: 10;
-}
-
 .blog {
     position: relative;
     padding-top: 90px;
@@ -406,12 +394,6 @@ export default {
 }
 
 /* Media queries */
-@media screen and (max-width:1600px) {
-    .blog-header {
-        background-size: auto;
-    }
-}
-
 @media screen and (max-width:991px) {
     .blog__container {
         flex-direction: column-reverse;
@@ -427,11 +409,6 @@ export default {
 }
 
 @media screen and (max-width:767px) {
-    .blog-header {
-        background-size: cover;
-        background-position: 70% bottom;
-    }
-
     .blog__title {
         margin-bottom: 15px
     }

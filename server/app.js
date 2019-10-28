@@ -8,6 +8,7 @@ const optionRoutes = require('./routes/option.routes')
 const postRoutes = require('./routes/post.routes')
 const categoryRoutes = require('./routes/category.routes')
 const metaRoutes = require('./routes/meta.routes')
+const calculatorRoutes = require('./routes/calculator.routes')
 const mailRoutes = require('./routes/mail.routes')
 const keys = require('./keys')
 
@@ -29,6 +30,7 @@ app.use('/api/option', optionRoutes)
 app.use('/api/post', postRoutes)
 app.use('/api/category', categoryRoutes)
 app.use('/api/meta', metaRoutes)
+app.use('/api/calculator', calculatorRoutes)
 app.use('/api/mail', mailRoutes)
 
 module.exports = app

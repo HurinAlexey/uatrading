@@ -18,7 +18,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#cc9557' },
   /*
   ** Global CSS
   */
@@ -36,6 +36,7 @@ module.exports = {
     { src: '~plugins/draggable.js', ssr: false },
     { src: '~plugins/quill-editor.js', ssr: false }
   ],
+  cache: true,
   /*
   ** Nuxt.js dev-modules
   */

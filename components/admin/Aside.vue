@@ -37,7 +37,13 @@
                     <span>Мета-данные</span>
                 </nuxt-link>
             </el-menu-item>
-            <el-menu-item index="7" class="logout">
+            <el-menu-item index="7">
+                <nuxt-link to="/admin/tables">
+                    <i class="el-icon-s-grid"></i>
+                    <span>Таблицы</span>
+                </nuxt-link>
+            </el-menu-item>
+            <el-menu-item index="8" class="logout">
                 <nuxt-link to="/admin/logout">
                     <i class="el-icon-user"></i>
                     <span>Выйти</span>

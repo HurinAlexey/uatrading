@@ -1,6 +1,6 @@
 <template>
     <div ref="calculation">
-        <img src="images/blur-schema-usa.png" alt="calculator bg" class="calculator-bg">
+        <img src="images/blur-schema-usa.jpg" alt="calculator bg" class="calculator-bg">
 
         <button class="back-to-calc" @click="returnToCalculator">
             <img src="images/arrow-back.png" alt="back">

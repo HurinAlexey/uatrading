@@ -8,7 +8,7 @@
       class-name-draggable="draggable"
     >
         <div class="calculator" ref="calculator">
-            <img src="images/blur-schema-usa.png" alt="calculator bg" class="calculator-bg">
+            <img src="images/blur-schema-usa.jpg" alt="calculator bg" class="calculator-bg">
             <button class="popup-close pos-a close-icon block" @click="closeCustomsCalculator">
                 <svg width="18" height="18">
                     <line x1="0" y1="0" x2="100%" y2="100%" stroke="#fff"></line>
