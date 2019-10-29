@@ -1,8 +1,8 @@
 <template>
     <div>
-        <section class="why pos-r" :style="{backgroundImage: `url(${data.backgroundImage})`}">
+        <section class="why pos-r" :class="data.sectionClass" :style="{backgroundImage: `url(${data.backgroundImage})`}">
             <div class="container">
-                <div class="why__title why__title">
+                <div class="why__title" :class="data.titleClass">
                     <div class="why__title-main opacity left-animate">Почему</div>
                     <div class="pos-r why__sub-title opacity right-animate">мы лучше?
                         <svg class="svg-animate pos-a animate" height="6">

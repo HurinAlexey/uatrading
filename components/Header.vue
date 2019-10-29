@@ -20,7 +20,10 @@
                   <ul class="flex ai-c nav">
                       <li class="pos-r" v-if="data.showAboutImport">
                           <span class="pos-r c-after block nav__link">Все об импорте автомобилей</span>
-                          <ul class="nav__dropdown nav__dropdown-USA pos-a  nav__dropdown_1 c-after">
+                          <ul 
+                            class="nav__dropdown pos-a  nav__dropdown_1 c-after" 
+                            :class="{'nav__dropdown-USA': data.usaBackground}"
+                          >
                               <li class="c-after pos-r">
                                 <nuxt-link to="/blog" class="block pos-r">
                                     <p class="nav__title flex"><span class="nav__num">01 </span>Автомобильный блог</p>
@@ -45,7 +48,10 @@
                       </li>
                       <li class="pos-r">
                           <span class="pos-r c-after block nav__link">Услуги</span>
-                          <ul class="nav__dropdown nav__dropdown-USA nav__dropdown_2 pos-a c-after">
+                          <ul 
+                            class="nav__dropdown nav__dropdown_2 pos-a c-after"
+                            :class="{'nav__dropdown-USA': data.usaBackground}"
+                          >
                               <li class="c-after pos-r">
                                 <nuxt-link to="/" class="block pos-r">
                                     <p class="nav__title flex"><span class="nav__num">01 </span>Таможенно-брокерские
@@ -296,6 +302,10 @@ header {
     background-image:url(~static/images/blur-service-es.jpg);
 }
 
+.nav__dropdown-USA::after {
+    background-image:url(~static/images/blur-service-usa.jpg);
+}
+
 .nav__dropdown_1 {
     right: -15px
 }
@@ -397,6 +407,7 @@ header {
 
 .info .btn {
     margin: -2px 30px 0 0;
+    font-size: 14px;
     line-height: 1.5;
     background-color: transparent;
     cursor: pointer;
@@ -589,6 +600,7 @@ h2 {
 }
 
 .category .category_active>*,
+.category .nuxt-link-active,
 .category li:hover>* {
     opacity: 1
 }

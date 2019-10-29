@@ -177,6 +177,7 @@ export default {
         subtitle: 'Грамотные решения для внешнеэкономической деятельности',
         backImage: 'images/tb-bg.jpg',
         frontImage: 'images/dude.png',
+        usaBackground: true,
         multilang: true,
         showAboutImport: false,
         bannerLinks: [

@@ -113,6 +113,7 @@ export default {
         subtitle: 'Профессиональные подбор, покупка, доставка и таможенное оформление <br> транспортных средств со всех аукционов США «под ключ»',
         backImage: 'images/new-bg-usa.jpg',
         frontImage: 'images/new-avto-usa.png',
+        usaBackground: true,
         multilang: false,
         showAboutImport: true,
         bannerLinks: [
@@ -122,6 +123,8 @@ export default {
         ]
       },
       advantages: {
+        sectionClass: 'why__USA',
+        titleClass: 'why__title-USA',
         backgroundImage: 'images/bg-about-USA.png',
         items: [
           {

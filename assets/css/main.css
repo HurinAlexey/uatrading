@@ -551,7 +551,8 @@ blockquote {
     cursor: pointer
 }
 
-.post-text a {
+.post-text a,
+.why__about a {
     color: #cc9557;
 }
 
