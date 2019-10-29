@@ -268,7 +268,6 @@ header {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center bottom;
 }
 
 #scene,
@@ -369,7 +368,7 @@ header {
 
 .nav>li {
     margin-right: 45px;
-    // padding-bottom: 40px
+    padding-bottom: 40px
 }
 
 .nav>li:hover .nav__dropdown {
