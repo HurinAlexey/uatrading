@@ -7,7 +7,7 @@
 
       <app-advantages :data="advantages" />
 
-      <div class="cars-bg">
+      <div class="cars-bg lazy-bg">
         
         <section class="what pos-r">
             <div class="container">
@@ -21,7 +21,7 @@
                     </svg>
                 </div>
             </div>
-            <div class="what__block pos-r c-before c-after blk-block-georgia">
+            <div class="what__block pos-r c-before c-after blk-block-georgia lazy-bg">
                 <div class="container flex fw-w jc-sa">
 
                     <div class="what__box-first">
@@ -72,7 +72,7 @@
             </svg>
         </section>
 
-        <app-working-schema :items="schemaItems" />
+        <app-working-schema :items="schemaItems" :usaClass="true" />
 
       </div>
 

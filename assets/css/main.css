@@ -552,8 +552,13 @@ blockquote {
 }
 
 .post-text a,
-.why__about a {
+.why__about a,
+.work__item a {
     color: #cc9557;
+}
+
+.lazy-bg {
+    background: transparent !important;
 }
 
 @media screen and (max-width:1920px) {

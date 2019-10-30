@@ -1,5 +1,5 @@
 <template>
-    <section class="about">
+    <section class="about lazy-bg">
         <div class="container flex jc-sb pos-r ai-fs fd-c-sm">
             <div class="about__title about__title-USA pos-r c-after">
                 <p class="opacity left-animate">О нас</p>

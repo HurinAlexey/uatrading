@@ -671,6 +671,15 @@ export default {
                     width: auto;
                     background-color: #cc9557;
                 }
+
+                &.input-wrap {
+                    padding: 0;
+                    background: transparent;
+
+                    .message-invalid {
+                        margin: 5px 0;
+                    }
+                }
             }
         }
 
@@ -701,5 +710,39 @@ export default {
             }
         }
     }    
+
+    .date-input {
+        width: 100%;
+        height: 28px;
+        font-size: 14px;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.7);
+        background-color: rgba(0, 0, 0, 0.3);
+        border: none;
+        cursor: pointer;
+        transition: all .3s;
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        &:focus {
+            outline: none;
+            color: #fff;
+            background-color: rgba(204, 149, 87, 1);
+
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.9);
+            }
+        }
+
+        &.error {
+            border: 2px solid #b04e50;
+
+            &:focus {
+                color: #b04e50;
+            }
+        }
+    }
 }
 </style>

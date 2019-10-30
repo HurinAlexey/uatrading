@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="why pos-r" :class="data.sectionClass" :style="{backgroundImage: `url(${data.backgroundImage})`}">
+        <section class="why pos-r lazy-bg" :class="data.sectionClass" :style="{backgroundImage: `url(${data.backgroundImage})`}">
             <div class="container">
                 <div class="why__title" :class="data.titleClass">
                     <div class="why__title-main opacity left-animate">Почему</div>
@@ -29,7 +29,7 @@
             </div>
         </section>
         <div class="container pos-r">
-            <svg v-if="data.withSvg" class="bottom-svg svg-animate pos-a " width="250" height="250">
+            <svg v-if="data.withSvg" class="bottom-svg svg-animate pos-a " width="350" height="250">
                 <line x1="5" y1="0" x2="5" y2="100%" stroke-width="9" stroke="#cc9557"></line>
                 <line x1="1" y1="100%" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
             </svg>
@@ -48,9 +48,14 @@ export default {
     padding-top: 55px;
     top: -143px;
     margin-bottom: -143px;
+    background-size: cover;
+    background-position: center;
+    z-index: 1
+}
+
+.why__USA {
     background-size: 100% 100%;
     background-position: left top;
-    z-index: 1
 }
 
 .why .container {

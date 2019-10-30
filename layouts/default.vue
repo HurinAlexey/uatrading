@@ -62,18 +62,27 @@ export default {
           }
       })
     },
+    loadLazyBackground() {
+      $('.lazy-bg').each(function () {
+        const scrollTop = $(window).scrollTop()
+        const winHeight = $(window).height()
+        let offset = $(this).offset().top
+        let elemHeight = $(this).height()
+        if(scrollTop + winHeight >= offset && scrollTop <= offset + elemHeight && $(this).hasClass('lazy-bg')) {
+            $(this).removeClass('lazy-bg')
+        }
+      })
+    },
     scrollUp() {
       $('body,html').animate({scrollTop: 0}, 1000)
-    }
-  },
-  mounted() {
-    
-    $(window).on('load scroll', () => {
+    },
+    useAllScrollFuncrions() {
       this.svgAnimate()
       this.elemAnimate('main-animate', 'animate')
       this.elemAnimate('right-animate', 'r-animate')
       this.elemAnimate('left-animate', 'l-animate')
       this.elemAnimate('stop-animate', 'animate-stop')
+      this.loadLazyBackground()
 
       let scroll = $('#scroll-up')
       if(window.innerWidth > 250) {
@@ -83,6 +92,19 @@ export default {
               scroll.addClass('display-n')
           }
       }
+    }
+  },
+  async mounted() {
+    try {
+      await this.$store.dispatch('getCurrency', new Date())
+    } catch(e) {
+      console.error(e)
+    }
+
+    this.useAllScrollFuncrions()
+    
+    $(window).on('scroll', () => {
+      this.useAllScrollFuncrions()
     })
 
     this.$root.$on('toggleform', isVisible => {

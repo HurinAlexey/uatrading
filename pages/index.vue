@@ -4,7 +4,7 @@
     <main>
 
       <div class="problems-wrap">
-          <section class="problems">
+          <section class="problems lazy-bg">
               <div class="white-text">Опасаетесь проблем при таможенном оформлении?</div>
               <div class="questions">
                   <div class="questions__list-wrap" data-depth="0.05">
@@ -55,7 +55,7 @@
                   </svg>
               </div>
           </div>
-          <div class="what__block pos-r c-before c-after blk-block-tb">
+          <div class="what__block pos-r c-before c-after blk-block-tb lazy-bg">
               <div class="container">
                   <div class="flex fw-w jc-sa">
 
@@ -97,7 +97,7 @@
               </div>
 
           </div>
-          <div class="work__block pos-r c-before c-after bl-block-tb">
+          <div class="work__block pos-r c-before c-after bl-block-tb lazy-bg">
               <div class="container flex fw-w jc-sa ai-fs pos-r">
 
                   <div class="work__item flex w35 w50-md w100-sm pos-r">
@@ -177,6 +177,7 @@ export default {
         subtitle: 'Грамотные решения для внешнеэкономической деятельности',
         backImage: 'images/tb-bg.jpg',
         frontImage: 'images/dude.png',
+        imagePosition: 'bottom',
         usaBackground: true,
         multilang: true,
         showAboutImport: false,

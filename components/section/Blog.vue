@@ -22,7 +22,7 @@
                     :to="'/blog/' + post.slug" 
                     class="blog__item pos-r block"
                 >
-                    <img :src="'/uploads' + post.imageUrl" :alt="post.title">
+                    <img v-lazy="'/uploads' + post.imageUrl" :alt="post.title">
                     <div class="blog__text">
                         <div class="blog__name">
                             {{post.title}}

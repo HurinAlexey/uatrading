@@ -7,7 +7,7 @@
 
       <app-advantages :data="advantages" />
 
-      <div class="cars-bg">
+      <div class="cars-bg lazy-bg">
 
         <section class="what pos-r">
             <div class="container">
@@ -21,7 +21,7 @@
                     </svg>
                 </div>
             </div>
-            <div class="what__block pos-r c-before c-after blk-block">
+            <div class="what__block pos-r c-before c-after blk-block lazy-bg">
                 <div class="container flex fw-w jc-fe">
                     <div class="what__item pos-r c-after w33 w50-md w100-esm">
                         <p>Консультация по всем вопросам таможенного оформления и оптимизации налогообложения</p>

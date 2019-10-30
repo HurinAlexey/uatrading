@@ -4,14 +4,14 @@
             <line x1="0" y1="5" x2="100%" y2="5" stroke-width="9" stroke="#cc9557"></line>
             <line x1="100%" y1="1" x2="100%" y2="100%" stroke-width="100" stroke="#cc9557"></line>
         </svg>
-        <div class="help__container pos-r c-after c-before blak-block">
+        <div class="help__container pos-r c-after c-before blak-block lazy-bg">
             <div class="help__wrap">
                 <div class="help__title">{{ title }}</div>
 
                 <a href="#" class="inl-block btn t-center" @click.prevent="showForm">Получить бесплатную консультацию</a>
             </div>
         </div>
-        <img src="images/new-success.jpg" alt="consultation" class="help__img pos-a">
+        <img v-lazy="'images/new-success.jpg'" alt="consultation" class="help__img pos-a">
     </section>
 </template>
 

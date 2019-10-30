@@ -9,7 +9,7 @@
             </div>
 
         </div>
-        <div class="work__block pos-r c-before c-after bl-block-USA">
+        <div class="work__block pos-r c-before c-after bl-block-USA lazy-bg">
             <div class="container flex fd-c fw-w ai-fs" ref="itemsContainer">
 
                 <div 
@@ -25,7 +25,7 @@
                         {{ item.title }}
                         <span class="c-after pos-r"> ...</span>
                     </p>
-                    <div v-html="item.text" class="work__text left-0 work__text-USA pos-a" />
+                    <div v-html="item.text" class="work__text left-0 pos-a" :class="{'work__text-USA': usaClass}" />
                 </div>
                 
             </div>
@@ -35,7 +35,7 @@
 
 <script>
 export default {
-    props: ['items'],
+    props: ['items', 'usaClass'],
     methods: {
         calculateSectionHeight() {
             let items = this.$refs['schemaItem']

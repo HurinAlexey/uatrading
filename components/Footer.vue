@@ -1,6 +1,6 @@
 <template>
     <footer 
-        class="footer footer--tb pos-r"
+        class="footer footer--tb pos-r lazy-bg"
         :style="{backgroundImage: `url(${data.backgroundImage})`}"
     >
         <nav class="footer__nav">

@@ -15,6 +15,22 @@
 
         <table class="data-info">
             <tbody>
+                <tr >
+                    <td class="title">Дата расчета</td>
+                    <td class="input-wrap">
+                        <input 
+                            type="text" 
+                            v-model="date" 
+                            @blur="setCurrencyByDate" 
+                            placeholder="DD.MM.YYYY"
+                            class="date-input" 
+                        />
+                        <div 
+                            v-if="calculationError" 
+                            class="message-invalid"
+                        >{{calculationError.toString()}}</div>
+                    </td>
+                </tr>
                 <tr v-for="(item, index) of dataInfo" :key="index">
                     <td class="title">{{item.title}}</td>
                     <td>{{item.value}}</td>
@@ -66,13 +82,21 @@ export default {
     props: ['data'],
     data() {
         return {
-            currency: {
-                'USD': 24.6,
-                'EUR': 26.9
-            }
+            date: new Date().toLocaleDateString()
         }
     },
     computed: {
+        currency() {
+            const data = this.$store.getters['currency']
+            return {
+                'USD': data['USD'],
+                'EUR': data['EUR']
+            }
+        },
+        calculationError() {
+            const error = this.$store.getters['calculationError']
+            return error
+        },
         finalBid() {
             let costUah = +this.data['cost'] * this.currency[this.data['currency']]
             return costUah + 500 * this.currency['USD']
@@ -118,7 +142,7 @@ export default {
             }
 
             let result =  [
-                {title: 'Дата расчета', value: new Date().toLocaleDateString()},
+                // {title: 'Дата расчета', value: this.date},
                 {title: 'Тип двигателя', value: engineType},
                 {title: 'Объем двигателя', value: this.data['engine-volume']},
                 {title: 'Стоимость', value: this.data['cost'] + ' ' + this.data['currency']}
@@ -239,6 +263,20 @@ export default {
                 yearCoefficient = 50
             }
             return engineVolume * taxPerUnit * yearCoefficient
+        },
+        async setCurrencyByDate() {
+            const valid = /^\d{2}\.\d{2}\.\d{4}$/g.test(this.date)
+            if (valid) {
+                const dateArray = this.date.split('.')
+                const date = new Date(dateArray[2], dateArray[1] - 1, dateArray[0])
+                this.$store.commit('clearCalculationError')
+                await this.$store.dispatch('getCurrency', date)
+            } else {
+                const error = new Error('Неверный формат даты')
+                this.$store.commit('setCalculationError', error)
+            }
+
+            this.calculationError = this.$store.getters['calculationError']
         }
     },
     mounted() {

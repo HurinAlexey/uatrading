@@ -32,7 +32,7 @@ module.exports = {
   plugins: [
     '@/plugins/global',
     '@/plugins/axios',
-    // '@/plugins/element',
+    '@/plugins/lazyload',
     { src: '~plugins/draggable.js', ssr: false },
     { src: '~plugins/quill-editor.js', ssr: false }
   ],
