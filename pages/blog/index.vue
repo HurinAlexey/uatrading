@@ -187,7 +187,7 @@ export default {
     position: relative;
     padding-right: 10px;
     color: #a19699;
-    font-family: muller-b;
+    font-family: muller-b, serif;
     font-size: 60px;
     font-weight: 400;
     line-height: 34px
@@ -208,7 +208,7 @@ export default {
     font-size: 14px;
     padding: 0 15px;
     white-space: nowrap;
-    font-family: muller-r
+    font-family: muller-r, serif
 }
 
 .main-content {

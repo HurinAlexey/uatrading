@@ -355,7 +355,7 @@ header {
 
 .nav__title {
     font-size: 13px;
-    font-family: muller-r
+    font-family: muller-r, serif
 }
 
 .nav__num {
@@ -365,7 +365,7 @@ header {
 .nav__about {
     font-size: 12px;
     padding: 10px 0 0 25px;
-    font-family: muller-thini;
+    font-family: muller-thini, serif;
     font-style: italic
 }
 
@@ -387,7 +387,7 @@ header {
 
 .nav__link {
     padding-right: 15px;
-    font-family: muller-r
+    font-family: muller-r, serif
 }
 
 .nav__link:after {
@@ -429,7 +429,7 @@ header {
 
 .info__tel {
     padding-left: 25px;
-    font-family: muller-thin;
+    font-family: muller-thin, serif;
     font-size: 16px;
     line-height: 20px;
 }
@@ -451,7 +451,7 @@ header {
 .lang {
     padding-top: 3px;
     font-size: 16px;
-    font-family: muller-thin
+    font-family: muller-thin, serif
 }
 
 .lang>li>a {
@@ -499,7 +499,7 @@ header {
 
 h1 {
     font-size: 42px;
-    font-family: NokiaPureHeadline;
+    font-family: NokiaPureHeadline, serif;
     line-height: 50px;
     margin-bottom: 15px;
     letter-spacing: normal;
@@ -516,7 +516,7 @@ h1 {
 h2 {
     font-size: 16px;
     line-height: 25px;
-    font-family: muller-ultra;
+    font-family: muller-ultra, serif;
     font-weight: 100;
     -webkit-transform: scaleY(1.5) translateY(100px);
     transform: scaleY(1.5) translateY(100px);
@@ -612,7 +612,7 @@ h2 {
     color: #cc9557;
     font-size: 20px;
     margin-bottom: 20px;
-    font-family: NokiaPureHeadline;
+    font-family: NokiaPureHeadline, serif;
     text-transform: uppercase;
     position: relative;
     top: 20px

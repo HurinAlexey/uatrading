@@ -95,7 +95,7 @@ export default {
 }
 
 .work__title {
-    font-family: muller-b;
+    font-family: muller-b, serif;
     color: #ada3a5;
     font-size: 60px;
     line-height: 39px
@@ -167,7 +167,7 @@ export default {
     -webkit-transition: transform ease .3s;
     transition: transform ease .3s;
     padding: 22px;
-    font-family: muller-thin;
+    font-family: muller-thin, serif;
     width: 100%;
     left: 0;
     right: 0;
@@ -193,7 +193,7 @@ export default {
     -webkit-transition: transform .3s;
     transition: transform .3s;
     padding: 22px;
-    font-family: muller-thin;
+    font-family: muller-thin, serif;
     width: 100%;
     left: 0;
     right: 0;
@@ -217,7 +217,7 @@ export default {
 
 .work__num {
     font-size: 16px;
-    font-family: muller-ultra;
+    font-family: muller-ultra, serif;
     white-space: nowrap;
     color: #cc9557
 }
@@ -250,7 +250,7 @@ export default {
 
 .work__about {
     padding: 0 15px;
-    font-family: muller-ultra;
+    font-family: muller-ultra, serif;
     font-size: 16px
 }
 

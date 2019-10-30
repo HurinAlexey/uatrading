@@ -93,7 +93,7 @@ export default {
 }
 
 .help__title {
-    font-family: muller-ultra;
+    font-family: muller-ultra, serif;
     font-size: 32px;
     line-height: 50px;
     padding-left: 20px;

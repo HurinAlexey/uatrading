@@ -280,7 +280,7 @@ export default {
 }
 
 .problems .white-text {
-    font-family: NokiaPureText_Lt;
+    font-family: NokiaPureText_Lt, serif;
     font-size: 20px;
     color: #fff;
     margin-left: 40px;
@@ -295,7 +295,7 @@ export default {
 .problems .questions {
     position: relative;
     margin: 40px auto;
-    font-family: muller-b;
+    font-family: muller-b, serif;
     text-align: center;
     color: #cc9557;
 }
@@ -357,7 +357,7 @@ export default {
 }
 
 .work__title {
-    font-family: muller-b;
+    font-family: muller-b, serif;
     color: #ada3a5;
     font-size: 60px;
     line-height: 39px
@@ -421,7 +421,6 @@ export default {
 }
 
 .work .svg-wrap svg line:last-child {
-    webkit-transition-delay: .3s;
     transition-delay: .3s;
 }
 
@@ -429,7 +428,7 @@ export default {
     -webkit-transition: transform ease .3s;
     transition: transform ease .3s;
     padding: 22px;
-    font-family: muller-thin;
+    font-family: muller-thin, serif;
     width: 100%;
     left: 0;
     right: 0;
@@ -453,7 +452,7 @@ export default {
 
 .work__num {
     font-size: 16px;
-    font-family: muller-ultra;
+    font-family: muller-ultra, serif;
     white-space: nowrap;
     color: #cc9557
 }
@@ -486,7 +485,7 @@ export default {
 
 .work__about {
     padding: 0 15px;
-    font-family: muller-ultra;
+    font-family: muller-ultra, serif;
     font-size: 16px
 }
 

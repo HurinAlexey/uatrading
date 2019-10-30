@@ -82,7 +82,7 @@ export default {
     position: relative;
     padding-right: 10px;
     color: #a19699;
-    font-family: muller-b;
+    font-family: muller-b, serif;
     font-size: 60px;
     font-weight: 400;
     line-height: 34px
@@ -103,7 +103,7 @@ export default {
     font-size: 14px;
     padding: 0 15px;
     white-space: nowrap;
-    font-family: muller-r
+    font-family: muller-r, serif
 }
 
 .blog__category {
@@ -118,7 +118,7 @@ export default {
 }
 
 .blog__name {
-    font-family: muller-b
+    font-family: muller-b, serif
 }
 
 .blog__text {
@@ -126,7 +126,7 @@ export default {
 }
 
 .blog__date {
-    font-family: muller-thini;
+    font-family: muller-thini, serif;
     font-size: 10px;
     margin: 10px 0;
     color: #828282
@@ -159,7 +159,7 @@ export default {
 }
 
 .blog__text p {
-    font-family: muller-l;
+    font-family: muller-l, serif;
     font-size: 12px;
     margin-bottom: 7px
 }

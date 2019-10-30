@@ -1,23 +1,27 @@
 @font-face {
     font-family: NokiaPureHeadline;
+    font-display: swap;
     src: url("/fonts/NokiaPureHeadline_ULt.ttf");
     font-weight: 100
 }
 
 @font-face {
     font-family: muller-b;
+    font-display: swap;
     src: url("/fonts/Fontfabric - MullerBold.otf");
     font-weight: 700
 }
 
 @font-face {
     font-family: NokiaPureText_Lt;
+    font-display: swap;
     src: url("/fonts/NokiaPureText_Lt.ttf");
     font-weight: 100
 }
 
 @font-face {
     font-family: muller-thini;
+    font-display: swap;
     src: url("/fonts/Fontfabric - MullerThinItalic.otf");
     font-weight: 100;
     font-size: italic
@@ -25,31 +29,35 @@
 
 @font-face {
     font-family: muller-thin;
+    font-display: swap;
     src: url("/fonts/Fontfabric - MullerThin.otf");
     font-weight: 100
 }
 
 @font-face {
     font-family: muller-r;
+    font-display: swap;
     src: url("/fonts/Fontfabric - MullerRegular.otf");
     font-weight: 400
 }
 
 @font-face {
     font-family: muller-ultra;
+    font-display: swap;
     src: url("/fonts/Fontfabric - MullerUltraLight.otf");
     font-weight: 300
 }
 
 @font-face {
     font-family: muller-l;
+    font-display: swap;
     src: url("/fonts/Fontfabric - MullerLight.otf");
     font-weight: 300
 }
 
 body {
     color: #1f1f1f;
-    font-family: NokiaPureText_Lt;
+    font-family: NokiaPureText_Lt, serif;
     font-size: 14px;
     line-height: 1.5;
     background-color: #ececec;
@@ -118,7 +126,7 @@ blockquote {
 .btn {
     padding: 3px 10px 2px;
     border: .5px solid #fff;
-    font-family: muller-l;
+    font-family: muller-l, serif;
     color: #fff
 }
 
@@ -290,7 +298,7 @@ blockquote {
 }
 
 .what__title {
-    font-family: muller-b;
+    font-family: muller-b, serif;
     font-size: 39px;
     color: #7b6a6e;
     line-height: 39px;
@@ -362,19 +370,19 @@ blockquote {
 
 .what__item h4 {
     font-size: 16px;
-    font-family: muller-r;
+    font-family: muller-r, serif;
     margin-bottom: 5px;
 }
 
 .what__item p {
-    font-family: muller-thini;
+    font-family: muller-thini, serif;
     font-size: 14px;
     width: 100%;
     padding-right: 20px;
 }
 
 .what__item-tb p {
-    font-family: muller-ultra;
+    font-family: muller-ultra, serif;
 }
 
 .what__item:after {

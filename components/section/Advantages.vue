@@ -97,14 +97,14 @@ export default {
 .why__title-main {
     font-size: 60px;
     color: #ada3a5;
-    font-family: muller-b;
+    font-family: muller-b, serif;
     line-height: 50px
 }
 
 .why__sub-title {
     font-size: 40px;
     color: #fff;
-    font-family: muller-r;
+    font-family: muller-r, serif;
     margin-left: 140px
 }
 
@@ -183,7 +183,7 @@ export default {
 
 .why__about {
     width: calc(100% - 100px);
-    font-family: muller-ultra;
+    font-family: muller-ultra, serif;
     font-size: 14px;
     font-weight: 300
 }

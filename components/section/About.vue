@@ -44,7 +44,7 @@
 
 .about__title p {
     font-size: 60px;
-    font-family: muller-b;
+    font-family: muller-b, serif;
     line-height: 50px
 }
 
@@ -58,7 +58,7 @@
     font-size: 17px;
     padding: 0 15px;
     width: 520px;
-    font-family: muller-l
+    font-family: muller-l, serif
 }
 
 .about__description p {

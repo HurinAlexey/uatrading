@@ -158,7 +158,7 @@ export default {
     position: absolute;
     top: calc(75% + 39px);
     left: 50px;
-    font-family: muller-ultra;
+    font-family: muller-ultra, serif;
     color: #bdbdbd;
 }
 
@@ -168,7 +168,7 @@ export default {
     left: 50%;
     width: 240px;
     text-align: center;
-    font-family: muller-ultra;
+    font-family: muller-ultra, serif;
     color: #bdbdbd;
     transform: translate(-50%, 0);
 }
@@ -178,7 +178,7 @@ export default {
 }
 
 .footer__nav {
-    font-family: muller-ultra;
+    font-family: muller-ultra, serif;
     padding: 0;
     line-height: 20px;
     background-color: #000;
@@ -212,7 +212,7 @@ export default {
 
 .footer__item {
     margin-bottom: 10px;
-    font-family: muller-thin
+    font-family: muller-thin, serif
 }
 
 .footer__change-pos {
@@ -243,7 +243,7 @@ export default {
 }
 
 .think__descr {
-    font-family: NokiaPureHeadline;
+    font-family: NokiaPureHeadline, serif;
     font-size: 25px;
     padding-bottom: 5px;
     color: #bdbdbd
