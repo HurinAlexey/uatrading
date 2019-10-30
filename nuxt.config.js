@@ -48,8 +48,17 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     '@nuxtjs/pwa',
   ],
+  proxy: {
+    '/currency': {
+      target: 'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange',
+      pathRewrite: {
+        '^/currency' : ''
+      }
+    }
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options

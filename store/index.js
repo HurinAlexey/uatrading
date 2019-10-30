@@ -24,8 +24,8 @@ export const state = () => ({
         let day = String(date.getDate())
         if (day.length === 1) day = '0' + day
         let dateString = year + month + day
-        const eurData = await this.$axios.$get(`https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=EUR&date=${dateString}&json`)
-        const usdData = await this.$axios.$get(`https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=USD&date=${dateString}&json`)
+        const eurData = await this.$axios.$get(`/currency?valcode=EUR&date=${dateString}&json`)
+        const usdData = await this.$axios.$get(`/currency?valcode=USD&date=${dateString}&json`)
         if (eurData.length === 0 || usdData.length === 0) {
           let error = new Error('Нет данных для указаной даты.')
           commit('setCalculationError', error)

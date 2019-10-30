@@ -18,6 +18,20 @@ export default {
     AppCallbackForm,
     AppCustomsCalculator
   },
+  head() {
+      return {
+          link: [
+              { rel: 'preload', as:'font', href: '/fonts/NokiaPureHeadline_ULt.ttf', type:'font/ttf', crossorigin:'anonymous' },
+              { rel: 'preload', as:'font', href: '/fonts/Fontfabric - MullerBold.otf', type:'font/otf', crossorigin:'anonymous' },
+              { rel: 'preload', as:'font', href: '/fonts/NokiaPureText_Lt.ttf', type:'font/ttf', crossorigin:'anonymous' },
+              { rel: 'preload', as:'font', href: '/fonts/Fontfabric - MullerThinItalic.otf', type:'font/otf', crossorigin:'anonymous' },
+              { rel: 'preload', as:'font', href: '/fonts/Fontfabric - MullerThin.otf', type:'font/otf', crossorigin:'anonymous' },
+              { rel: 'preload', as:'font', href: '/fonts/Fontfabric - MullerRegular.otf', type:'font/otf', crossorigin:'anonymous' },
+              { rel: 'preload', as:'font', href: '/fonts/Fontfabric - MullerUltraLight.otf', type:'font/otf', crossorigin:'anonymous' },
+              { rel: 'preload', as:'font', href: '/fonts/Fontfabric - MullerLight.otf', type:'font/otf', crossorigin:'anonymous' }
+          ]
+      }
+  },
   data() {
     const schema = {
       "@context" : "http://schema.org",

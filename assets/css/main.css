@@ -1,49 +1,49 @@
 @font-face {
     font-family: NokiaPureHeadline;
-    src: url("~assets/fonts/NokiaPureHeadline_ULt.ttf");
+    src: url("/fonts/NokiaPureHeadline_ULt.ttf");
     font-weight: 100
 }
 
 @font-face {
     font-family: muller-b;
-    src: url("~assets/fonts/Fontfabric - MullerBold.otf");
+    src: url("/fonts/Fontfabric - MullerBold.otf");
     font-weight: 700
 }
 
 @font-face {
     font-family: NokiaPureText_Lt;
-    src: url("~assets/fonts/NokiaPureText_Lt.ttf");
+    src: url("/fonts/NokiaPureText_Lt.ttf");
     font-weight: 100
 }
 
 @font-face {
     font-family: muller-thini;
-    src: url("~assets/fonts/Fontfabric - MullerThinItalic.otf");
+    src: url("/fonts/Fontfabric - MullerThinItalic.otf");
     font-weight: 100;
     font-size: italic
 }
 
 @font-face {
     font-family: muller-thin;
-    src: url("~assets/fonts/Fontfabric - MullerThin.otf");
+    src: url("/fonts/Fontfabric - MullerThin.otf");
     font-weight: 100
 }
 
 @font-face {
     font-family: muller-r;
-    src: url("~assets/fonts/Fontfabric - MullerRegular.otf");
+    src: url("/fonts/Fontfabric - MullerRegular.otf");
     font-weight: 400
 }
 
 @font-face {
     font-family: muller-ultra;
-    src: url("~assets/fonts/Fontfabric - MullerUltraLight.otf");
+    src: url("/fonts/Fontfabric - MullerUltraLight.otf");
     font-weight: 300
 }
 
 @font-face {
     font-family: muller-l;
-    src: url("~assets/fonts/Fontfabric - MullerLight.otf");
+    src: url("/fonts/Fontfabric - MullerLight.otf");
     font-weight: 300
 }
 
