@@ -175,8 +175,14 @@ export default {
       header: {
         title: 'Таможенно-брокерские услуги',
         subtitle: 'Грамотные решения для внешнеэкономической деятельности',
-        backImage: 'images/tb-bg.jpg',
-        frontImage: 'images/dude.png',
+        backImage: {
+            desktop: 'images/tb-bg.jpg',
+            mobile: 'images/tb-bg-mob.jpg'
+        },
+        frontImage: {
+            desktop: 'images/dude.png',
+            mobile: 'images/dude-mob.png'
+        },
         imagePosition: 'bottom',
         tbBackground: true,
         multilang: true,
@@ -247,6 +253,8 @@ export default {
       }
   },
   mounted() {
+    document.querySelector('body').classList.remove('body-fix')
+
     const questionsScene = document.getElementsByClassName('questions')[0]
     const questionsParallaxInstance = new Parallax(questionsScene)
   }

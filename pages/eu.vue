@@ -88,8 +88,14 @@ export default {
       header: {
         title: 'Таможенно-брокерские услуги',
         subtitle: 'Профессиональное таможенное оформление и сертификация <br> транспортных средств с Евросоюза «под ключ»',
-        backImage: 'images/new-bg-es.jpg',
-        frontImage: 'images/new-avto-es.png',
+        backImage: {
+            desktop: 'images/new-bg-es.jpg',
+            mobile: 'images/new-bg-es-mob.jpg'
+        },
+        frontImage: {
+            desktop: 'images/new-avto-es.png',
+            mobile: 'images/new-avto-es-mob.png'
+        },
         multilang: false,
         showAboutImport: true,
         bannerLinks: [
@@ -229,6 +235,9 @@ export default {
         { hid: 'keywords', name: 'keywords', content: this.meta.keywords }
       ]
     }
+  },
+  mounted() {
+    document.querySelector('body').classList.remove('body-fix')
   }
 }
 </script>

@@ -97,6 +97,9 @@ export default {
                 { hid: 'keywords', name: 'keywords', content: this.post.keywords }
             ]
         }
+    },
+    mounted() {
+        document.querySelector('body').classList.remove('body-fix')
     }
 }
 </script>

@@ -4,8 +4,16 @@
       <div class="parallax" :class="{'bottom-position': data.imagePosition === 'bottom'}" v-if="data.backImage">
           <div class="parallax__wrap">
               <div id="scene">
-                  <img v-lazy="data.backImage" data-depth="-0.05" alt="back image" />
-                  <img v-if="data.frontImage" v-lazy="data.frontImage" data-depth="0.15" alt="front image" />
+                  <img 
+                    v-lazy="backImage" 
+                    data-depth="-0.05" 
+                    alt="back image" 
+                  />
+                  <img 
+                    v-if="data.frontImage" 
+                    v-lazy="frontImage" 
+                    data-depth="0.15" 
+                    alt="front image" />
               </div>
           </div>
       </div>
@@ -136,7 +144,7 @@
       </div>
 
       <div class="cons-mobile flex jc-c">
-          <button class="block btn">Бесплатная консультация</button>
+          <button class="block btn" @click="showForm">Бесплатная консультация</button>
       </div>
 
       <ul v-if="data.bannerLinks" class="flex pos-r category container fd-c-sm" :class="{'two-items': data.bannerLinks.length === 2}">
@@ -166,6 +174,7 @@ export default {
   data() {
       return {
         isNavOpen: false,
+        imageSize: 'desktop'
       }
   },
   computed: {
@@ -174,6 +183,16 @@ export default {
               return 'title-wrap-tb w100'
           }
           return 'title-wrap w50 w66-lg w75-md w100-sm'
+      },
+      backImage() {
+          if (this.data.backImage) {
+            return this.data.backImage[this.imageSize]
+          }
+      },
+      frontImage() {
+          if (this.data.frontImage) {
+            return this.data.frontImage[this.imageSize]
+          }
       }
   },
   methods: {
@@ -199,10 +218,28 @@ export default {
           this.$root.$emit('opencustomscalculator')
       }
   },
+  beforeMount() {
+    if (window.outerWidth <= 992) {
+        this.imageSize = 'mobile'
+    }
+  },
   mounted() {
     const scene = document.getElementById('scene')
     var parallaxInstance
     if (scene) parallaxInstance = new Parallax(scene)    
+
+    window.onresize = () => {
+        if (window.outerWidth <= 992) {
+            this.imageSize = 'mobile'
+        } else {
+            this.imageSize = 'desktop'
+        }
+    }
+  },
+  watch: {
+      imageSize(value) {
+          this.imageSize = value
+      }
   }
 }
 </script>
@@ -825,7 +862,7 @@ h2 {
     .cons-mobile {
         display: block;
         position: absolute;
-        top: 70px;
+        top: 95px;
         right: 20px;
     }
     .cons-mobile .btn {

@@ -223,6 +223,7 @@ export default {
     .why {
         padding-top: 30px;
         background-size: cover;
+        background-position: left;
     }
     .why__item:nth-child(even) {
         padding-right: 0;

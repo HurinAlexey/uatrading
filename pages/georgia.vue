@@ -109,7 +109,10 @@ export default {
       header: {
         title: 'Таможенно-брокерские услуги',
         subtitle: 'Профессиональное таможенное оформление <br> транспортных средств с Грузии «под ключ»',
-        backImage: 'images/georgia-bg-main.jpg',
+        backImage: {
+            desktop: 'images/georgia-bg-main.jpg',
+            mobile: 'images/georgia-bg-main-mob.jpg'
+        },
         usaBackground: true,
         multilang: false,
         showAboutImport: true,
@@ -241,6 +244,9 @@ export default {
         { hid: 'keywords', name: 'keywords', content: this.meta.keywords }
       ]
     }
+  },
+  mounted() {
+    document.querySelector('body').classList.remove('body-fix')
   }
 }
 </script>

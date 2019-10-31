@@ -152,6 +152,9 @@ export default {
             this.bigPost = bigPost
             this.currentPage = page
         }
+    },
+    mounted() {
+        document.querySelector('body').classList.remove('body-fix')
     }
 }
 </script>

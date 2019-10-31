@@ -111,8 +111,14 @@ export default {
       header: {
         title: 'Автомобили с США',
         subtitle: 'Профессиональные подбор, покупка, доставка и таможенное оформление <br> транспортных средств со всех аукционов США «под ключ»',
-        backImage: 'images/new-bg-usa.jpg',
-        frontImage: 'images/new-avto-usa.png',
+        backImage: {
+            desktop: 'images/new-bg-usa.jpg',
+            mobile: 'images/new-bg-usa-mob.jpg'
+        },
+        frontImage: {
+            desktop: 'images/new-avto-usa.png',
+            mobile: 'images/new-avto-usa-mob.png'
+        },
         usaBackground: true,
         multilang: false,
         showAboutImport: true,
@@ -241,13 +247,16 @@ export default {
       return {meta, blogPosts: posts}
   },
   head() {
-      return {
-          title: this.meta.title,
-          meta: [
-            { hid: 'description', name: 'description', content: this.meta.description },
-            { hid: 'keywords', name: 'keywords', content: this.meta.keywords }
-          ]
-      }
+    return {
+      title: this.meta.title,
+      meta: [
+        { hid: 'description', name: 'description', content: this.meta.description },
+        { hid: 'keywords', name: 'keywords', content: this.meta.keywords }
+      ]
+    }
+  },
+  mounted() {
+    document.querySelector('body').classList.remove('body-fix')
   }
 }
 </script>
