@@ -4,8 +4,8 @@
       <div class="parallax" :class="{'bottom-position': data.imagePosition === 'bottom'}" v-if="data.backImage">
           <div class="parallax__wrap">
               <div id="scene">
-                  <img v-lazy="data.backImage" data-depth="-0.05" alt="back image" />
-                  <img v-if="data.frontImage" v-lazy="data.frontImage" data-depth="0.15" alt="front image" />
+                  <img :src="data.backImage" data-depth="-0.05" alt="back image" />
+                  <img v-if="data.frontImage" :src="data.frontImage" data-depth="0.15" alt="front image" />
               </div>
           </div>
       </div>
@@ -50,7 +50,7 @@
                           <span class="pos-r c-after block nav__link">Услуги</span>
                           <ul 
                             class="nav__dropdown nav__dropdown_2 pos-a c-after"
-                            :class="{'nav__dropdown-USA': data.usaBackground}"
+                            :class="{'nav__dropdown-USA': data.usaBackground, 'nav__dropdown-tb': data.tbBackground}"
                           >
                               <li class="c-after pos-r">
                                 <nuxt-link to="/" class="block pos-r">
@@ -306,6 +306,11 @@ header {
 
 .nav__dropdown-USA::after {
     background-image:url(~static/images/blur-service-usa.jpg);
+}
+
+.nav__dropdown-tb::after {
+    background-image:url(~static/images/blur-service-tb.jpg);
+    background-size: cover;
 }
 
 .nav__dropdown_1 {

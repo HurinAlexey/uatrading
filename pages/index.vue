@@ -178,7 +178,7 @@ export default {
         backImage: 'images/tb-bg.jpg',
         frontImage: 'images/dude.png',
         imagePosition: 'bottom',
-        usaBackground: true,
+        tbBackground: true,
         multilang: true,
         showAboutImport: false,
         bannerLinks: [

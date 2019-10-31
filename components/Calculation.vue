@@ -74,6 +74,8 @@
                 </tr>
             </tfoot>
         </table>
+
+        <button class="send-button">Отправить расчет на почту</button>
     </div>
 </template>
 
