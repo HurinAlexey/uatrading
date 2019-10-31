@@ -4,8 +4,8 @@
       <div class="parallax" :class="{'bottom-position': data.imagePosition === 'bottom'}" v-if="data.backImage">
           <div class="parallax__wrap">
               <div id="scene">
-                  <img :src="data.backImage" data-depth="-0.05" alt="back image" />
-                  <img v-if="data.frontImage" :src="data.frontImage" data-depth="0.15" alt="front image" />
+                  <img v-lazy="data.backImage" data-depth="-0.05" alt="back image" />
+                  <img v-if="data.frontImage" v-lazy="data.frontImage" data-depth="0.15" alt="front image" />
               </div>
           </div>
       </div>
