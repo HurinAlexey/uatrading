@@ -10,7 +10,15 @@ export const state = () => ({
     },
     async sendCallbackMail({commit}, {name, phone}) {
       try {
-        return await this.$axios.$post('/api/mail', {name, phone})
+        return await this.$axios.$post('/api/mail/callback', {name, phone})
+      } catch (e) {
+        commit('setError', e, {root: true})
+        throw e
+      }
+    },
+    async sendCalculationInfo({commit}, {email, message}) {
+      try {
+        return await this.$axios.$post('/api/mail/calculation', {email, message})
       } catch (e) {
         commit('setError', e, {root: true})
         throw e
@@ -26,6 +34,8 @@ export const state = () => ({
         let dateString = year + month + day
         const eurData = await this.$axios.$get(`/currency?valcode=EUR&date=${dateString}&json`)
         const usdData = await this.$axios.$get(`/currency?valcode=USD&date=${dateString}&json`)
+        // const eurData = await this.$axios.$get(`https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=EUR&date=${dateString}&json`)
+        // const usdData = await this.$axios.$get(`https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=USD&date=${dateString}&json`)
         if (eurData.length === 0 || usdData.length === 0) {
           let error = new Error('Нет данных для указаной даты.')
           commit('setCalculationError', error)

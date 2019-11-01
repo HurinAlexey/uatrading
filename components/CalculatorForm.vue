@@ -52,7 +52,10 @@
                 </div>
             </div>
 
-            <div class="form-control-wrap">
+            <div 
+                v-if="delivery && (data.idPrefix === 'passenger' || data.idPrefix === 'truck')"
+                class="form-control-wrap"
+            >
                 <label>Расчет доставки по США</label>
                 <div class="checkbox-wrap">
                     <div class="checkbox" @click="onCheck($event)">
@@ -94,7 +97,7 @@
 
 <script>
 export default {
-    props: ['data'],
+    props: ['data', 'delivery'],
     data() {
         return {
             errorMessage: '',
@@ -105,8 +108,7 @@ export default {
                     name: 'auction',
                     options: [
                         'IAAI', 
-                        'Copart',
-                        'Manheim'
+                        'Copart'
                     ]
                 },
                 {

@@ -46,7 +46,7 @@
                                 </a>
                               </li>
                               <li class="c-after pos-r">
-                                <a href="#" class="block pos-r">
+                                <a href="#" class="block pos-r" @click.prevent="openCustomsCalculatorWithDelivery">
                                     <p class="nav__title flex"><span class="nav__num">03 </span>Расчет стоимости доставки
                                     </p>
                                     <p class="nav__about"> Калькулятор всех расходов по доставке авто с США ...</p>
@@ -216,6 +216,9 @@ export default {
       },
       openCustomsCalculator() {
           this.$root.$emit('opencustomscalculator')
+      },
+      openCustomsCalculatorWithDelivery() {
+          this.$root.$emit('opencustomscalculatorwithdev')
       }
   },
   beforeMount() {

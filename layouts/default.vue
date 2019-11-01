@@ -4,7 +4,7 @@
     <nuxt />
     <app-callback-form v-if="formVisible" />
     <button id="scroll-up" class="scroll-up display-n" @click="scrollUp" />
-    <app-customs-calculator v-if="customsCalculatorVisible" />
+    <app-customs-calculator v-if="customsCalculatorVisible" :delivery="withDelivery" />
   </div>
 </template>
 
@@ -53,7 +53,8 @@ export default {
     return {
       schema: JSON.stringify(schema),
       formVisible: false,
-      customsCalculatorVisible: false
+      customsCalculatorVisible: false,
+      withDelivery: false
     }
   },
   methods: {
@@ -127,10 +128,17 @@ export default {
 
     this.$root.$on('closecustomscalculator', () => {
       this.customsCalculatorVisible = false
+      this.withDelivery = false
     })
 
     this.$root.$on('opencustomscalculator', () => {
       this.customsCalculatorVisible = true
+      this.withDelivery = false
+    })
+
+    this.$root.$on('opencustomscalculatorwithdev', () => {
+      this.customsCalculatorVisible = true
+      this.withDelivery = true
     })
   }
 }

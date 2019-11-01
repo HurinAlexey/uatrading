@@ -26,10 +26,26 @@
             </ul>
 
             <div class="calculator-content">
-                <app-calculator-form :class="{'display-n': activeCalculator !== 'passenger-calculator'}" :data="passengerCalculator" />
-                <app-calculator-form :class="{'display-n': activeCalculator !== 'truck-calculator'}" :data="truckCalculator" />
-                <app-calculator-form :class="{'display-n': activeCalculator !== 'moto-calculator'}" :data="motoCalculator" />
-                <app-calculator-form :class="{'display-n': activeCalculator !== 'bus-calculator'}" :data="busCalculator" />
+                <app-calculator-form 
+                    :class="{'display-n': activeCalculator !== 'passenger-calculator'}" 
+                    :data="passengerCalculator" 
+                    :delivery="delivery" 
+                />
+                <app-calculator-form 
+                    :class="{'display-n': activeCalculator !== 'truck-calculator'}" 
+                    :data="truckCalculator" 
+                    :delivery="delivery" 
+                />
+                <app-calculator-form 
+                    :class="{'display-n': activeCalculator !== 'moto-calculator'}" 
+                    :data="motoCalculator" 
+                    :delivery="delivery" 
+                />
+                <app-calculator-form 
+                    :class="{'display-n': activeCalculator !== 'bus-calculator'}" 
+                    :data="busCalculator" 
+                    :delivery="delivery" 
+                />
             </div>
         </div>
 
@@ -42,6 +58,7 @@ import AppCalculatorForm from '@/components/CalculatorForm.vue'
 import AppCalculation from '@/components/Calculation.vue'
 
 export default {
+    props: ['delivery'],
     components: {
         AppCalculatorForm,
         AppCalculation
@@ -742,6 +759,25 @@ export default {
             &:focus {
                 color: #b04e50;
             }
+        }
+    }
+
+    .button-wrap {
+        margin-top: 10px;
+        text-align: right;
+    }
+
+    .send-button {
+        padding: 5px 10px;
+        font-size: 14px;
+        line-height: 18px;
+        color: rgba(255, 255, 255, 0.7);
+        background-color: #cc9557;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #8e683d;
         }
     }
 }

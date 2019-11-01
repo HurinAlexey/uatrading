@@ -75,16 +75,26 @@
             </tfoot>
         </table>
 
-        <button class="send-button">Отправить расчет на почту</button>
+        <div class="button-wrap">
+            <button class="send-button" @click="showMailForm">Отправить расчет на почту</button>
+        </div>
+
+        <app-calculation-mail-form v-if="formVisible" @closemailform="hideMailForm" />
     </div>
 </template>
 
 <script>
+import AppCalculationMailForm from '@/components/CalculationMailForm.vue'
+
 export default {
     props: ['data'],
+    components: {
+        AppCalculationMailForm,
+    },
     data() {
         return {
-            date: new Date().toLocaleDateString()
+            date: new Date().toLocaleDateString(),
+            formVisible: false
         }
     },
     computed: {
@@ -279,6 +289,15 @@ export default {
             }
 
             this.calculationError = this.$store.getters['calculationError']
+        },
+        showMailForm() {
+            this.formVisible = true
+        },
+        hideMailForm() {
+            this.formVisible = false
+        },
+        async sendByMail() {
+
         }
     },
     mounted() {

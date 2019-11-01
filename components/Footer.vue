@@ -107,15 +107,11 @@ export default {
                 },
                 {
                     title: 'Таможенный калькулятор 2019',
-                    onclick() {
-                        console.log('some logic')
-                    }
+                    onclick: this.openCustomsCalculator
                 },
                 {
                     title: 'Калькулятор доставки авто с США',
-                    onclick() {
-                        console.log('some logic')
-                    }
+                    onclick: this.openCustomsCalculatorWithDelivery
                 },
                 {
                     title: 'Таможенно-брокерские услуги',
@@ -135,6 +131,14 @@ export default {
                 }
             ]
         }
+    },
+    methods: {
+      openCustomsCalculator() {
+          this.$root.$emit('opencustomscalculator')
+      },
+      openCustomsCalculatorWithDelivery() {
+          this.$root.$emit('opencustomscalculatorwithdev')
+      }
     },
     mounted() {
         this.links = this.links.filter(item => item.href !== this.$route.path)
