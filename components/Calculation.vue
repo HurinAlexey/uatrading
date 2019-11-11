@@ -1,6 +1,5 @@
 <template>
     <div ref="calculation">
-        <img src="images/blur-schema-usa.jpg" alt="calculator bg" class="calculator-bg">
 
         <button class="back-to-calc" @click="returnToCalculator">
             <img src="images/arrow-back.png" alt="back">
@@ -13,88 +12,110 @@
             </svg>
         </button>
 
-        <table class="data-info">
-            <tbody>
-                <tr >
-                    <td class="title">Дата расчета</td>
-                    <td class="input-wrap">
-                        <input 
-                            type="text" 
-                            v-model="date" 
-                            @blur="setCurrencyByDate" 
-                            placeholder="DD.MM.YYYY"
-                            class="date-input" 
-                        />
-                        <div 
-                            v-if="calculationError" 
-                            class="message-invalid"
-                        >{{calculationError.toString()}}</div>
-                    </td>
-                </tr>
-                <tr v-for="(item, index) of dataInfo" :key="index">
-                    <td class="title">{{item.title}}</td>
-                    <td>{{item.value}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="calculation-content">
+            <vuescroll :ops="scrollOptions">
+                <div class="tables-wrap">
+                    <table class="data-info">
+                        <tbody>
+                            <tr >
+                                <td class="title">Дата расчета</td>
+                                <td class="input-wrap">
+                                    <input 
+                                        type="text" 
+                                        v-model="date" 
+                                        @blur="setCurrencyByDate" 
+                                        placeholder="DD.MM.YYYY"
+                                        class="date-input" 
+                                    />
+                                    <div 
+                                        v-if="calculationError" 
+                                        class="message-invalid"
+                                    >{{calculationError.toString()}}</div>
+                                </td>
+                            </tr>
+                            <tr v-for="(item, index) of dataInfo" :key="index">
+                                <td class="title">{{item.title}}</td>
+                                <td>{{item.value}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-        <table class="customs-payments">
-            <thead>
-                <tr>
-                    <td class="table-title">Таможенные платежи</td>
-                    <td>Основа начисления</td>
-                    <td>Ставка</td>
-                    <td>Сумма, грн</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="title">Ввозная пошлина</td>
-                    <td>{{finalBid | float(2)}}</td>
-                    <td>10 %</td>
-                    <td>{{importTax | float(2)}}</td>
-                </tr>
-                <tr>
-                    <td class="title">Акцизный налог</td>
-                    <td>{{data['engine-volume']}}</td>
-                    <td>{{exciseTax | float(2)}} EUR</td>
-                    <td>{{exciseTaxUah | float(2)}}</td>
-                </tr>
-                <tr>
-                    <td class="title">НДС</td>
-                    <td>{{costWithTax | float(2)}}</td>
-                    <td>20 %</td>
-                    <td>{{vat | float(2)}}</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td class="title">Итого (грн/usd)</td>
-                    <td class="result">{{paymentsSum | float(2)}} / {{paymentsSumUsd | float(2)}}</td>
-                </tr>
-            </tfoot>
-        </table>
+                    <table class="customs-payments">
+                        <thead>
+                            <tr>
+                                <td class="table-title">Таможенные платежи</td>
+                                <td>Основа начисления</td>
+                                <td>Ставка</td>
+                                <td>Сумма, грн</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="title">Ввозная пошлина</td>
+                                <td>{{finalBid | float(2)}}</td>
+                                <td>10 %</td>
+                                <td>{{importTax | float(2)}}</td>
+                            </tr>
+                            <tr>
+                                <td class="title">Акцизный налог</td>
+                                <td>{{data['engine-volume']}}</td>
+                                <td>{{exciseTax | float(2)}} EUR</td>
+                                <td>{{exciseTaxUah | float(2)}}</td>
+                            </tr>
+                            <tr>
+                                <td class="title">НДС</td>
+                                <td>{{costWithTax | float(2)}}</td>
+                                <td>20 %</td>
+                                <td>{{vat | float(2)}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="title">Итого (грн/usd)</td>
+                                <td class="result">{{paymentsSum | float(2)}} / {{paymentsSumUsd | float(2)}}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
 
-        <div class="button-wrap">
-            <button class="send-button" @click="showMailForm">Отправить расчет на почту</button>
+                    <div class="button-wrap">
+                        <button class="send-button" @click="showMailForm">Отправить расчет на почту</button>
+                    </div>
+                </div>
+            </vuescroll>
         </div>
 
-        <app-calculation-mail-form v-if="formVisible" @closemailform="hideMailForm" />
+        <app-calculation-mail-form ref="mailForm" @closemailform="hideMailForm" />
     </div>
 </template>
 
 <script>
+import vuescroll from 'vuescroll'
 import AppCalculationMailForm from '@/components/CalculationMailForm.vue'
 
 export default {
     props: ['data'],
     components: {
         AppCalculationMailForm,
+        vuescroll
     },
     data() {
         return {
             date: new Date().toLocaleDateString(),
-            formVisible: false
+            formVisible: false,
+            scrollOptions: {
+                bar: {
+                    showDelay: 500,
+                    onlyShowBarOnScroll: false,
+                    keepShow: false,
+                    background: '#cc9557',
+                    opacity: 1,
+                    hoverStyle: false,
+                    specifyBorderRadius: false,
+                    minSize: 0,
+                    size: '5px',
+                    disable: false
+                }
+            },
         }
     },
     computed: {
@@ -291,13 +312,10 @@ export default {
             this.calculationError = this.$store.getters['calculationError']
         },
         showMailForm() {
-            this.formVisible = true
+            this.$refs.mailForm.$el.classList.add('active')
         },
         hideMailForm() {
-            this.formVisible = false
-        },
-        async sendByMail() {
-
+            this.$refs.mailForm.$el.classList.remove('active')
         }
     },
     mounted() {

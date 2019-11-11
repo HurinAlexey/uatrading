@@ -14,7 +14,7 @@
                 <label v-if="!email" for="email" class="label">email</label>
             </div>
             <button type="submit" class="input btn-input" @click.prevent="onSubmit">ОТПРАВИТЬ</button>
-            <button class="popup-close pos-a close-icon block" @click="closeForm">
+            <button class="popup-close pos-a close-icon block" @click.prevent="closeForm">
                 <svg width="18" height="18">
                     <line x1="0" y1="0" x2="100%" y2="100%" stroke="#fff"></line>
                     <line x1="0" y1="100%" x2="100%" y2="0" stroke="#fff"></line>

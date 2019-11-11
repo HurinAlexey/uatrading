@@ -2,8 +2,11 @@
   <div id="page">
     <script v-html="schema" type="application/ld+json" />
     <nuxt />
-    <app-callback-form v-if="formVisible" />
-    <button id="scroll-up" class="scroll-up display-n" @click="scrollUp" />
+    <app-callback-form ref="callbackForm" />
+    <button id="scroll-up" class="scroll-up display-n" @click="scrollUp">
+      <img src="/images/to-top.png" alt="top">
+      <span class="text">Top</span>
+    </button>
     <app-customs-calculator v-if="customsCalculatorVisible" :delivery="withDelivery" />
   </div>
 </template>
@@ -18,20 +21,20 @@ export default {
     AppCallbackForm,
     AppCustomsCalculator
   },
-  head() {
-      return {
-          link: [
-              { rel: 'preload', as:'font', href: '/fonts/NokiaPureHeadline_ULt.ttf', type:'font/ttf', crossorigin:'anonymous' },
-              { rel: 'preload', as:'font', href: '/fonts/Fontfabric - MullerBold.otf', type:'font/otf', crossorigin:'anonymous' },
-              { rel: 'preload', as:'font', href: '/fonts/NokiaPureText_Lt.ttf', type:'font/ttf', crossorigin:'anonymous' },
-              { rel: 'preload', as:'font', href: '/fonts/Fontfabric - MullerThinItalic.otf', type:'font/otf', crossorigin:'anonymous' },
-              { rel: 'preload', as:'font', href: '/fonts/Fontfabric - MullerThin.otf', type:'font/otf', crossorigin:'anonymous' },
-              { rel: 'preload', as:'font', href: '/fonts/Fontfabric - MullerRegular.otf', type:'font/otf', crossorigin:'anonymous' },
-              { rel: 'preload', as:'font', href: '/fonts/Fontfabric - MullerUltraLight.otf', type:'font/otf', crossorigin:'anonymous' },
-              { rel: 'preload', as:'font', href: '/fonts/Fontfabric - MullerLight.otf', type:'font/otf', crossorigin:'anonymous' }
-          ]
-      }
-  },
+  // head() {
+  //     return {
+  //         link: [
+  //             { rel: 'preload', as:'font', href: '/fonts/NokiaPureHeadline_ULt.ttf', type:'font/ttf', crossorigin:'anonymous' },
+  //             { rel: 'preload', as:'font', href: '/fonts/Fontfabric - MullerBold.otf', type:'font/otf', crossorigin:'anonymous' },
+  //             { rel: 'preload', as:'font', href: '/fonts/NokiaPureText_Lt.ttf', type:'font/ttf', crossorigin:'anonymous' },
+  //             { rel: 'preload', as:'font', href: '/fonts/Fontfabric - MullerThinItalic.otf', type:'font/otf', crossorigin:'anonymous' },
+  //             { rel: 'preload', as:'font', href: '/fonts/Fontfabric - MullerThin.otf', type:'font/otf', crossorigin:'anonymous' },
+  //             { rel: 'preload', as:'font', href: '/fonts/Fontfabric - MullerRegular.otf', type:'font/otf', crossorigin:'anonymous' },
+  //             { rel: 'preload', as:'font', href: '/fonts/Fontfabric - MullerUltraLight.otf', type:'font/otf', crossorigin:'anonymous' },
+  //             { rel: 'preload', as:'font', href: '/fonts/Fontfabric - MullerLight.otf', type:'font/otf', crossorigin:'anonymous' }
+  //         ]
+  //     }
+  // },
   data() {
     const schema = {
       "@context" : "http://schema.org",
@@ -109,13 +112,7 @@ export default {
       }
     }
   },
-  async mounted() {
-    try {
-      await this.$store.dispatch('getCurrency', new Date())
-    } catch(e) {
-      console.error(e)
-    }
-
+  mounted() {
     this.useAllScrollFuncrions()
     
     $(window).on('scroll', () => {
@@ -123,7 +120,11 @@ export default {
     })
 
     this.$root.$on('toggleform', isVisible => {
-      this.formVisible = isVisible
+      if (isVisible) {
+        this.$refs.callbackForm.$el.classList.add('active')
+      } else {
+        this.$refs.callbackForm.$el.classList.remove('active')
+      }
     })
 
     this.$root.$on('closecustomscalculator', () => {
@@ -153,15 +154,38 @@ export default {
 .scroll-up {
     position: fixed;
     bottom: 5%;
-    right: 5%;
-    width: 40px;
-    height: 40px;
-    background-color: transparent;
-    background-image:url(~static/images/up.png);
+    right: 2%;
+    width: 50px;
+    padding: 8px 3px;
+    background-color: #151b1a;
     background-size: contain;
     background-repeat: no-repeat;
     border: none;
+    border-radius: 3px;
     cursor: pointer;
-    z-index: 11
+    z-index: 11;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 30px;
+      margin-bottom: 5px;
+      object-fit: contain;
+      transition: all .3s;
+    }
+
+    .text {
+      display: block;
+      font-size: 16px;
+      color: #fff;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    &:hover {
+      img {
+        transform: translateY(-2px);
+      }
+    }
 }
 </style>

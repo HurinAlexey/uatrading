@@ -434,6 +434,10 @@ blockquote {
     z-index: 10;
 }
 
+.close-icon:hover {
+    background-color: #843738;
+}
+
 .close-icon svg {
     display: block;
 }
@@ -442,10 +446,19 @@ blockquote {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, .9);
-    z-index: 150
+    width: 100%;
+    height: 100vh;
+    max-height: 100%;
+    background-color: rgba(0, 0, 0, .8);
+    opacity: .3;
+    transform: scale(0);
+    transition: transform .3s, opacity .3s;
+    z-index: 150;
+}
+
+.popup.active {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .close-bg {
@@ -466,7 +479,8 @@ blockquote {
 
 .footer__form {
     margin: 0 auto;
-    background-color: rgba(196, 196, 196, .05);
+    /* background-color: rgba(196, 196, 196, .05); */
+    background-color: #151b1a;
     padding: 40px 25px 25px;
     width: 310px;
     overflow: hidden
@@ -501,6 +515,10 @@ blockquote {
     padding: 10px;
     color: #fff;
     font-size: 16px
+}
+
+.form-block .input::placeholder {
+    color: rgba(255, 255, 255, .8);
 }
 
 .form-block .label {
@@ -541,8 +559,8 @@ blockquote {
     margin-top: 20px;
     padding: 5px 10px;
     text-align: center;
-    border: 2px solid #3a992c;
-    color: #3a992c;
+    border: 2px solid #3e6b49;
+    color: #3e6b49;
 }
 
 .btn-input {
@@ -563,6 +581,10 @@ blockquote {
 .why__about a,
 .work__item a {
     color: #cc9557;
+}
+
+.work__text p {
+    margin-bottom: 15px
 }
 
 .lazy-bg {

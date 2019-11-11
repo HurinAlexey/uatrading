@@ -76,28 +76,21 @@
                 @click.prevent="changePage(page)"
             >{{page}}</span>
         </div>
-        <app-footer :data="footer" />
     </div>
 </template>
 
 <script>
 import AppHeader from '@/components/Header.vue'
-import AppFooter from '@/components/Footer.vue'
 
 
 export default {
     components: {
-        AppHeader,
-        AppFooter
+        AppHeader
     },
     data() {
         return {
             header: {
                 showAboutImport: true
-            },
-            footer: {
-                slogan: 'Пока вы думаете, остальные уже ездят!',
-                backgroundImage: '/images/footer-bg.jpg'
             }
         }
     },

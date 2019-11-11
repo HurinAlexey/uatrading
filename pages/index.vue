@@ -228,7 +228,8 @@ export default {
       consultationTitle: 'Нужен надежный таможенный брокер?',
       footer: {
         slogan: 'Мы не решаем проблем – мы их не допускаем!',
-        backgroundImage: 'images/footer-tb.jpg'
+        backgroundImage: 'images/footer-tb.jpg',
+        withoutNav: true
       }
     }
   },
@@ -267,7 +268,8 @@ export default {
     padding: 35px 0;
     overflow: hidden;
     background-color: #ececec;
-    background-image:url(~static/images/questions-bg.png);
+    background-image: linear-gradient(to bottom, rgba(78, 63, 66, 1), rgba(0, 0, 0, 1));
+    // background-image:url(~static/images/questions-bg.png);
     background-size: cover;
 }
 
@@ -282,7 +284,7 @@ export default {
     left: 50%;
     display: block;
     border: 40px solid transparent;
-    border-top-color: #1f1b1e;
+    border-top-color: #000;
     transform: translateX(-50%);
     z-index: 2;
 }

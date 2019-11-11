@@ -58,36 +58,100 @@
             >
                 <label>Расчет доставки по США</label>
                 <div class="checkbox-wrap">
-                    <div class="checkbox" @click="onCheck($event)">
+                    <div class="checkbox" @click="onCheck($event, 'showDelivery')">
                         <input type="checkbox" name="delivery" class="display-n" />
                         <img src="images/check.png" alt="check">
                     </div>
                 </div>
             </div>
+
             <div v-if="showDelivery" class="delivery-calculator w100">
-                <div 
-                    v-for="(control, index) of deliveryControls"
-                    :key="index"
-                    class="form-control-wrap"
-                >
-                    <label>{{control.label}}</label>
+
+                <div class="form-control-wrap">
+                    <label>{{auction.label}}</label>
                     <div class="dropdown">
-                        <input type="hidden" :name="control.name" :value="control.options[0]" />
+                        <input type="hidden" :name="auction.name" :value="auction.options[0]" ref="activeAuction" />
                         <div class="form-control" @click="toggleDropdown($event)">
-                            <span v-if="control.staticText" class="static-text">{{control.staticText}}</span>
-                            {{control.options[0]}}
+                            {{auction.options[0]}}
                         </div>
                         <ul class="dropdown-list">
                             <li
-                                v-for="(option, index) of control.options"
+                                v-for="(option, index) of auction.options"
                                 :key="index"
                                 :class="{'active': index === 0}"
-                                @click="selectOption($event)"
+                                @click="changeAuction($event)"
                             >{{option}}</li>
                         </ul>
                     </div>
                 </div>
+
+                <div class="form-control-wrap">
+                    <label>Доставка по США: от</label>
+                    <div class="dropdown">
+                        <input type="hidden" name="delivery-from" :value="activeDeliveryFrom['Auction Location']" />
+                        <div class="form-control" @click="toggleDropdown($event)">
+                            {{activeDeliveryFrom['Auction Location']}}
+                        </div>
+                        <ul class="dropdown-list">
+                            <li class="input-wrap">
+                                <input 
+                                    type="text" 
+                                    v-model="filterInput" 
+                                    placeholder="Поиск..."
+                                    @blur="filterAuctions" 
+                                />
+                            </li>
+                            <li
+                                v-for="(option, index) of deliveryFromListFiltered"
+                                :key="index"
+                                :class="{'active': index === 0}"
+                                @click="changeDeliveryFrom($event)"
+                            >{{option['Auction Location']}}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-control-wrap">
+                    <label>до</label>
+                    <div v-if="deliveryFromListFiltered.length > 0" class="dropdown">
+                        <input type="hidden" name="delivery-to" :value="activeDeliveryTo.port" />
+                        <input type="hidden" name="delivery-cost" :value="activeDeliveryTo.cost" />
+                        <div class="form-control" @click="toggleDropdown($event)" ref="deliveryTo">
+                            {{activeDeliveryTo.port}} - <span class="cost">{{activeDeliveryTo.cost}} $</span>
+                        </div>
+                        <ul class="dropdown-list">
+                            <li
+                                v-for="(option, index) of deliveryToList"
+                                :key="index"
+                                :class="{'active': index === 0}"
+                                @click="selectOption($event)"
+                            >{{option.port}} - {{option.cost}} $</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-control-wrap">
+                    <label>Доставка Одесса - Киев</label>
+                    <div class="checkbox-wrap">
+                        <div class="checkbox" @click="onCheck($event, 'deliveryOdessaKiev')">
+                            <input type="checkbox" name="delivery" class="display-n" />
+                            <img src="images/check.png" alt="check">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-control-wrap">
+                    <label>Сертификация автомобиля</label>
+                    <div class="checkbox-wrap">
+                        <div class="checkbox" @click="onCheck($event, 'carCertification')">
+                            <input type="checkbox" name="delivery" class="display-n" />
+                            <img src="images/check.png" alt="check">
+                        </div>
+                    </div>
+                </div>
+
             </div>
+
             <button type="submit" class="input btn-input">Рассчитать</button>
         </form>
 
@@ -99,35 +163,38 @@
 export default {
     props: ['data', 'delivery'],
     data() {
+        const auction = {
+            label: 'Аукцион',
+            name: 'auction',
+            options: [
+                'IAAI', 
+                'Copart'
+            ]
+        }
+
+        const ports = ['Savannah, GA', 'Newark, NJ', 'Los Angeles, CA', 'Indianapolis, IN', 'Houston, TX']
+        const deliveryToList = []
+        for (let item of ports) {
+            deliveryToList.push({port: item, cost: 0})
+        }
+
         return {
             errorMessage: '',
             showDelivery: false,
-            deliveryControls: [
-                {
-                    label: 'Аукцион',
-                    name: 'auction',
-                    options: [
-                        'IAAI', 
-                        'Copart'
-                    ]
-                },
-                {
-                    label: 'Доставка по США',
-                    name: 'delivery-from',
-                    staticText: 'от',
-                    options: [
-                        'TX Texas'
-                    ]
-                },
-                {
-                    label: '',
-                    name: 'delivery-to',
-                    staticText: 'до',
-                    options: [
-                        'GA Savannah'
-                    ]
-                }
-            ]
+            auction,
+            activeAuction: auction.options[0],
+            transportation: [],
+            deliveryFromList: [],
+            deliveryFromListFiltered: [],
+            filterInput: '',
+            activeDeliveryFrom: {
+                'Auction Location': ''
+            },
+            ports,
+            deliveryToList,
+            activeDeliveryTo: deliveryToList[0],
+            deliveryOdessaKiev: false,
+            carCertification: false
         }
     },
     methods: {
@@ -178,18 +245,51 @@ export default {
 
             if (isValid) this.setErrorMessage('')
         },
-        onCheck($event) {
+        onCheck($event, model) {
             let target = $event.target.closest('.checkbox')
             let input = target.getElementsByTagName('input')[0]
             if (input.checked) {
                 target.classList.remove('checked')
                 input.checked = false
-                this.showDelivery = false
+                this[model] = false
             } else {
                 target.classList.add('checked')
                 input.checked = true
-                this.showDelivery = true
+                this[model] = true
             }
+        },
+        changeAuction($event) {
+            this.selectOption($event)
+            this.activeAuction = $event.target.textContent
+            this.deliveryFromList = this.transportation.filter(item => item['Auction'] === this.activeAuction)
+            this.deliveryFromListFiltered = this.deliveryFromList            
+            this.filterInput = ''
+        },
+        changeDeliveryFrom($event) {
+            this.selectOption($event)
+            let targetTitle = $event.target.textContent
+            this.activeDeliveryFrom = this.transportation.find(item => item['Auction Location'] === targetTitle)
+
+            let toList = []
+            for (let item of this.ports) {
+                if (this.activeDeliveryFrom[item]) {
+                    toList.push({port: item, cost: this.activeDeliveryFrom[item]})
+                }
+            }
+            this.deliveryToList = toList
+            this.activeDeliveryTo = toList[0]
+            this.$refs.deliveryTo.innerHTML = `${this.activeDeliveryTo.port} - ${this.activeDeliveryTo.cost} $`
+        },
+        changeDeliveryTo($event) {
+            this.selectOption($event)
+            let targetText = $event.target.textContent
+            this.activeDeliveryTo = this.deliveryToList.find(item => targetText.indexOf(item.port) !== -1)
+        },
+        filterAuctions() {
+            this.deliveryFromListFiltered = this.deliveryFromList.filter(item => {
+                let itemLocation = item['Auction Location'].toLowerCase()
+                return itemLocation.includes(this.filterInput.toLowerCase())
+            })
         },
         setErrorMessage(text) {
             this.errorMessage = text
@@ -213,10 +313,38 @@ export default {
                 }
             }
 
+            if (this.showDelivery) {
+                let delivery = {
+                    auction: this.activeAuction,
+                    from: this.activeDeliveryFrom['Auction Location'],
+                    to: this.activeDeliveryTo.port,
+                    cost: this.activeDeliveryTo.cost,
+                    odessaKiev: this.deliveryOdessaKiev,
+                    certification: this.carCertification
+                }
+                data.delivery = delivery
+            }
+
             this.setErrorMessage('')
 
             this.$root.$emit('calculate', data)
         }
+    },
+    async mounted() {
+        const jsonData = await this.$store.dispatch('calculator/getData', 'transportation')
+        this.transportation = jsonData.data
+        this.deliveryFromList = this.transportation.filter(item => item['Auction'] === this.activeAuction)
+        this.deliveryFromListFiltered = this.deliveryFromList
+        this.activeDeliveryFrom = this.deliveryFromList[0]
+
+        let toList = []
+        for (let item of this.ports) {
+            if (this.activeDeliveryFrom[item]) {
+                toList.push({port: item, cost: this.activeDeliveryFrom[item]})
+            }
+        }
+        this.deliveryToList = toList
+        this.activeDeliveryTo = toList[0]
     }
 }
 </script>

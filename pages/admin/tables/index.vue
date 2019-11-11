@@ -25,7 +25,8 @@ export default {
                 {title: 'Плата аукциона IAA', href: 'iaa-fee'},
                 {title: 'Интернет ставка аукциона IAA', href: 'iaa-internet-bid'},
                 {title: 'Плата аукциона Copart', href: 'copart-fee'},
-                {title: 'Интернет ставка аукциона Copart', href: 'copart-internet-bid'}
+                {title: 'Интернет ставка аукциона Copart', href: 'copart-internet-bid'},
+                {title: 'Стоимость доставки по воде', href: 'ship-delivery'}
             ]
         }
     }

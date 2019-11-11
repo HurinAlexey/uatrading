@@ -30,7 +30,7 @@
                           <span class="pos-r c-after block nav__link">Все об импорте автомобилей</span>
                           <ul 
                             class="nav__dropdown pos-a  nav__dropdown_1 c-after" 
-                            :class="{'nav__dropdown-USA': data.usaBackground}"
+                            :class="{'nav__dropdown-USA': data.usaBackground, 'nav__dropdown-georgia': data.georgiaBackground}"
                           >
                               <li class="c-after pos-r">
                                 <nuxt-link to="/blog" class="block pos-r">
@@ -40,8 +40,7 @@
                               </li>
                               <li class="c-after pos-r">
                                 <a href="#" class="block pos-r" @click.prevent="openCustomsCalculator">
-                                    <p class="nav__title flex"><span class="nav__num">02 </span>Таможенный калькулятор
-                                        2019</p>
+                                    <p class="nav__title flex"><span class="nav__num">02 </span>Таможенный калькулятор</p>
                                     <p class="nav__about">Расчет таможенных платежей для транспортных средств ...</p>
                                 </a>
                               </li>
@@ -58,7 +57,11 @@
                           <span class="pos-r c-after block nav__link">Услуги</span>
                           <ul 
                             class="nav__dropdown nav__dropdown_2 pos-a c-after"
-                            :class="{'nav__dropdown-USA': data.usaBackground, 'nav__dropdown-tb': data.tbBackground}"
+                            :class="{
+                                'nav__dropdown-USA': data.usaBackground, 
+                                'nav__dropdown-georgia': data.georgiaBackground,
+                                'nav__dropdown-tb': data.tbBackground
+                            }"
                           >
                               <li class="c-after pos-r">
                                 <nuxt-link to="/" class="block pos-r">
@@ -346,6 +349,10 @@ header {
 
 .nav__dropdown-USA::after {
     background-image:url(~static/images/blur-service-usa.jpg);
+}
+
+.nav__dropdown-georgia::after {
+    background-image:url(~static/images/blur-service-georgia.jpg);
 }
 
 .nav__dropdown-tb::after {

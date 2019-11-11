@@ -9,10 +9,11 @@
                     type="text" 
                     id="name" 
                     class="input" 
+                    placeholder="Имя"
                     required
                     @blur="onBlur($event)"
                 >
-                <label v-if="!callbackForm.name" for="name" class="label">имя</label>
+                <!-- <label v-if="!callbackForm.name" for="name" class="label">имя</label> -->
             </div>
             <div class="form-block pos-r">
                 <input 
@@ -20,14 +21,15 @@
                     type="tel" 
                     id="tel" 
                     class="input" 
+                    placeholder="Телефон"
                     required
                     @keypress="onKeyPress($event)"
                     @blur="onBlur($event)"
                 >
-                <label v-if="!callbackForm.phone" for="tel" class="label">тел.</label>
+                <!-- <label v-if="!callbackForm.phone" for="tel" class="label">тел.</label> -->
             </div>
             <button type="submit" class="input btn-input" @click.prevent="onSubmit">ОТПРАВИТЬ</button>
-            <button class="popup-close pos-a close-icon block" @click="closeForm">
+            <button class="popup-close pos-a close-icon block" @click.prevent="closeForm">
                 <svg width="18" height="18">
                     <line x1="0" y1="0" x2="100%" y2="100%" stroke="#fff"></line>
                     <line x1="0" y1="100%" x2="100%" y2="0" stroke="#fff"></line>
@@ -64,7 +66,7 @@ export default {
         },
         onBlur($event) {
             let target = $event.target
-            if (target.type === 'tel') target.value = Number(target.value.replace(/\D+/g,""))
+            if (target.type === 'tel' && target.value.length !== 0) target.value = Number(target.value.replace(/\D+/g,""))
             
             let controls = $event.target.closest('form').getElementsByTagName('input')
             let isValid = true

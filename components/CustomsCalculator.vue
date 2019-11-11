@@ -8,7 +8,6 @@
       class-name-draggable="draggable"
     >
         <div class="calculator" ref="calculator">
-            <img src="images/blur-schema-usa.jpg" alt="calculator bg" class="calculator-bg">
             <button class="popup-close pos-a close-icon block" @click="closeCustomsCalculator">
                 <svg width="18" height="18">
                     <line x1="0" y1="0" x2="100%" y2="100%" stroke="#fff"></line>
@@ -26,26 +25,28 @@
             </ul>
 
             <div class="calculator-content">
-                <app-calculator-form 
-                    :class="{'display-n': activeCalculator !== 'passenger-calculator'}" 
-                    :data="passengerCalculator" 
-                    :delivery="delivery" 
-                />
-                <app-calculator-form 
-                    :class="{'display-n': activeCalculator !== 'truck-calculator'}" 
-                    :data="truckCalculator" 
-                    :delivery="delivery" 
-                />
-                <app-calculator-form 
-                    :class="{'display-n': activeCalculator !== 'moto-calculator'}" 
-                    :data="motoCalculator" 
-                    :delivery="delivery" 
-                />
-                <app-calculator-form 
-                    :class="{'display-n': activeCalculator !== 'bus-calculator'}" 
-                    :data="busCalculator" 
-                    :delivery="delivery" 
-                />
+                <vuescroll :ops="scrollOptions">
+                    <app-calculator-form 
+                        :class="{'display-n': activeCalculator !== 'passenger-calculator'}" 
+                        :data="passengerCalculator" 
+                        :delivery="delivery" 
+                    />
+                    <app-calculator-form 
+                        :class="{'display-n': activeCalculator !== 'truck-calculator'}" 
+                        :data="truckCalculator" 
+                        :delivery="delivery" 
+                    />
+                    <app-calculator-form 
+                        :class="{'display-n': activeCalculator !== 'moto-calculator'}" 
+                        :data="motoCalculator" 
+                        :delivery="delivery" 
+                    />
+                    <app-calculator-form 
+                        :class="{'display-n': activeCalculator !== 'bus-calculator'}" 
+                        :data="busCalculator" 
+                        :delivery="delivery" 
+                    />
+                </vuescroll>
             </div>
         </div>
 
@@ -54,6 +55,7 @@
 </template>
 
 <script>
+import vuescroll from 'vuescroll'
 import AppCalculatorForm from '@/components/CalculatorForm.vue'
 import AppCalculation from '@/components/Calculation.vue'
 
@@ -61,15 +63,30 @@ export default {
     props: ['delivery'],
     components: {
         AppCalculatorForm,
-        AppCalculation
+        AppCalculation,
+        vuescroll
     },
     data() {
         return {
             dragOptions: {
                 w: 600,
-                h: 600,
+                h: 450,
                 draggable: true,
                 resizable: false
+            },
+            scrollOptions: {
+                bar: {
+                    showDelay: 500,
+                    onlyShowBarOnScroll: false,
+                    keepShow: false,
+                    background: '#cc9557',
+                    opacity: 1,
+                    hoverStyle: false,
+                    specifyBorderRadius: false,
+                    minSize: 0,
+                    size: '5px',
+                    disable: false
+                }
             },
             transportTabs: [
                 {
@@ -408,7 +425,13 @@ export default {
             this.activeCalculator = this.transportTabs.filter(item => item.title === currentTitle)[0].target
         }
     },
-    mounted() {
+    async mounted() {
+        try {
+            await this.$store.dispatch('getCurrency', new Date())
+        } catch(e) {
+            console.error(e)
+        }
+
         this.$root.$on('calculate', data => {
             this.calculation = data
 
@@ -429,7 +452,6 @@ export default {
 <style lang="scss">
 .calculator-wrap {
     position: fixed !important;
-    padding-bottom: 20px;
     perspective: 1200px;
     z-index: 100 !important;
 }
@@ -439,6 +461,7 @@ export default {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    background-color: rgba(21, 27, 26, .95);
     transition: all .2s;
 
     &.rotate {
@@ -464,6 +487,10 @@ export default {
             background-color: rgba(0, 0, 0, .3);
             cursor: pointer;
 
+            &:hover {
+                color: #fff;
+            }
+
             &.active {
                 color: #fff;
                 background-color: transparent;
@@ -472,9 +499,13 @@ export default {
     }
 
     .calculator-content {
-        width: calc(100% - 40px);
-        height: 100%;
+        width: 100%;
+        height: calc(100% - 80px);
         margin: 60px auto 0;
+    }
+
+    .form-wrap {
+        margin-right: 25px;
     }
 
     form {
@@ -509,6 +540,7 @@ export default {
         }
 
         .form-control {
+            min-height: 33px;
             background-color: rgba(255, 255, 255, .5);
             padding: 7.5px;
             color: #fff;
@@ -570,6 +602,29 @@ export default {
                        background-color: #fff;
                        color: #333;
                    }
+
+                   &.input-wrap {
+                       padding: 0;
+
+                       input {
+                           width: 100%;
+                           height: 28px;
+                           background-color: #cc9557;
+                            padding: 0 7.5px;
+                            color: #fff;
+                            font-size: 16px;
+                            line-height: 18px;
+                            border: none;
+
+                            &::placeholder {
+                                color: #fff;
+                            }
+
+                            &:focus {
+                                outline: none;
+                            }
+                       }
+                   }
                }
            }
 
@@ -625,7 +680,7 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 50px 20px 20px;
+    background-color: rgba(21, 27, 26, .95);
     z-index: 2;
     transition: all .2s;
     transform: rotateY(-90deg);
@@ -652,6 +707,17 @@ export default {
         }
     }
 
+    .calculation-content {
+        width: 100%;
+        height: calc(100% - 80px);
+        margin: 40px auto 0;
+    }
+
+    .tables-wrap {
+        width: calc(100% - 40px);
+        margin: 0 25px 0 15px;
+    }
+
     table {
         width: 100%;
 
@@ -673,7 +739,7 @@ export default {
                     padding-right: 15px;
                     font-size: 13px;
                     text-transform: uppercase;
-                    color: #b04e50;
+                    color: #cc9557;
                     text-align: left;
                 }
 

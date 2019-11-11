@@ -3,7 +3,7 @@
         class="footer footer--tb pos-r lazy-bg"
         :style="{backgroundImage: `url(${data.backgroundImage})`}"
     >
-        <nav class="footer__nav">
+        <nav v-if="!data.withoutNav" class="footer__nav">
             <div class="container">
                     <ul class="footer__menu flex fw-w jc-sa">
                         <li 
@@ -106,7 +106,7 @@ export default {
                     href: '/blog'
                 },
                 {
-                    title: 'Таможенный калькулятор 2019',
+                    title: 'Таможенный калькулятор',
                     onclick: this.openCustomsCalculator
                 },
                 {

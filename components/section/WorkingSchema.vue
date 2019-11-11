@@ -186,7 +186,7 @@ export default {
 }
 
 .work__text p {
-    margin-bottom: 22px
+    margin-bottom: 15px
 }
 
 .work__text-USA {

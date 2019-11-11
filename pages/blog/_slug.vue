@@ -29,7 +29,7 @@
                         </button>
                     </main>
 
-                    <div class="bottom-content">
+                    <aside class="aside-content">
                         <div class="category-wrap" v-for="(category, index) in categoriesData" :key="index">
                             <div class="category-label">{{category.title}}</div>
                             <div class="flex fw-w">
@@ -37,7 +37,7 @@
                                     v-for="post in category.posts" 
                                     :key="post._id" 
                                     :to="`/blog/${post.slug}`"
-                                    class="category-post pos-r"
+                                    class="aside-post pos-r"
                                 >
                                     <img class="post-image" :src="'/uploads' + post.imageUrl" :alt="post.title" />
                                     <div class="bg-mask pos-a" />
@@ -45,33 +45,26 @@
                                 </nuxt-link>
                             </div>
                         </div>
-                    </div>
+                    </aside>
 
                 </div>
             </div>
         </section>
-        <app-footer :data="footer" />
     </div>
 </template>
 
 <script>
 import AppHeader from '@/components/Header.vue'
-import AppFooter from '@/components/Footer.vue'
 
 
 export default {
     components: {
-        AppHeader,
-        AppFooter
+        AppHeader
     },
     data() {
         return {
             header: {
                 showAboutImport: true
-            },
-            footer: {
-                slogan: 'Пока вы думаете, остальные уже ездят!',
-                backgroundImage: '/images/footer-bg.jpg'
             }
         }
     },
@@ -159,6 +152,14 @@ export default {
     font-family: muller-r, serif
 }
 
+.main-content {
+    width: calc(70% - 20px);
+}
+
+.aside-content {
+    width: calc(30% - 20px);
+}
+
 .category-label {
     position: relative;
     width: 120px;
@@ -167,7 +168,7 @@ export default {
     line-height: 20px;
     text-transform: uppercase;
     text-align: center;
-    margin-right: 15px;
+    // margin-right: 15px;
     margin-left: auto;
     background-color: #cc9557;
 
@@ -213,6 +214,42 @@ export default {
 
 .category-wrap {
     margin: 30px auto;
+}
+
+.aside-post {
+    display: block;
+    width: 100%;
+    height: 250px;
+    margin-bottom: 30px;
+    overflow: hidden;
+
+    .post-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all .5s;
+    }
+
+    .bg-mask {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .2);
+    }
+
+    .post-title {
+        left: 0;
+        bottom: 0;
+        padding: 15px 20px;
+        font-size: 18px;
+        color: #fff;
+    }
+
+    &:hover .post-image {
+        transform: scale(1.05);
+    }
 }
 
 .category-post {
@@ -286,6 +323,14 @@ export default {
 @media screen and (max-width:991px) {
     .category-post {
         height: 200px;
+    }
+
+    .main-content {
+        width: 100%;
+    }
+
+    .aside-content {
+        display: none;
     }
 }
 
