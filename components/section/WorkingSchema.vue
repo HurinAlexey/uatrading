@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import $ from 'jquery'
+
 export default {
     props: ['items', 'usaClass'],
     methods: {
@@ -64,6 +66,17 @@ export default {
         window.onresize = () => {
             this.$refs['itemsContainer'].style.height = this.calculateSectionHeight() + 'px'
         }
+
+        $('.work__item').click(function () {
+            if ($(window).outerWidth() < 992) {
+                if ($(this).hasClass('work__text_open')) {
+                    $(this).removeClass('work__text_open')
+                } else {
+                    $('.work__item').removeClass('work__text_open')
+                    $(this).addClass('work__text_open')
+                }
+            }
+        })
     }
 }
 </script>

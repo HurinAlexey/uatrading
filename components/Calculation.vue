@@ -69,7 +69,34 @@
                                 <td>{{vat | float(2)}}</td>
                             </tr>
                         </tbody>
-                        <tfoot>
+                        <tfoot v-if="!data.delivery">
+                            <tr>
+                                <td class="title">Итого (грн/usd)</td>
+                                <td class="result">{{paymentsSum | float(2)}} / {{paymentsSumUsd | float(2)}}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <table v-if="data.delivery" class="delivery-payments">
+                        <thead>
+                            <tr>
+                                <td class="table-title">Платежи по доставке</td>
+                                <td>Ставка, USD</td>
+                                <td>Сумма, грн</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr 
+                                v-for="(item, index) of deliveryTableInfo" 
+                                :key="index"
+                                class="three-columns"
+                            >
+                                <td class="title">{{item.title}}</td>
+                                <td>{{item.usd | float(2)}}</td>
+                                <td>{{item.uah | float(2)}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot> v-if="data.delivery"
                             <tr>
                                 <td class="title">Итого (грн/usd)</td>
                                 <td class="result">{{paymentsSum | float(2)}} / {{paymentsSumUsd | float(2)}}</td>
@@ -116,6 +143,16 @@ export default {
                     disable: false
                 }
             },
+            deliveryPayments: [],
+            deliveryPaymentsDict: {
+                'forwarding_services': 'Экспедиционные услуги', 
+                'customs_brokerage_services': 'Таможенно-брокерские услуги', 
+                'custom_terminal': 'Таможенный терминал',
+                'delivery_odessa_kiev': 'Доставка Одесса-Киев',
+                'car_certification': 'Сертификация автомобиля'
+            },
+            auctionFee: 0,
+            shipDelivery: 0
         }
     },
     computed: {
@@ -149,8 +186,32 @@ export default {
         vat() {
             return this.data['engine-type'] === 'electro' ? 0 : this.costWithTax * 0.2
         },
+        deliveryTableInfo() {
+            let result = [
+                {title: 'Аукционный сбор', usd: this.auctionFee, uah: this.auctionFee * this.currency['USD']},
+                {title: 'Доставка по суше', usd: this.data.delivery.cost, uah: this.data.delivery.cost * this.currency['USD']},
+                {title: 'Доставка по воде', usd: this.shipDelivery, uah: this.shipDelivery * this.currency['USD']},
+            ]
+
+            for (let item of this.deliveryPayments) {
+                result.push({title: this.deliveryPaymentsDict[item.title], usd: item.value, uah: item.value * this.currency['USD']})
+            }
+
+            return result
+        },
+        deliveryPaymentsSum() {
+            let result = this.auctionFee + Number(this.data.delivery.cost) + this.shipDelivery
+
+            for (let item of this.deliveryPayments) {
+                result += Number(item.value)
+            }
+
+            return result * this.currency['USD']
+        },
         paymentsSum() {
-            return this.importTax + this.exciseTaxUah + this.vat
+            let result = this.importTax + this.exciseTaxUah + this.vat
+            if (this.data.delivery) result += this.deliveryPaymentsSum
+            return result
         },
         paymentsSumUsd() {
             return this.paymentsSum / this.currency['USD']
@@ -187,8 +248,18 @@ export default {
             if (this.data['age']) {
                 result.push({title: 'Возраст', value: this.data['age']})
             }
+            if (this.data.delivery) {
+                result.push({title: 'Доставка по США: от', value: this.data.delivery.from})
+                result.push({title: 'до', value: this.data.delivery.to})
+            }
 
             return result
+        },
+        deliveryPaymentsList() {
+            let paymentsList = ['forwarding_services', 'customs_brokerage_services', 'custom_terminal']
+            if (this.data.delivery.odessaKiev) paymentsList.push('delivery_odessa_kiev')
+            if (this.data.delivery.certification) paymentsList.push('car_certification')
+            return paymentsList
         }
     },
     methods: {
@@ -311,6 +382,54 @@ export default {
 
             this.calculationError = this.$store.getters['calculationError']
         },
+        async calculateAuctionBid() {
+            let fee = 0
+            let internetBid = 0
+            let serviceFee = 59
+            let feeList = null
+            let internetBidList = null
+            if (this.data.delivery.auction === 'IAAI') {
+                feeList = await this.$store.dispatch('calculator/getData', 'iaa_fee')
+                internetBidList = await this.$store.dispatch('calculator/getData', 'iaa_internet_bid')
+            } else if (this.data.delivery.auction === 'Copart') {
+                feeList = await this.$store.dispatch('calculator/getData', 'copart_fee')
+                internetBidList = await this.$store.dispatch('calculator/getData', 'copart_internet_bid')
+            }
+
+            for (let item of feeList.data) {
+                if (this.data['cost'] >= item['Price from'] && (this.data['cost'] <= item['Price to'] || !item['Price to'])) {
+                    let itemFee = item['Buyer fee']
+                    if (typeof(itemFee) == 'number') {
+                        fee = itemFee
+                    } else if (typeof(itemFee) == 'string') {
+                        let isPercent = itemFee.match(/^(\d+)\%$/)
+                        let isFormula = itemFee.match(/^(\d+)\s\+\s(\d+)\%$/)
+                        if (isPercent) {
+                            fee = this.data['cost'] * Number(isPercent[1]) / 100
+                        } else if (isFormula) {
+                            fee = Number(isFormula[1]) + (this.data['cost'] * Number(isFormula[2]) / 100)
+                        }
+                    } else {
+                        throw new Error('Неверный формат значения.')
+                    }
+                }
+            }
+            for (let item of internetBidList.data) {
+                if (this.data['cost'] >= item['Price from'] && (this.data['cost'] <= item['Price to'] || !item['Price to'])) {
+                    internetBid = item['Buyer fee']
+                }
+            }
+
+            return fee + serviceFee + internetBid
+        },
+        async calculateShipDelivery() {
+            let portsData = await this.$store.dispatch('calculator/getData', 'ship_delivery')
+            for (let item of portsData.data) {
+                if (item['Port'] === this.data.delivery['to']) {
+                    return item['Cost']
+                }
+            }
+        },
         showMailForm() {
             this.$refs.mailForm.$el.classList.add('active')
         },
@@ -318,10 +437,21 @@ export default {
             this.$refs.mailForm.$el.classList.remove('active')
         }
     },
-    mounted() {
+    async mounted() {
         setTimeout(() => {
             document.querySelector('.calculation').classList.add('open')
         }, 200)
+
+        if (this.data.delivery) {
+            let paymentsList = []
+            for (let item of this.deliveryPaymentsList) {
+                let itemData = await this.$store.dispatch('option/fetchByTitle', item)
+                paymentsList.push(itemData)
+            }
+            this.deliveryPayments = paymentsList
+            this.auctionFee = await this.calculateAuctionBid()
+            this.shipDelivery = await this.calculateShipDelivery()
+        }
     }
 }
 </script>

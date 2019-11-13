@@ -97,6 +97,7 @@
                                 <input 
                                     type="text" 
                                     v-model="filterInput" 
+                                    name="search"
                                     placeholder="Поиск..."
                                     @blur="filterAuctions" 
                                 />
@@ -124,7 +125,7 @@
                                 v-for="(option, index) of deliveryToList"
                                 :key="index"
                                 :class="{'active': index === 0}"
-                                @click="selectOption($event)"
+                                @click="changeDeliveryTo($event)"
                             >{{option.port}} - {{option.cost}} $</li>
                         </ul>
                     </div>
@@ -301,6 +302,8 @@ export default {
             }
 
             for (let control of controls) {
+                if (control.name === 'search') continue
+
                 if (control.type === 'checkbox') {
                     data[control.name] = control.checked
                 } else {

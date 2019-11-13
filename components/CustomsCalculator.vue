@@ -715,6 +715,7 @@ export default {
 
     .tables-wrap {
         width: calc(100% - 40px);
+        min-width: 450px;
         margin: 0 25px 0 15px;
     }
 
@@ -762,6 +763,12 @@ export default {
                     .message-invalid {
                         margin: 5px 0;
                     }
+                }
+            }
+
+            &.three-columns {
+                td {
+                    width: calc(70% / 2);
                 }
             }
         }
@@ -844,6 +851,48 @@ export default {
 
         &:hover {
             background-color: #8e683d;
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .calculator-wrap {
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .calculator {
+        .transport-tabs {
+            .tab {
+                font-size: 12px;
+            }
+        }
+
+        .form-control-wrap {
+            margin-bottom: 10px;
+
+            label {
+                font-size: 12px;
+            }
+
+            .form-control {
+                    min-height: 21px;
+                    padding: 5px;
+                    font-size: 14px;
+                    line-height: 16px;
+            }
+
+            .dropdown {
+                .dropdown-list {
+                    li {
+                        font-size: 14px;
+                    }
+                }
+            }
         }
     }
 }
