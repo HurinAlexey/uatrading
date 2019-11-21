@@ -230,6 +230,10 @@ export default {
         opacity: 1
     }
     .blog__item {
+        width: 300px;
+        max-width: 100%;
+    }
+    .blog__item:nth-child(n+2) {
         display: none
     }
 }

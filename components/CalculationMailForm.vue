@@ -8,10 +8,11 @@
                     v-model="email" 
                     type="email" 
                     class="input" 
+                    placeholder="Email"
                     required
                     @blur="onBlur($event)"
                 >
-                <label v-if="!email" for="email" class="label">email</label>
+                <!-- <label v-if="!email" for="email" class="label">email</label> -->
             </div>
             <button type="submit" class="input btn-input" @click.prevent="onSubmit">ОТПРАВИТЬ</button>
             <button class="popup-close pos-a close-icon block" @click.prevent="closeForm">

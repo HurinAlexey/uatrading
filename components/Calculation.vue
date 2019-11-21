@@ -70,7 +70,7 @@
                             </tr>
                         </tbody>
                         <tfoot v-if="!data.delivery">
-                            <tr>
+                            <tr class="result-row">
                                 <td class="title">Итого (грн/usd)</td>
                                 <td class="result">{{paymentsSum | float(2)}} / {{paymentsSumUsd | float(2)}}</td>
                             </tr>
@@ -96,20 +96,22 @@
                                 <td>{{item.uah | float(2)}}</td>
                             </tr>
                         </tbody>
-                        <tfoot> v-if="data.delivery"
-                            <tr>
+                        <tfoot v-if="data.delivery">
+                            <tr class="result-row">
                                 <td class="title">Итого (грн/usd)</td>
                                 <td class="result">{{paymentsSum | float(2)}} / {{paymentsSumUsd | float(2)}}</td>
                             </tr>
                         </tfoot>
                     </table>
-
-                    <div class="button-wrap">
-                        <button class="send-button" @click="showMailForm">Отправить расчет на почту</button>
-                    </div>
                 </div>
+
+                <!-- <div class="button-wrap">
+                    <button class="send-button" @click="showMailForm">Отправить расчет на почту</button>
+                </div> -->
             </vuescroll>
         </div>
+        
+        <button class="send-button" @click="showMailForm">Отправить расчет на почту</button>
 
         <app-calculation-mail-form ref="mailForm" @closemailform="hideMailForm" />
     </div>
@@ -237,6 +239,7 @@ export default {
 
             let result =  [
                 // {title: 'Дата расчета', value: this.date},
+                {title: 'Курс валют', value: `USD - ${this.currency['USD'].toFixed(2)} / EUR - ${this.currency['EUR'].toFixed(2)}`},
                 {title: 'Тип двигателя', value: engineType},
                 {title: 'Объем двигателя', value: this.data['engine-volume']},
                 {title: 'Стоимость', value: this.data['cost'] + ' ' + this.data['currency']}

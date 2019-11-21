@@ -188,6 +188,7 @@ export default {
     font-size: 13px;
     background-image:url(~static/images/blur-es-schema.jpg);
     background-size: cover;
+    visibility: hidden;
     opacity: 0;
     transform: rotateX(96deg);
 }
@@ -299,6 +300,7 @@ export default {
 }
 
 .work__item:hover .work__text {
+    visibility: visible;
     opacity: 1;
     transform: rotateX(0);
 }
@@ -312,6 +314,7 @@ export default {
 }
 
 .work__text_open .work__text {
+    visibility: visible;
     -webkit-transform: scaleY(1)!important;
     transform: scaleY(1)!important
 }

@@ -1,7 +1,11 @@
 <template>
     <div class="head pos-r c-before c-after flex fd-c jc-sb">
 
-      <div class="parallax" :class="{'bottom-position': data.imagePosition === 'bottom'}" v-if="data.backImage">
+      <div 
+        class="parallax" 
+        :class="{'bottom-position': data.imagePosition === 'bottom', 'shadow-top': data.tbBackground}" 
+        v-if="data.backImage"
+    >
           <div class="parallax__wrap">
               <div id="scene">
                   <img 
@@ -296,6 +300,18 @@ header {
     bottom: 0;
     overflow: hidden;
     z-index: -1
+}
+
+.parallax.shadow-top::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 111px;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .3) 0%,  rgba(0, 0, 0, .3) 50%, transparent);
+    z-index: 2;
 }
 
 .parallax__wrap {
@@ -679,6 +695,12 @@ h2 {
 }
 
 /* Media queries */
+@media screen and (min-width:1600px) {
+    .title-wrap-tb {
+        bottom: 30%;
+    }
+}
+
 @media screen and (max-width:1600px) {
     .blog-header {
         background-size: auto;

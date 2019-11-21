@@ -33,15 +33,18 @@
                         </nuxt-link>
 
                         <div class="post" v-for="post in posts" :key="post._id">
-                            <img class="post-image" :src="'/uploads' + post.imageUrl" :alt="post.title" />
+                            <nuxt-link class="post-image" :to="`/blog/${post.slug}`">
+                                <img :src="'/uploads' + post.imageUrl" :alt="post.title" />
+                            </nuxt-link>
                             <div class="post-content pos-r">
-                                <h3 class="post-title">{{post.title}}</h3>
+                                <nuxt-link :to="`/blog/${post.slug}`">
+                                    <h3 class="post-title">{{post.title}}</h3>
+                                </nuxt-link>
                                 <div class="post-date flex ai-c">
                                     <img src="/images/clock-black.png" alt="clock" />
                                     {{new Date(post.date) | date}}
                                 </div>
                                 <div v-html="post.description" class="post-description" />
-                                <nuxt-link class="more-link pos-a" :to="`/blog/${post.slug}`">Далее...</nuxt-link>
                             </div>
                         </div>
 
@@ -277,21 +280,54 @@ export default {
 
 .post {
     display: flex;
+    position: relative;
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 61px;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -30px;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: #dbdbdb;
+    }
+
+    &:last-of-type {
+        margin-bottom: 30px;
+
+        &::after {
+            display: none;
+        }
+    }
 
     .post-image {
         display: block;
         width: 35%;
         min-height: 250px;
-        object-fit: cover;
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 
     .post-content {
         width: 65%;
         padding: 30px;
-        border: 1px solid #bdbdbd;
-        border-left: none;
+
+        h3 {
+            display: inline-block;
+            transition: all .3s;
+
+            &:hover {
+                color: #cc9557;
+            }
+        }
 
         .more-link {
             right: 0;

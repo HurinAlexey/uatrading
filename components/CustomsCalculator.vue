@@ -70,7 +70,7 @@ export default {
         return {
             dragOptions: {
                 w: 600,
-                h: 450,
+                h: 490,
                 draggable: true,
                 resizable: false
             },
@@ -454,6 +454,10 @@ export default {
     position: fixed !important;
     perspective: 1200px;
     z-index: 100 !important;
+
+    * {
+        font-family: NokiaPureText_Lt, serif;
+    }
 }
 
 .calculator {
@@ -461,7 +465,7 @@ export default {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: rgba(21, 27, 26, .95);
+    background-color: rgba(39, 49, 48, .95);
     transition: all .2s;
 
     &.rotate {
@@ -484,7 +488,7 @@ export default {
             text-transform: uppercase;
             text-align: center;
             color: rgba(255, 255, 255, .7);
-            background-color: rgba(0, 0, 0, .3);
+            background-color: rgb(61, 75, 78);
             cursor: pointer;
 
             &:hover {
@@ -541,7 +545,7 @@ export default {
 
         .form-control {
             min-height: 33px;
-            background-color: rgba(255, 255, 255, .5);
+            background-color: rgba(0, 0, 0, .3);
             padding: 7.5px;
             color: #fff;
             font-size: 16px;
@@ -584,6 +588,7 @@ export default {
                top: 100%;
                left: 0;
                width: 100%;
+               background-color: rgb(61, 75, 78);
                z-index: 5;
 
                li {
@@ -592,15 +597,13 @@ export default {
                    padding: 5px;
                    font-size: 16px;
                    line-height: 18px;
-                   background-color: #333;
                    color: #fff;
                    text-align: center;
                    cursor: pointer;
 
                    &.active,
                    &:hover {
-                       background-color: #fff;
-                       color: #333;
+                       background-color: rgba(0,0,0,.3);
                    }
 
                    &.input-wrap {
@@ -659,6 +662,10 @@ export default {
             text-transform: uppercase;
         }
     }
+
+    button[type="submit"] {
+        margin-top: 10px;
+    }
 }
 
 .calculator-bg {
@@ -680,7 +687,7 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(21, 27, 26, .95);
+    background-color: rgba(39, 49, 48, .95);
     z-index: 2;
     transition: all .2s;
     transform: rotateY(-90deg);
@@ -709,14 +716,14 @@ export default {
 
     .calculation-content {
         width: 100%;
-        height: calc(100% - 80px);
+        height: calc(100% - 90px);
         margin: 40px auto 0;
     }
 
     .tables-wrap {
         width: calc(100% - 40px);
         min-width: 450px;
-        margin: 0 25px 0 15px;
+        margin: 0 28px 0 12px;
     }
 
     table {
@@ -778,7 +785,7 @@ export default {
             padding-bottom: 10px;
 
             tr {
-                border-bottom: 1px solid rgba(255, 255, 255, .7);
+                border-bottom: 1px solid rgba(255, 255, 255, .3);
 
                 td {
                     font-size: 12px;
@@ -800,6 +807,10 @@ export default {
             }
         }
     }    
+
+    .result-row {
+        margin-top: 10px;
+    }
 
     .date-input {
         width: 100%;
@@ -841,16 +852,20 @@ export default {
     }
 
     .send-button {
-        padding: 5px 10px;
+        position: absolute;
+        right: 25px;
+        bottom: 15px;
+        padding: 5px;
         font-size: 14px;
         line-height: 18px;
-        color: rgba(255, 255, 255, 0.7);
-        background-color: #cc9557;
+        color: #fff;
+        background-color: transparent;
         border: none;
         cursor: pointer;
+        transition: all .3s;
 
         &:hover {
-            background-color: #8e683d;
+            color: #cc9557;
         }
     }
 }
