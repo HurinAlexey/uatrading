@@ -1,93 +1,106 @@
 <template>
   <div id="content">
-    <app-header :data="header" />
+    <LazyHydrate when-visible>
+        <app-header :data="header" slot-scope="{ hydrated }" v-if="hydrated" />
+    </LazyHydrate>
     <main>
 
-      <app-about />
+      <LazyHydrate when-visible>
+        <div
+          slot-scope="{ hydrated }"
+          v-if="hydrated"
+        >
 
-      <app-advantages :data="advantages" />
+          <app-about />
 
-      <div class="cars-bg lazy-bg">
+          <app-advantages :data="advantages" />
 
-        <section class="what pos-r">
-            <div class="container">
-                <div class="what__title pos-r c-after">
-                    <p class="opacity left-animate">Почему</p>
-                    <p class="what__title_large opacity right-animate">автомобили</p>
-                    <p class="what__title_last opacity left-animate">с США?</p>
-                    <svg class="svg-animate  pos-a">
-                        <line x1="0" y1="5" x2="100%" y2="5" stroke-width="9" stroke="#cc9557"></line>
-                        <line x1="100%" y1="5" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
-                    </svg>
-                </div>
-            </div>
-            <div class="what__block pos-r c-before c-after blk-block-USA lazy-bg">
-                <div class="flex fw-w jc-sa">
-                    <div class="what__box-first">
-                        <div class="what__item pos-r c-after what__item-width w50-md w100-esm">
-                            <h4>Хорошая цена</h4>
-                            <p>экономия в сравнении с рынком Украины до 40%</p>
-                        </div>
-                        <div class="what__item pos-r c-after what__item-width w50-md w100-esm">
-                            <h4>Минимальный пробег</h4>
-                            <p>на аукционах представлены авто преимущественно с небольшим пробегом</p>
-                        </div>
+          <div class="cars-bg lazy-bg">
 
-                        <div class="what__item pos-r c-after what__item-width w50-md w100-esm">
-                            <h4>Богатая комплектация</h4>
-                            <p>практически все автомобили в хорошей комплектации</p>
-                        </div>
-                        <div class="what__item pos-r c-after what__item-width w50-md w100-esm">
-                            <h4>Реальный пробег</h4>
-                            <p>в США введена уголовная ответственность за изменения данных о пробеге. 
-                                Открытые базы данных страховых компаний позволяют узнать почти все о авто</p>
-                        </div>
-                        <div class="what__item pos-r c-after what__item-width w50-md w100-esm">
-                            <h4>Качественная сборка</h4>
-                            <p>стандарты США существенно отличаются от остальных стран, поэтому на их рынок 
-                               поставляются узлы и агрегаты лучшего качества</p>
-                        </div>
-                        
-                        <div class="what__item pos-r c-after what__item-width w50-md w100-esm">
-                            <h4>Возможность оценки повреждений</h4>
-                            <p>на аукционе видны повреждения на авто, возможно заказать инспекционный 
-                                осмотр авто и реально просчитать бюджет на ремонт и купить авто с минимальными 
-                                дефектами</p>
-                        </div>
+            <section class="what pos-r">
+                <div class="container">
+                    <div class="what__title pos-r c-after">
+                        <p class="opacity left-animate">Почему</p>
+                        <p class="what__title_large opacity right-animate">автомобили</p>
+                        <p class="what__title_last opacity left-animate">с США?</p>
+                        <svg class="svg-animate  pos-a">
+                            <line x1="0" y1="5" x2="100%" y2="5" stroke-width="9" stroke="#cc9557"></line>
+                            <line x1="100%" y1="5" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
+                        </svg>
                     </div>
-
-                    <div class="what__box-second">
-                        <div class="what__item pos-r c-after">
-                            <h4>Таможенная оценка</h4>
-                            <p>методика контроля таможенной стоимости автомобилей с США таможней достаточно 
-                                прозрачна, что существенно минимизирует риск повышение таможенной стоимости 
-                                при таможенном оформлении</p>
-                        </div>
-                    </div>
-
                 </div>
-            </div>
-            <svg class="svg-animate work__svg pos-a">
-                <line x1="100%" y1="-100" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
-                <line x1="100%" y1="100%" x2="0" y2="100%" stroke-width="18" stroke="#cc9557"></line>
+                <div class="what__block pos-r c-before c-after blk-block-USA lazy-bg">
+                    <div class="flex fw-w jc-sa">
+                        <div class="what__box-first">
+                            <div class="what__item pos-r c-after what__item-width w50-md w100-esm">
+                                <h4>Хорошая цена</h4>
+                                <p>экономия в сравнении с рынком Украины до 40%</p>
+                            </div>
+                            <div class="what__item pos-r c-after what__item-width w50-md w100-esm">
+                                <h4>Минимальный пробег</h4>
+                                <p>на аукционах представлены авто преимущественно с небольшим пробегом</p>
+                            </div>
 
-            </svg>
-        </section>
+                            <div class="what__item pos-r c-after what__item-width w50-md w100-esm">
+                                <h4>Богатая комплектация</h4>
+                                <p>практически все автомобили в хорошей комплектации</p>
+                            </div>
+                            <div class="what__item pos-r c-after what__item-width w50-md w100-esm">
+                                <h4>Реальный пробег</h4>
+                                <p>в США введена уголовная ответственность за изменения данных о пробеге. 
+                                    Открытые базы данных страховых компаний позволяют узнать почти все о авто</p>
+                            </div>
+                            <div class="what__item pos-r c-after what__item-width w50-md w100-esm">
+                                <h4>Качественная сборка</h4>
+                                <p>стандарты США существенно отличаются от остальных стран, поэтому на их рынок 
+                                  поставляются узлы и агрегаты лучшего качества</p>
+                            </div>
+                            
+                            <div class="what__item pos-r c-after what__item-width w50-md w100-esm">
+                                <h4>Возможность оценки повреждений</h4>
+                                <p>на аукционе видны повреждения на авто, возможно заказать инспекционный 
+                                    осмотр авто и реально просчитать бюджет на ремонт и купить авто с минимальными 
+                                    дефектами</p>
+                            </div>
+                        </div>
 
-        <app-working-schema :items="schemaItems" :usaClass="true" />
+                        <div class="what__box-second">
+                            <div class="what__item pos-r c-after">
+                                <h4>Таможенная оценка</h4>
+                                <p>методика контроля таможенной стоимости автомобилей с США таможней достаточно 
+                                    прозрачна, что существенно минимизирует риск повышение таможенной стоимости 
+                                    при таможенном оформлении</p>
+                            </div>
+                        </div>
 
-      </div>
+                    </div>
+                </div>
+                <svg class="svg-animate work__svg pos-a">
+                    <line x1="100%" y1="-100" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
+                    <line x1="100%" y1="100%" x2="0" y2="100%" stroke-width="18" stroke="#cc9557"></line>
 
-      <app-blog :posts="blogPosts" />
+                </svg>
+            </section>
 
-      <app-consultation :title="consultationTitle" />
+            <app-working-schema :items="schemaItems" :usaClass="true" />
+
+          </div>
+
+          <app-blog :posts="blogPosts" />
+
+          <app-consultation :title="consultationTitle" />
+        </div>
+      </LazyHydrate>
       
     </main>
-    <app-footer :data="footer" />
+    <LazyHydrate when-visible>
+        <app-footer :data="footer" slot-scope="{ hydrated }" v-if="hydrated" />
+    </LazyHydrate>
   </div>
 </template>
 
 <script>
+import LazyHydrate from 'vue-lazy-hydration'
 import AppHeader from '@/components/Header.vue'
 import AppAbout from '@/components/section/About.vue'
 import AppAdvantages from '@/components/section/Advantages.vue'
@@ -98,6 +111,7 @@ import AppFooter from '@/components/Footer.vue'
 
 export default {
   components: {
+    LazyHydrate,
     AppHeader,
     AppAbout,
     AppAdvantages,

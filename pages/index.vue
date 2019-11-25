@@ -1,7 +1,7 @@
 <template>
   <div id="content">
     <LazyHydrate when-visible>
-        <app-header :data="header" />
+        <app-header :data="header" slot-scope="{ hydrated }" v-if="hydrated" />
     </LazyHydrate>
     <main>
 
@@ -41,8 +41,11 @@
           </section>
       </div>
 
-      <LazyHydrate ssr-only>
-        <div>
+      <LazyHydrate when-visible>
+        <div
+          slot-scope="{ hydrated }"
+          v-if="hydrated"
+        >
             <app-about />
             <app-advantages :data="advantages" />
 
@@ -68,7 +71,7 @@
                             <div class="what__item what__item-tb pos-r c-after w33 w50-md w100-esm">
                                 <p>Получение разрешительных документов контролирующих органов</p>
                             </div>
-            
+
                             <div class="what__item what__item-tb pos-r c-after w33 w50-md w100-esm">
                                 <p>Расчет таможенных платежей</p>
                             </div>
@@ -77,11 +80,11 @@
                             </div>
                             <div class="what__item what__item-tb pos-r c-after w33 w50-md w100-esm">
                                 <p>Декларирование товаров заказчика таможенным органам</p>
-                            </div>                
+                            </div>
                             <div class="what__item what__item-tb pos-r c-after w33 w50-md w100-esm">
                                 <p>Представление интересов заказчика на всех этапах таможенного оформления</p>
                             </div>
-            
+
                         </div>
                     </div>
                 </div>
@@ -92,7 +95,7 @@
                     <div class="work__title pos-r c-after">
                         <p class="opacity left-animate">
                             Схема </p>
-                        <div class="opacity right-animate">работы</div>                
+                        <div class="opacity right-animate">работы</div>
                         <svg class="svg-animate  pos-a">
                             <line x1="0" y1="5" x2="100%" y2="5" stroke-width="9" stroke="#cc9557"></line>
                             <line x1="100%" y1="5" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
@@ -129,7 +132,7 @@
                                 Получение разрешительных документов от других контролирующих органов
                             </p>
                         </div>
-                        
+
                         <div class="work__item flex w35 w50-md w100-sm pos-r">
                             <div class="work__num">
                                 Шаг 4
@@ -138,7 +141,7 @@
                                 Таможенное оформление груза
                             </p>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -149,16 +152,15 @@
                     </svg>
                 </div>
             </section>
+
+            <app-consultation :title="consultationTitle" />
         </div>
       </LazyHydrate>
 
-
-      <LazyHydrate when-visible>
-        <app-consultation :title="consultationTitle" />
-      </LazyHydrate>
-      
     </main>
-    <app-footer :data="footer" />
+    <LazyHydrate when-visible>
+        <app-footer :data="footer" slot-scope="{ hydrated }" v-if="hydrated" />
+    </LazyHydrate>
   </div>
 </template>
 

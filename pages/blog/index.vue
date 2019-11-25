@@ -20,7 +20,7 @@
                         <div class="category-label">Новости</div>
 
                         <nuxt-link v-if="bigPost" :to="`/blog/${bigPost.slug}`" class="big-post pos-r">
-                            <img class="post-image" :src="'/uploads' + bigPost.imageUrl" :alt="bigPost.title" />
+                            <img class="post-image" v-lazy="'/uploads' + bigPost.imageUrl" :alt="bigPost.title" />
                             <div class="bg-mask pos-a" />
                             <div class="post-content pos-a">
                                 <h3 class="post-title">{{bigPost.title}}</h3>
@@ -34,7 +34,7 @@
 
                         <div class="post" v-for="post in posts" :key="post._id">
                             <nuxt-link class="post-image" :to="`/blog/${post.slug}`">
-                                <img :src="'/uploads' + post.imageUrl" :alt="post.title" />
+                                <img v-lazy="'/uploads' + post.imageUrl" :alt="post.title" />
                             </nuxt-link>
                             <div class="post-content pos-r">
                                 <nuxt-link :to="`/blog/${post.slug}`">
@@ -59,7 +59,7 @@
                                 :to="`/blog/${post.slug}`"
                                 class="aside-post pos-r"
                             >
-                                <img class="post-image" :src="'/uploads' + post.imageUrl" :alt="post.title" />
+                                <img class="post-image" v-lazy="'/uploads' + post.imageUrl" :alt="post.title" />
                                 <div class="bg-mask pos-a" />
                                 <h3 class="post-title pos-a">{{post.title}}</h3>
                             </nuxt-link>

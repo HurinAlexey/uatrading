@@ -1,88 +1,102 @@
 <template>
   <div id="content">
-    <app-header :data="header" />
+    <LazyHydrate when-visible>
+        <app-header :data="header" slot-scope="{ hydrated }" v-if="hydrated" />
+    </LazyHydrate>
     <main>
 
-      <app-about />
+      <LazyHydrate when-visible>
+        <div
+          slot-scope="{ hydrated }"
+          v-if="hydrated"
+        >
 
-      <app-advantages :data="advantages" />
+          <app-about />
 
-      <div class="cars-bg lazy-bg">
-        
-        <section class="what pos-r">
-            <div class="container">
-                <div class="what__title pos-r c-after">
-                    <p class="opacity left-animate">Почему</p>
-                    <p class="what__title_large opacity right-animate">автомобили</p>
-                    <p class="what__title_last opacity left-animate">с Грузии?</p>
-                    <svg class="svg-animate  pos-a">
-                        <line x1="0" y1="5" x2="100%" y2="5" stroke-width="9" stroke="#cc9557"></line>
-                        <line x1="100%" y1="5" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
-                    </svg>
-                </div>
-            </div>
+          <app-advantages :data="advantages" />
 
-            <div class="what__block pos-r c-before c-after blk-block lazy-bg">
-                <div class="container flex fw-w jc-fe">
-                    <div class="what__item pos-r c-after w33 w50-md w100-esm">
-                        <h4>Большой выбор</h4>
-                        <p>авторынок <a href="https://autopapa.ge/ru/page/about?currency=usd" target="_blank">AUTOPAPA</a> 
-                          самый большой и современный авторынок на Кавказе, общая площадь  которого составляет  
-                          225 тыс. квадратных метров, вместимостью 5000 автомобилей с Кореи, ЕС, аукционов США</p>
-                    </div>
-                    <div class="what__item pos-r c-after w33 w50-md w100-esm">
-                        <h4>Таможенная оценка</h4>
-                        <p>методика контроля таможенной стоимости автомобилей с Грузии таможней 
-                          достаточно прозрачна, что существенно минимизирует риск повышение таможенной стоимости 
-                          при таможенном оформлении</p>
-                    </div>
-                    <div class="what__item pos-r c-after w33 w50-md w100-esm">
-                        <h4>Восстановленные авто</h4>
-                        <p>в отличии от большинства авто с США, авто с Грузии импортируются в 
-                          Украину уже отремонтированными. На территории авторынка можно провести тест драйв, полную 
-                          диагностику авто в СТО, а также самостоятельно проверить состояние автомобиля до ремонта 
-                          по базах данным <a href="https://autoastat.com/" target="_blank">AUTOASTAT</a>, 
-                          <a href="https://autoauctions.io/" target="_blank">AUTOAUCTIONS</a>, 
-                          <a href="https://www.carfax.eu/" target="_blank">CARFAX</a></p>
-                    </div>
-                    <div class="what__item pos-r c-after w33 w50-md w100-esm">
-                        <h4>Хорошая цена</h4>
-                        <p>экономия в сравнении с рынком Украины до 40%</p>
-                    </div>
-                    <div class="what__item pos-r c-after w33 w50-md w100-esm">
-                        <h4>Быстрая логистика</h4>
-                        <p>в отличие от авто с США, доставка в Украину 
-                           осуществляется всего за два дня</p>
-                    </div>
-
-                    <div class="what__item pos-r c-after w33 w50-md w100-esm">
-                        <h4>Богатая комплектация</h4>
-                        <p>практически все автомобили в хорошей комплектации</p>
+          <div class="cars-bg lazy-bg">
+            
+            <section class="what pos-r">
+                <div class="container">
+                    <div class="what__title pos-r c-after">
+                        <p class="opacity left-animate">Почему</p>
+                        <p class="what__title_large opacity right-animate">автомобили</p>
+                        <p class="what__title_last opacity left-animate">с Грузии?</p>
+                        <svg class="svg-animate  pos-a">
+                            <line x1="0" y1="5" x2="100%" y2="5" stroke-width="9" stroke="#cc9557"></line>
+                            <line x1="100%" y1="5" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
+                        </svg>
                     </div>
                 </div>
-            </div>
 
-            <svg class="svg-animate work__svg pos-a">
-                <line x1="100%" y1="-100" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
-                <line x1="100%" y1="100%" x2="0" y2="100%" stroke-width="18" stroke="#cc9557"></line>
+                <div class="what__block pos-r c-before c-after blk-block lazy-bg">
+                    <div class="container flex fw-w jc-fe">
+                        <div class="what__item pos-r c-after w33 w50-md w100-esm">
+                            <h4>Большой выбор</h4>
+                            <p>авторынок <a href="https://autopapa.ge/ru/page/about?currency=usd" target="_blank">AUTOPAPA</a> 
+                              самый большой и современный авторынок на Кавказе, общая площадь  которого составляет  
+                              225 тыс. квадратных метров, вместимостью 5000 автомобилей с Кореи, ЕС, аукционов США</p>
+                        </div>
+                        <div class="what__item pos-r c-after w33 w50-md w100-esm">
+                            <h4>Таможенная оценка</h4>
+                            <p>методика контроля таможенной стоимости автомобилей с Грузии таможней 
+                              достаточно прозрачна, что существенно минимизирует риск повышение таможенной стоимости 
+                              при таможенном оформлении</p>
+                        </div>
+                        <div class="what__item pos-r c-after w33 w50-md w100-esm">
+                            <h4>Восстановленные авто</h4>
+                            <p>в отличии от большинства авто с США, авто с Грузии импортируются в 
+                              Украину уже отремонтированными. На территории авторынка можно провести тест драйв, полную 
+                              диагностику авто в СТО, а также самостоятельно проверить состояние автомобиля до ремонта 
+                              по базах данным <a href="https://autoastat.com/" target="_blank">AUTOASTAT</a>, 
+                              <a href="https://autoauctions.io/" target="_blank">AUTOAUCTIONS</a>, 
+                              <a href="https://www.carfax.eu/" target="_blank">CARFAX</a></p>
+                        </div>
+                        <div class="what__item pos-r c-after w33 w50-md w100-esm">
+                            <h4>Хорошая цена</h4>
+                            <p>экономия в сравнении с рынком Украины до 40%</p>
+                        </div>
+                        <div class="what__item pos-r c-after w33 w50-md w100-esm">
+                            <h4>Быстрая логистика</h4>
+                            <p>в отличие от авто с США, доставка в Украину 
+                              осуществляется всего за два дня</p>
+                        </div>
 
-            </svg>
-        </section>
+                        <div class="what__item pos-r c-after w33 w50-md w100-esm">
+                            <h4>Богатая комплектация</h4>
+                            <p>практически все автомобили в хорошей комплектации</p>
+                        </div>
+                    </div>
+                </div>
 
-        <app-working-schema :items="schemaItems" :usaClass="true" />
+                <svg class="svg-animate work__svg pos-a">
+                    <line x1="100%" y1="-100" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
+                    <line x1="100%" y1="100%" x2="0" y2="100%" stroke-width="18" stroke="#cc9557"></line>
 
-      </div>
+                </svg>
+            </section>
 
-      <app-blog :posts="blogPosts" />
+            <app-working-schema :items="schemaItems" :usaClass="true" />
 
-      <app-consultation :title="consultationTitle" />
+          </div>
+
+          <app-blog :posts="blogPosts" />
+
+          <app-consultation :title="consultationTitle" />
+
+        </div>
+      </LazyHydrate>
       
     </main>
-    <app-footer :data="footer" />
+    <LazyHydrate when-visible>
+        <app-footer :data="footer" slot-scope="{ hydrated }" v-if="hydrated" />
+    </LazyHydrate>
   </div>
 </template>
 
 <script>
+import LazyHydrate from 'vue-lazy-hydration'
 import AppHeader from '@/components/Header.vue'
 import AppAbout from '@/components/section/About.vue'
 import AppAdvantages from '@/components/section/Advantages.vue'
@@ -93,6 +107,7 @@ import AppFooter from '@/components/Footer.vue'
 
 export default {
   components: {
+    LazyHydrate,
     AppHeader,
     AppAbout,
     AppAdvantages,
