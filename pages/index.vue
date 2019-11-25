@@ -181,7 +181,7 @@ export default {
         },
         frontImage: {
             desktop: 'images/dude.png',
-            mobile: 'images/dude-mob.png'
+            mobile: 'images/dude.png'
         },
         imagePosition: 'bottom',
         tbBackground: true,

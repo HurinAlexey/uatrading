@@ -1,28 +1,36 @@
 @font-face {
     font-family: NokiaPureHeadline;
     font-display: swap;
-    src: url("/fonts/NokiaPureHeadline_ULt.ttf");
+    src: url("/fonts/NokiaPureHeadline_ULt.woff2") format('woff2'),
+         url("/fonts/NokiaPureHeadline_ULt.woff") format('woff'),
+         url("/fonts/NokiaPureHeadline_ULt.ttf") format('opentype');
     font-weight: 100
 }
 
 @font-face {
     font-family: muller-b;
     font-display: swap;
-    src: url("/fonts/Fontfabric - MullerBold.otf");
+    src: url("/fonts/Fontfabric - MullerBold.woff2") format('woff2'),
+         url("/fonts/Fontfabric - MullerBold.woff") format('woff'),
+         url("/fonts/Fontfabric - MullerBold.otf") format('truetype');
     font-weight: 700
 }
 
 @font-face {
     font-family: NokiaPureText_Lt;
     font-display: swap;
-    src: url("/fonts/NokiaPureText_Lt.ttf");
+    src: url("/fonts/NokiaPureText_Lt.woff2") format('woff2'),
+         url("/fonts/NokiaPureText_Lt.woff") format('woff'),
+         url("/fonts/NokiaPureText_Lt.ttf") format('opentype');
     font-weight: 100
 }
 
 @font-face {
     font-family: muller-thini;
     font-display: swap;
-    src: url("/fonts/Fontfabric - MullerThinItalic.otf");
+    src: url("/fonts/Fontfabric - MullerThinItalic.woff2") format('woff2'),
+         url("/fonts/Fontfabric - MullerThinItalic.woff") format('woff'),
+         url("/fonts/Fontfabric - MullerThinItalic.otf") format('truetype');
     font-weight: 100;
     font-size: italic
 }
@@ -30,28 +38,36 @@
 @font-face {
     font-family: muller-thin;
     font-display: swap;
-    src: url("/fonts/Fontfabric - MullerThin.otf");
+    src: url("/fonts/Fontfabric - MullerThin.woff2") format('woff2'),
+         url("/fonts/Fontfabric - MullerThin.woff") format('woff'),
+         url("/fonts/Fontfabric - MullerThin.otf") format('truetype');
     font-weight: 100
 }
 
 @font-face {
     font-family: muller-r;
     font-display: swap;
-    src: url("/fonts/Fontfabric - MullerRegular.otf");
+    src: url("/fonts/Fontfabric - MullerRegular.woff2") format('woff2'),
+         url("/fonts/Fontfabric - MullerRegular.woff") format('woff'),
+         url("/fonts/Fontfabric - MullerRegular.otf") format('truetype');
     font-weight: 400
 }
 
 @font-face {
     font-family: muller-ultra;
     font-display: swap;
-    src: url("/fonts/Fontfabric - MullerUltraLight.otf");
+    src: url("/fonts/Fontfabric - MullerUltraLight.woff2") format('woff2'),
+         url("/fonts/Fontfabric - MullerUltraLight.woff") format('woff'),
+         url("/fonts/Fontfabric - MullerUltraLight.otf") format('truetype');
     font-weight: 300
 }
 
 @font-face {
     font-family: muller-l;
     font-display: swap;
-    src: url("/fonts/Fontfabric - MullerLight.otf");
+    src: url("/fonts/Fontfabric - MullerLight.woff2") format('woff2'),
+         url("/fonts/Fontfabric - MullerLight.woff") format('woff'),
+         url("/fonts/Fontfabric - MullerLight.otf") format('truetype');
     font-weight: 300
 }
 
