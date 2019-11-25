@@ -2,7 +2,9 @@
   <div id="page">
     <script v-html="schema" type="application/ld+json" />
     <nuxt />
-    <app-callback-form ref="callbackForm" />
+    <LazyHydrate when-visible>
+      <app-callback-form ref="callbackForm" />
+    </LazyHydrate>
     <button id="scroll-up" class="scroll-up display-n" @click="scrollUp">
       <img src="/images/to-top.png" alt="top">
       <span class="text">Top</span>
@@ -13,11 +15,13 @@
 
 <script>
 import $ from 'jquery'
+import LazyHydrate from 'vue-lazy-hydration'
 import AppCallbackForm from '@/components/CallbackForm.vue'
 import AppCustomsCalculator from '@/components/CustomsCalculator.vue'
 
 export default {
   components: {
+    LazyHydrate,
     AppCallbackForm,
     AppCustomsCalculator
   },

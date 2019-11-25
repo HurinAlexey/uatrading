@@ -104,10 +104,6 @@
                         </tfoot>
                     </table>
                 </div>
-
-                <!-- <div class="button-wrap">
-                    <button class="send-button" @click="showMailForm">Отправить расчет на почту</button>
-                </div> -->
             </vuescroll>
         </div>
         
