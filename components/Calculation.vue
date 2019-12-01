@@ -79,7 +79,7 @@
 
                     <table v-if="data.delivery" class="delivery-payments">
                         <thead>
-                            <tr>
+                            <tr class="three-columns">
                                 <td class="table-title">Платежи по доставке</td>
                                 <td>Ставка, USD</td>
                                 <td>Сумма, грн</td>
@@ -147,7 +147,8 @@ export default {
                 'customs_brokerage_services': 'Таможенно-брокерские услуги', 
                 'custom_terminal': 'Таможенный терминал',
                 'delivery_odessa_kiev': 'Доставка Одесса-Киев',
-                'car_certification': 'Сертификация автомобиля'
+                'car_certification': 'Сертификация автомобиля',
+                'commission': 'Комиссия'
             },
             auctionFee: 0,
             shipDelivery: 0
@@ -167,7 +168,8 @@ export default {
         },
         finalBid() {
             let costUah = +this.data['cost'] * this.currency[this.data['currency']]
-            return costUah + 500 * this.currency['USD']
+            if (this.data.delivery) return costUah + 500 * this.currency['USD']
+            return costUah
         },
         importTax() {
             return this.data['engine-type'] === 'electro' ? 0 : this.finalBid * 0.1
@@ -235,7 +237,7 @@ export default {
 
             let result =  [
                 // {title: 'Дата расчета', value: this.date},
-                {title: 'Курс валют', value: `USD - ${this.currency['USD'].toFixed(2)} / EUR - ${this.currency['EUR'].toFixed(2)}`},
+                {title: 'Курс валют', value: `USD - ${this.currency['USD'].toFixed(6)} / EUR - ${this.currency['EUR'].toFixed(6)}`},
                 {title: 'Тип двигателя', value: engineType},
                 {title: 'Объем двигателя', value: this.data['engine-volume']},
                 {title: 'Стоимость', value: this.data['cost'] + ' ' + this.data['currency']}
@@ -255,7 +257,7 @@ export default {
             return result
         },
         deliveryPaymentsList() {
-            let paymentsList = ['forwarding_services', 'customs_brokerage_services', 'custom_terminal']
+            let paymentsList = ['forwarding_services', 'customs_brokerage_services', 'custom_terminal', 'commission']
             if (this.data.delivery.odessaKiev) paymentsList.push('delivery_odessa_kiev')
             if (this.data.delivery.certification) paymentsList.push('car_certification')
             return paymentsList

@@ -306,12 +306,12 @@ export default {
     .post-image {
         display: block;
         width: 35%;
-        min-height: 250px;
 
         img {
             display: block;
             width: 100%;
             height: 100%;
+            min-height: 250px;
             object-fit: cover;
         }
     }
@@ -435,7 +435,7 @@ export default {
 /* Media queries */
 @media screen and (max-width:991px) {
     .blog__container {
-        flex-direction: column-reverse;
+        flex-direction: column;
     }
 
     .main-content {
@@ -443,7 +443,7 @@ export default {
     }
 
     .aside-content {
-        display: none;
+        width: 100%;
     }
 }
 
@@ -461,11 +461,6 @@ export default {
         .post-image,
         .post-content {
             width: 100%;
-        }
-
-        .post-content {
-            border-top: none;
-            border-left: 1px solid #bdbdbd;
         }
     }
 }
@@ -515,7 +510,9 @@ export default {
 
     .post .post-content {
         padding: 20px;
-        padding-bottom: 30px;
+    }
+    .post::after {
+        bottom: -20px;
     }
 }
 </style>

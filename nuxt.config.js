@@ -34,7 +34,8 @@ module.exports = {
     '@/plugins/axios',
     '@/plugins/lazyload',
     { src: '~plugins/draggable.js', ssr: false },
-    { src: '~plugins/quill-editor.js', ssr: false }
+    { src: '~plugins/quill-editor.js', ssr: false },
+    { src: '~plugins/swiper.js', ssr: false }
   ],
   cache: true,
   /*
@@ -73,6 +74,19 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+    optimization: {
+      splitChunks: {
+        chunks: 'async',
+      }
+    },
+    splitChunks: {
+      pages: true,
+      vendor: true,
+      commons: true,
+      runtime: true,
+      layouts: true
+    },
+    cache: true,
     extend (config, ctx) {
     }
   }

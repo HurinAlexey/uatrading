@@ -16,7 +16,7 @@
             </div>
             <div class="blog__container flex jc-sa fw-w-md">
 
-                <nuxt-link 
+                <!-- <nuxt-link 
                     v-for="(post, index) of posts"
                     :key="index"
                     :to="'/blog/' + post.slug" 
@@ -32,7 +32,29 @@
                             {{ post.description }}
                         </div>
                     </div>
-                </nuxt-link>
+                </nuxt-link> -->
+
+                <swiper :options="swiperOption">
+                    <swiper-slide v-for="(post, index) of posts" :key="index">
+                        <nuxt-link 
+                            :to="'/blog/' + post.slug" 
+                            class="blog__item pos-r block"
+                        >
+                            <img v-lazy="'/uploads' + post.imageUrl" :alt="post.title">
+                            <div class="blog__text">
+                                <div class="blog__name">
+                                    {{post.title}}
+                                </div>
+                                <div class="blog__date">{{new Date(post.date) | date}}</div>
+                                <div class="blog__content">
+                                    {{ post.description }}
+                                </div>
+                            </div>
+                        </nuxt-link>
+                    </swiper-slide>
+                    <div class="swiper-button-prev" slot="button-prev"></div>
+                    <div class="swiper-button-next" slot="button-next"></div>
+                </swiper>
 
             </div>
         </div>
@@ -42,6 +64,32 @@
 <script>
 export default {
     props: ['posts'],
+    data() {
+        return {
+            swiperOption: {
+                slidesPerView: 4,
+                spaceBetween: 40,
+                autoplay: false,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    767: {
+                        slidesPerView: 1,
+                        spaceBetween: 10
+                    },
+                    991: {
+                        slidesPerView: 2,
+                        spaceBetween: 10,
+                        autoplay: {
+                            delay: 5000,
+                        }
+                    }
+                }
+            }
+        }
+    },
     mounted() {
         this.posts.forEach(post => {
             if(post.description.length > 200) {
@@ -137,7 +185,6 @@ export default {
     background-color: #fff;
     margin-bottom: 10px;
     z-index: 1;
-    width: 21%;
     -webkit-transition: all .5s;
     transition: all .5s
 }
@@ -164,6 +211,19 @@ export default {
     margin-bottom: 7px
 }
 
+.swiper-button-prev,
+.swiper-button-next {
+    background-image: url('/images/swiper-arrow.svg');
+}
+.swiper-button-prev {
+    transform: scaleX(-1);
+}
+
+.swiper-button-prev:focus,
+.swiper-button-next:focus {
+    outline: none;
+}
+
 
 /* Media queries */
 @media screen and (max-width:1281px) {
@@ -172,13 +232,27 @@ export default {
     }
 }
 
+@media screen and (min-width:992px) {
+    .swiper-button-prev,
+    .swiper-button-next {
+        display: none;
+    }
+}
+
 @media screen and (max-width:991px) {
     .blog__item {
-        width: 40%;
-        margin-bottom: 35px
+        width: 280px;
+        max-width: 100%;
+        margin: auto;
     }
     .blog__item:before {
         background-position: 0 -100px
+    }
+    .swiper-button-prev {
+        left: 0;
+    }
+    .swiper-button-next {
+        right: 0;
     }
 }
 
@@ -188,9 +262,6 @@ export default {
     }
     .blog__title::after {
         top: 12px
-    }
-    .blog__item:nth-child(n+3) {
-        display: none
     }
     .blog__item:before {
         background-position: 0 -72px
@@ -228,13 +299,6 @@ export default {
     .blog__title svg line {
         stroke-width: 5px;
         opacity: 1
-    }
-    .blog__item {
-        width: 300px;
-        max-width: 100%;
-    }
-    .blog__item:nth-child(n+2) {
-        display: none
     }
 }
 </style>

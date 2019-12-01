@@ -69,7 +69,7 @@ export default {
     data() {
         return {
             dragOptions: {
-                w: 600,
+                w: 630,
                 h: 490,
                 draggable: true,
                 resizable: false
@@ -427,7 +427,8 @@ export default {
     },
     async mounted() {
         try {
-            await this.$store.dispatch('getCurrency', new Date())
+            // await this.$store.dispatch('getCurrency', new Date())
+            this.$store.dispatch('getCurrentCurrency')
         } catch(e) {
             console.error(e)
         }
@@ -476,12 +477,12 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
-        width: calc(100% - 30px);
+        width: calc(100% - 28px);
         display: flex;
 
         .tab {
             flex: 1;
-            margin: 0 1px;
+            margin-right: 2px;
             padding: 5px;
             font-size: 14px;
             line-height: 18px;
@@ -735,7 +736,7 @@ export default {
             padding-bottom: 5px;
 
             td {
-                width: calc(70% / 3);
+                width: calc(62% / 3);
                 padding: 5px;
                 font-size: 14px;
                 line-height: 18px;
@@ -743,7 +744,7 @@ export default {
                 text-align: center;
 
                 &.table-title {
-                    width: 30%;
+                    width: 38% !important;
                     padding-right: 15px;
                     font-size: 13px;
                     text-transform: uppercase;
@@ -752,7 +753,7 @@ export default {
                 }
 
                 &.title {
-                    width: 30%;
+                    width: 38% !important;
                     padding-right: 15px;
                     background-color: transparent;
                     text-align: right;
@@ -775,7 +776,7 @@ export default {
 
             &.three-columns {
                 td {
-                    width: calc(70% / 2);
+                    width: calc(62% / 2);
                 }
             }
         }
@@ -785,7 +786,7 @@ export default {
             padding-bottom: 10px;
 
             tr {
-                border-bottom: 1px solid rgba(255, 255, 255, .3);
+                border-bottom: 1px solid rgba(255, 255, 255, .1);
 
                 td {
                     font-size: 12px;
@@ -799,10 +800,10 @@ export default {
 
         &.data-info {
             td {
-                width: 65%;
+                width: 62%;
 
                 &.title {
-                    width: 35%;
+                    width: 38%;
                 }
             }
         }

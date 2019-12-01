@@ -700,8 +700,12 @@ blockquote {
         padding-bottom: 60px;
         background-size: cover;
     }
+    .what__box-first,
     .what__box-second {
         width: 100%;
+        max-width: 540px;
+        margin: 0 auto;
+        padding: 0 10px;
     }
     .footer__form {
         width: 300px
@@ -720,6 +724,9 @@ blockquote {
     }
     .btn {
         font-size: 18px
+    }
+    .title-wrap h2 br {
+        display: none;
     }
     .what {
         padding-top: 20px;

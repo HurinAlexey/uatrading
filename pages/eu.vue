@@ -1,102 +1,96 @@
 <template>
   <div id="content">
     <LazyHydrate when-visible>
-        <app-header :data="header" slot-scope="{ hydrated }" v-if="hydrated" />
+        <app-header :data="header" />
     </LazyHydrate>
     <main>
-
+      
       <LazyHydrate when-visible>
-        <div
-          slot-scope="{ hydrated }"
-          v-if="hydrated"
-        >
-
           <app-about />
-
-          <app-advantages :data="advantages" />
-
-          <div class="cars-bg lazy-bg">
-
-            <section class="what pos-r">
-                <div class="container">
-                    <div class="what__title pos-r c-after">
-                            <p class="opacity left-animate">Что</p>
-                            <p class="what__title_large opacity right-animate">входит</p>
-                            <p class="what__title_last opacity left-animate">в услугу?</p>
-                        <svg class="svg-animate pos-a">
-                            <line x1="0" y1="5" x2="100%" y2="5" stroke-width="9" stroke="#cc9557"></line>
-                            <line x1="100%" y1="5" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
-                        </svg>
-                    </div>
-                </div>
-                <div class="what__block pos-r c-before c-after blk-block lazy-bg">
-                    <div class="container flex fw-w jc-fe">
-                        <div class="what__item pos-r c-after w33 w50-md w100-esm">
-                            <p>Консультация по всем вопросам таможенного оформления и оптимизации налогообложения</p>
-                        </div>
-                        <div class="what__item pos-r c-after w33 w50-md w100-esm">
-                            <p>Расчет таможенных платежей (с учетом данных каталога schwacke и таможенных оформлений аналогичных авто)</p>
-                        </div>
-                        <div class="what__item pos-r c-after w33 w50-md w100-esm">
-                            <p>Оформление предварительной декларации (ПД)</p>
-                        </div>
-                        <div class="what__item pos-r c-after w33 w50-md w100-esm">
-                            <p>Получение документов о соответствии автомобиля экологическим нормам ЕВРО 2-6</p>
-                        </div>
-
-                        <div class="what__item pos-r c-after w33 w50-md w100-esm">
-                            <p>Декларирование автомобиля таможенным органам</p>
-                        </div>
-
-                        <div class="what__item pos-r c-after w33 w50-md w100-esm">
-                            <p>Представление интересов клиента на всех этапах таможенного оформления</p>
-                        </div>
-                    </div>
-                </div>
-                <svg class="svg-animate work__svg pos-a">
-                    <line x1="100%" y1="-100" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
-                    <line x1="100%" y1="100%" x2="0" y2="100%" stroke-width="18" stroke="#cc9557"></line>
-                </svg>
-            </section>
-
-            <app-working-schema :items="schemaItems" />
-
-          </div>
-
-          <app-blog :posts="blogPosts" />
-
-          <app-consultation :title="consultationTitle" />
-        </div>
       </LazyHydrate>
 
+      <LazyHydrate when-visible>
+          <app-advantages :data="advantages" />
+      </LazyHydrate>
+
+      <div class="cars-bg lazy-bg">
+
+        <section class="what pos-r">
+            <div class="container">
+                <div class="what__title pos-r c-after">
+                        <p class="opacity left-animate">Что</p>
+                        <p class="what__title_large opacity right-animate">входит</p>
+                        <p class="what__title_last opacity left-animate">в услугу?</p>
+                    <svg class="svg-animate pos-a">
+                        <line x1="0" y1="5" x2="100%" y2="5" stroke-width="9" stroke="#cc9557"></line>
+                        <line x1="100%" y1="5" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
+                    </svg>
+                </div>
+            </div>
+            <div class="what__block pos-r c-before c-after blk-block lazy-bg">
+                <div class="container flex fw-w jc-fe">
+                    <div class="what__item pos-r c-after w33 w50-md w100-esm">
+                        <p>Консультация по всем вопросам таможенного оформления и оптимизации налогообложения</p>
+                    </div>
+                    <div class="what__item pos-r c-after w33 w50-md w100-esm">
+                        <p>Расчет таможенных платежей (с учетом данных каталога schwacke и таможенных оформлений аналогичных авто)</p>
+                    </div>
+                    <div class="what__item pos-r c-after w33 w50-md w100-esm">
+                        <p>Оформление предварительной декларации (ПД)</p>
+                    </div>
+                    <div class="what__item pos-r c-after w33 w50-md w100-esm">
+                        <p>Получение документов о соответствии автомобиля экологическим нормам ЕВРО 2-6</p>
+                    </div>
+
+                    <div class="what__item pos-r c-after w33 w50-md w100-esm">
+                        <p>Декларирование автомобиля таможенным органам</p>
+                    </div>
+
+                    <div class="what__item pos-r c-after w33 w50-md w100-esm">
+                        <p>Представление интересов клиента на всех этапах таможенного оформления</p>
+                    </div>
+                </div>
+            </div>
+            <svg class="svg-animate work__svg pos-a">
+                <line x1="100%" y1="-100" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
+                <line x1="100%" y1="100%" x2="0" y2="100%" stroke-width="18" stroke="#cc9557"></line>
+            </svg>
+        </section>
+        
+        <LazyHydrate when-visible>
+            <app-working-schema :items="schemaItems" />
+        </LazyHydrate>
+
+      </div>
+
+      <LazyHydrate when-visible>
+          <app-blog :posts="blogPosts" />
+      </LazyHydrate>
+
+      <LazyHydrate when-visible>
+          <app-consultation :title="consultationTitle" />
+      </LazyHydrate>
       
     </main>
     <LazyHydrate when-visible>
-        <app-footer :data="footer" slot-scope="{ hydrated }" v-if="hydrated" />
+        <app-footer :data="footer" />
     </LazyHydrate>
   </div>
 </template>
 
 <script>
 import LazyHydrate from 'vue-lazy-hydration'
-import AppHeader from '@/components/Header.vue'
-import AppAbout from '@/components/section/About.vue'
-import AppAdvantages from '@/components/section/Advantages.vue'
-import AppWorkingSchema from '@/components/section/WorkingSchema.vue'
-import AppBlog from '@/components/section/Blog.vue'
-import AppConsultation from '@/components/section/Consultation.vue'
-import AppFooter from '@/components/Footer.vue'
 
 export default {
   components: {
     LazyHydrate,
-    AppHeader,
-    AppAbout,
-    AppAdvantages,
-    AppWorkingSchema,
-    AppBlog,
-    AppConsultation,
-    AppFooter
+    AppHeader: () => import('@/components/Header.vue'),
+    AppAbout: () => import('@/components/section/About.vue'),
+    AppAdvantages: () => import('@/components/section/Advantages.vue'),
+    AppWorkingSchema: () => import('@/components/section/WorkingSchema.vue'),
+    AppBlog: () => import('@/components/section/Blog.vue'),
+    AppConsultation: () => import('@/components/section/Consultation.vue'),
+    AppFooter: () => import('@/components/Footer.vue')
   },
   data() {
     return {
@@ -266,7 +260,8 @@ export default {
 
 @media screen and (max-width: 767px) {
   .what__block {
-    background-size: 100% 100%;
+    background-size: 200% 100%;
+    background-position: right;
   }
 }
 </style>

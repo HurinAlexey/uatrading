@@ -251,7 +251,7 @@ export default {
         line-height: 32px
     }
     .help>img {
-        bottom: 77px;
+        bottom: 65px;
         width: 70vw;
         min-width: 350px;
     }

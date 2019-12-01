@@ -53,6 +53,15 @@ export const state = () => ({
         commit('setError', e, {root: true})
         throw e
       }
+    },
+    async getCurrentCurrency({commit}, title) {
+        try {
+            const currency = await this.$axios.$get(`/api/calculator/currency`)
+            commit('setCurrency', currency.data)
+        } catch (e) {
+            commit('setError', e, {root: true})
+            throw e
+        }
     }
   }
   

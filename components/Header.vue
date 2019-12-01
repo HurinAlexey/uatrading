@@ -309,8 +309,8 @@ header {
     left: 0;
     display: block;
     width: 100%;
-    height: 111px;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .3) 0%,  rgba(0, 0, 0, .3) 50%, transparent);
+    height: 70px;
+    background-image: linear-gradient(180deg,rgba(0,0,0,.3) 0,rgba(0,0,0,.3) 20%,transparent);
     z-index: 2;
 }
 
@@ -416,9 +416,9 @@ header {
 .nav__dropdown li:not(:last-child) {
     border-bottom-width: 1px;
     border-bottom-style: solid;
-    -o-border-image: linear-gradient(to right, transparent, rgba(255, 255, 255, .5), transparent) 1 stretch;
-    border-image: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(rgba(255, 255, 255, .5)), to(transparent)) 1 stretch;
-    border-image: linear-gradient(to right, transparent, rgba(255, 255, 255, .5), transparent) 1 stretch
+    -o-border-image: linear-gradient(to right, transparent, rgba(255, 255, 255, .3), transparent) .5 stretch;
+    border-image: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(rgba(255, 255, 255, .3)), to(transparent)) .5 stretch;
+    border-image: linear-gradient(to right, transparent, rgba(255, 255, 255, .3), transparent) .5 stretch
 }
 
 .nav__title {
@@ -697,7 +697,7 @@ h2 {
 /* Media queries */
 @media screen and (min-width:1600px) {
     .title-wrap-tb {
-        bottom: 30%;
+        bottom: 32%;
     }
 }
 
@@ -894,7 +894,7 @@ h2 {
     .cons-mobile {
         display: block;
         position: absolute;
-        top: 95px;
+        top: 75px;
         right: 20px;
     }
     .cons-mobile .btn {
@@ -947,7 +947,6 @@ h2 {
     }
     .title-wrap {
         padding: 0;
-        border: none
     }
     h1 {
         font-size: 26px;
@@ -955,11 +954,10 @@ h2 {
     }
     .title-wrap h1 {
         padding-left: 8px;
-        border-left: 8px solid #cc9557
     }
     h2 {
         font-size: 14px;
-        padding-left: 16px;
+        padding-left: 8px;
         line-height: 16px
     }
     .category__title {

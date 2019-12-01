@@ -98,7 +98,7 @@ export default {
     bottom: 0;
     display: block;
     width: 100%;
-    height: 55px;
+    height: 70px;
     background-color: #ececec;
 }
 
@@ -337,6 +337,10 @@ export default {
     .work__title-wrap {
         padding-bottom: 80px
     }
+    .work__block {
+        padding-bottom: 25px;
+        background-size: 250% 100%;
+    }
     .work__item {
         padding: 30px 0
     }
@@ -361,7 +365,6 @@ export default {
 
 @media screen and (max-width:575px) {
     .work {
-        padding-bottom: 25px;
         background-size: auto;
     }
     .work__title-wrap {

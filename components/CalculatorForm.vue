@@ -56,7 +56,7 @@
                 v-if="delivery && (data.idPrefix === 'passenger' || data.idPrefix === 'truck')"
                 class="form-control-wrap"
             >
-                <label>Расчет доставки по США</label>
+                <label>Расчет доставки с США</label>
                 <div class="checkbox-wrap">
                     <div class="checkbox" @click="onCheck($event, 'showDelivery')">
                         <input type="checkbox" name="delivery" class="display-n" />
@@ -348,6 +348,17 @@ export default {
         }
         this.deliveryToList = toList
         this.activeDeliveryTo = toList[0]
+
+        document.onclick = (e) => {
+            let dropdown = e.target.closest('.dropdown')
+
+            let dropdownArray = document.querySelectorAll('.dropdown.open')
+            for (let el of dropdownArray) {
+                if (el != dropdown) {
+                    el.classList.remove('open')
+                }
+            }
+        }
     }
 }
 </script>

@@ -1,11 +1,11 @@
 <template>
   <div id="content">
     <LazyHydrate when-visible>
-        <app-header :data="header" slot-scope="{ hydrated }" v-if="hydrated" />
+        <app-header :data="header" />
     </LazyHydrate>
     <main>
 
-      <div class="problems-wrap">
+        <div class="problems-wrap">
           <section class="problems lazy-bg">
               <div class="white-text">Опасаетесь проблем при таможенном оформлении?</div>
               <div class="questions">
@@ -39,127 +39,127 @@
               </div>
               <div class="white-text text-right">Хотите этого избежать?</div>
           </section>
-      </div>
-
-      <LazyHydrate when-visible>
-        <div
-          slot-scope="{ hydrated }"
-          v-if="hydrated"
-        >
+        </div>
+      
+        <LazyHydrate when-visible>
             <app-about />
+        </LazyHydrate>
+
+        <LazyHydrate when-visible>
             <app-advantages :data="advantages" />
+        </LazyHydrate>
 
-            <section class="what pos-r">
-                <div class="container">
-                    <div class="what__title pos-r c-after">
-                        <p class="opacity left-animate">Что</p>
-                        <p class="what__title_large opacity right-animate">входит</p>
-                        <p class="what__title_last opacity left-animate">в услугу?</p>
-                        <svg class="svg-animate  pos-a">
-                            <line x1="0" y1="5" x2="100%" y2="5" stroke-width="9" stroke="#cc9557"></line>
-                            <line x1="100%" y1="5" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
-                        </svg>
-                    </div>
-                </div>
-                <div class="what__block pos-r c-before c-after blk-block-tb lazy-bg">
-                    <div class="container">
-                        <div class="flex fw-w jc-sa">
-
-                            <div class="what__item what__item-tb pos-r c-after w33 w50-md w100-esm">
-                                <p>Консультация по любым вопросам таможенного оформления и оптимизации налогообложения</p>
-                            </div>
-                            <div class="what__item what__item-tb pos-r c-after w33 w50-md w100-esm">
-                                <p>Получение разрешительных документов контролирующих органов</p>
-                            </div>
-
-                            <div class="what__item what__item-tb pos-r c-after w33 w50-md w100-esm">
-                                <p>Расчет таможенных платежей</p>
-                            </div>
-                            <div class="what__item what__item-tb pos-r c-after w33 w50-md w100-esm">
-                                <p>Классификация товаров по УКТВЭД</p>
-                            </div>
-                            <div class="what__item what__item-tb pos-r c-after w33 w50-md w100-esm">
-                                <p>Декларирование товаров заказчика таможенным органам</p>
-                            </div>
-                            <div class="what__item what__item-tb pos-r c-after w33 w50-md w100-esm">
-                                <p>Представление интересов заказчика на всех этапах таможенного оформления</p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="work">
-                <div class="container work__title-wrap pos-r">
-                    <div class="work__title pos-r c-after">
-                        <p class="opacity left-animate">
-                            Схема </p>
-                        <div class="opacity right-animate">работы</div>
-                        <svg class="svg-animate  pos-a">
-                            <line x1="0" y1="5" x2="100%" y2="5" stroke-width="9" stroke="#cc9557"></line>
-                            <line x1="100%" y1="5" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
-                        </svg>
-                    </div>
-
-                </div>
-                <div class="work__block pos-r c-before c-after bl-block-tb lazy-bg">
-                    <div class="container flex fw-w jc-sa ai-fs pos-r">
-
-                        <div class="work__item flex w35 w50-md w100-sm pos-r">
-                            <div class="work__num">
-                                Шаг 1
-                            </div>
-                            <p class="work__about">
-                                Заключение договора на оказание услуг и получение документов на груз
-                            </p>
-                        </div>
-
-                        <div class="work__item flex w35 w50-md w100-sm pos-r">
-                            <div class="work__num">
-                                Шаг 2
-                            </div>
-                            <p class="work__about">
-                                Анализ документов и определение мер тарифного и нетарифного регулирования
-                            </p>
-                        </div>
-
-                        <div class="work__item flex w35 w50-md w100-sm pos-r">
-                            <div class="work__num">
-                                Шаг 3
-                            </div>
-                            <p class="work__about">
-                                Получение разрешительных документов от других контролирующих органов
-                            </p>
-                        </div>
-
-                        <div class="work__item flex w35 w50-md w100-sm pos-r">
-                            <div class="work__num">
-                                Шаг 4
-                            </div>
-                            <p class="work__about">
-                                Таможенное оформление груза
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="container pos-r svg-wrap">
-                    <svg class="svg-animate pos-a">
-                        <line x1="5" y1="0" x2="5" y2="100%" stroke-width="9" stroke="#cc9557"></line>
-                        <line x1="1" y1="100%" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
+        <section class="what pos-r">
+            <div class="container">
+                <div class="what__title pos-r c-after">
+                    <p class="opacity left-animate">Что</p>
+                    <p class="what__title_large opacity right-animate">входит</p>
+                    <p class="what__title_last opacity left-animate">в услугу?</p>
+                    <svg class="svg-animate  pos-a">
+                        <line x1="0" y1="5" x2="100%" y2="5" stroke-width="9" stroke="#cc9557"></line>
+                        <line x1="100%" y1="5" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
                     </svg>
                 </div>
-            </section>
+            </div>
+            <div class="what__block pos-r c-before c-after blk-block-tb lazy-bg">
+                <div class="container">
+                    <div class="flex fw-w jc-sa">
 
+                        <div class="what__item what__item-tb pos-r c-after w33 w50-md w100-esm">
+                            <p>Консультация по любым вопросам таможенного оформления и оптимизации налогообложения</p>
+                        </div>
+                        <div class="what__item what__item-tb pos-r c-after w33 w50-md w100-esm">
+                            <p>Получение разрешительных документов контролирующих органов</p>
+                        </div>
+
+                        <div class="what__item what__item-tb pos-r c-after w33 w50-md w100-esm">
+                            <p>Расчет таможенных платежей</p>
+                        </div>
+                        <div class="what__item what__item-tb pos-r c-after w33 w50-md w100-esm">
+                            <p>Классификация товаров по УКТВЭД</p>
+                        </div>
+                        <div class="what__item what__item-tb pos-r c-after w33 w50-md w100-esm">
+                            <p>Декларирование товаров заказчика таможенным органам</p>
+                        </div>
+                        <div class="what__item what__item-tb pos-r c-after w33 w50-md w100-esm">
+                            <p>Представление интересов заказчика на всех этапах таможенного оформления</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="work">
+            <div class="container work__title-wrap pos-r">
+                <div class="work__title pos-r c-after">
+                    <p class="opacity left-animate">
+                        Схема </p>
+                    <div class="opacity right-animate">работы</div>
+                    <svg class="svg-animate  pos-a">
+                        <line x1="0" y1="5" x2="100%" y2="5" stroke-width="9" stroke="#cc9557"></line>
+                        <line x1="100%" y1="5" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
+                    </svg>
+                </div>
+
+            </div>
+            <div class="work__block pos-r c-before c-after bl-block-tb lazy-bg">
+                <div class="container flex fw-w jc-sa ai-fs pos-r">
+
+                    <div class="work__item flex w35 w50-md w100-sm pos-r">
+                        <div class="work__num">
+                            Шаг 1
+                        </div>
+                        <p class="work__about">
+                            Заключение договора на оказание услуг и получение документов на груз
+                        </p>
+                    </div>
+
+                    <div class="work__item flex w35 w50-md w100-sm pos-r">
+                        <div class="work__num">
+                            Шаг 2
+                        </div>
+                        <p class="work__about">
+                            Анализ документов и определение мер тарифного и нетарифного регулирования
+                        </p>
+                    </div>
+
+                    <div class="work__item flex w35 w50-md w100-sm pos-r">
+                        <div class="work__num">
+                            Шаг 3
+                        </div>
+                        <p class="work__about">
+                            Получение разрешительных документов от других контролирующих органов
+                        </p>
+                    </div>
+
+                    <div class="work__item flex w35 w50-md w100-sm pos-r">
+                        <div class="work__num">
+                            Шаг 4
+                        </div>
+                        <p class="work__about">
+                            Таможенное оформление груза
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="container pos-r svg-wrap">
+                <svg class="svg-animate pos-a">
+                    <line x1="5" y1="0" x2="5" y2="100%" stroke-width="9" stroke="#cc9557"></line>
+                    <line x1="1" y1="100%" x2="100%" y2="100%" stroke-width="18" stroke="#cc9557"></line>
+                </svg>
+            </div>
+        </section>
+
+        <LazyHydrate when-visible>
             <app-consultation :title="consultationTitle" />
-        </div>
-      </LazyHydrate>
+        </LazyHydrate>
 
     </main>
     <LazyHydrate when-visible>
-        <app-footer :data="footer" slot-scope="{ hydrated }" v-if="hydrated" />
+        <app-footer :data="footer" />
     </LazyHydrate>
   </div>
 </template>
@@ -167,20 +167,15 @@
 <script>
 import Parallax from 'parallax-js'
 import LazyHydrate from 'vue-lazy-hydration'
-import AppHeader from '@/components/Header.vue'
-import AppAbout from '@/components/section/About.vue'
-import AppAdvantages from '@/components/section/Advantages.vue'
-import AppConsultation from '@/components/section/Consultation.vue'
-import AppFooter from '@/components/Footer.vue'
 
 export default {
   components: {
     LazyHydrate,
-    AppHeader,
-    AppAbout,
-    AppAdvantages,
-    AppConsultation,
-    AppFooter
+    AppHeader: () => import('@/components/Header.vue'),
+    AppAbout: () => import('@/components/section/About.vue'),
+    AppAdvantages: () => import('@/components/section/Advantages.vue'),
+    AppConsultation: () => import('@/components/section/Consultation.vue'),
+    AppFooter: () => import('@/components/Footer.vue')
   },
   data() {
     return {
@@ -369,7 +364,7 @@ export default {
     bottom: 0;
     display: block;
     width: 100%;
-    height: 55px;
+    height: 70px;
     background-color: #ececec;
 }
 
