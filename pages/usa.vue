@@ -81,7 +81,7 @@
         </section>
         
         <LazyHydrate when-visible>
-            <app-working-schema :items="schemaItems" :usaClass="true" />
+            <app-working-schema :items="schemaItems" class="work-USA" :usaClass="true" />
         </LazyHydrate>
 
       </div>
@@ -91,7 +91,7 @@
       </LazyHydrate>
 
       <LazyHydrate when-visible>
-          <app-consultation :title="consultationTitle" />
+          <app-consultation :title="consultationTitle" class="help-USA" />
       </LazyHydrate>
       
     </main>

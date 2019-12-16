@@ -262,20 +262,26 @@ blockquote {
 }
 
 .blk-block-USA {
-    background-image:url(~static/images/bg-what-USA.png);
+    background-image:url("~static/images/usa-what.png");
+    background-size: 100% 100%;
+    color: #fff
+}
+
+.blk-block-EU {
+    background-image:url("~static/images/eu-what.png");
     background-size: 100% 100%;
     color: #fff
 }
 
 .what__block.blk-block-georgia {
     padding-bottom: 100px;
-    background-image:url(~static/images/bg-what-USA.png);
+    background-image:url("~static/images/georgia-what.png");
     background-size: 100% 100%;
     color: #fff;
 }
 
 .blk-block-tb {
-    background-image:url(~static/images/what-included.png);
+    background-image:url("~static/images/tb-what.png");
     background-size: 100% 100%;
     color: #fff;
     background-color: #fff;

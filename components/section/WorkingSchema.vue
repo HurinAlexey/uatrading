@@ -137,6 +137,18 @@ export default {
     z-index: 2;
 }
 
+.work-USA .work__block {
+    background-image: url("~static/images/usa-work.png");
+}
+
+.work-EU .work__block {
+    background-image: url("~static/images/eu-work.png");
+}
+
+.work-georgia .work__block {
+    background-image: url("~static/images/georgia-work.png");
+}
+
 .work__block::after {
     left: 0
 }

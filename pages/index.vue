@@ -154,7 +154,7 @@
         </section>
 
         <LazyHydrate when-visible>
-            <app-consultation :title="consultationTitle" />
+            <app-consultation :title="consultationTitle" class="help-tb" />
         </LazyHydrate>
 
     </main>

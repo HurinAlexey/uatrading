@@ -88,6 +88,22 @@ export default {
     background-color: #ececec
 }
 
+.help-USA .help__container {
+    background-image:url("~static/images/usa-help.png");
+}
+
+.help-EU .help__container {
+    background-image:url("~static/images/eu-help.png");
+}
+
+.help-georgia .help__container {
+    background-image:url("~static/images/georgia-help.png");
+}
+
+.help-tb .help__container {
+    background-image:url("~static/images/tb-help.png");
+}
+
 .help__wrap {
     padding: 10px 100px 0 100px
 }

@@ -28,7 +28,7 @@
                 </div>
             </div>
 
-            <div class="what__block pos-r c-before c-after blk-block lazy-bg">
+            <div class="what__block pos-r c-before c-after blk-block blk-block-georgia lazy-bg">
                 <div class="container flex fw-w jc-fe">
                     <div class="what__item pos-r c-after w33 w50-md w100-esm">
                         <h4>Большой выбор</h4>
@@ -76,7 +76,7 @@
         </section>
         
         <LazyHydrate when-visible>
-            <app-working-schema :items="schemaItems" :usaClass="true" />
+            <app-working-schema :items="schemaItems" class="work-georgia" :usaClass="true" />
         </LazyHydrate>
 
       </div>
@@ -86,7 +86,7 @@
       </LazyHydrate>
 
       <LazyHydrate when-visible>
-          <app-consultation :title="consultationTitle" />
+          <app-consultation :title="consultationTitle" class="help-georgia" />
       </LazyHydrate>
       
     </main>
