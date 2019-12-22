@@ -238,7 +238,7 @@ export default {
       consultationTitle: 'Нужна квалифицированная помощь?',
       footer: {
         slogan: 'Пока вы думаете, остальные уже ездят!',
-        backgroundImage: 'images/footer-bg.jpg'
+        backgroundImage: 'images/footer-bg-USA.jpg'
       }
     }
   },
