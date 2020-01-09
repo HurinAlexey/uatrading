@@ -4,7 +4,7 @@ const schedule = require('node-schedule')
 const axios = require('axios')
 
 module.exports.start = () => {
-    schedule.scheduleJob({hour: 9, minute: 0}, async () => {
+    schedule.scheduleJob('*/15 3-9 * * *', async () => {
         try {
             let date = new Date()
             let year = String(date.getFullYear())
