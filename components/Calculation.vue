@@ -189,8 +189,13 @@ export default {
         deliveryTableInfo() {
             let result = [
                 {title: 'Аукционный сбор', usd: this.auctionFee, uah: this.auctionFee * this.currency['USD']},
-                {title: 'Доставка по суше', usd: this.data.delivery.cost, uah: this.data.delivery.cost * this.currency['USD']},
-                {title: 'Доставка по воде', usd: this.shipDelivery, uah: this.shipDelivery * this.currency['USD']},
+                {
+                    title: 'Доставка до Одессы',
+                    usd: this.data.delivery.cost + this.shipDelivery + 150,
+                    uah: (this.data.delivery.cost + this.shipDelivery + 150) * this.currency['USD']
+                }
+                // {title: 'Доставка по суше', usd: this.data.delivery.cost, uah: this.data.delivery.cost * this.currency['USD']},
+                // {title: 'Доставка по воде', usd: this.shipDelivery, uah: this.shipDelivery * this.currency['USD']},
             ]
 
             for (let item of this.deliveryPayments) {
@@ -200,7 +205,7 @@ export default {
             return result
         },
         deliveryPaymentsSum() {
-            let result = this.auctionFee + Number(this.data.delivery.cost) + this.shipDelivery
+            let result = this.auctionFee + Number(this.data.delivery.cost) + this.shipDelivery + 150
 
             for (let item of this.deliveryPayments) {
                 result += Number(item.value)
@@ -257,7 +262,7 @@ export default {
             return result
         },
         deliveryPaymentsList() {
-            let paymentsList = ['forwarding_services', 'customs_brokerage_services', 'custom_terminal', 'commission']
+            let paymentsList = ['forwarding_services', 'customs_brokerage_services', /*'custom_terminal',*/ 'commission']
             if (this.data.delivery.odessaKiev) paymentsList.push('delivery_odessa_kiev')
             if (this.data.delivery.certification) paymentsList.push('car_certification')
             return paymentsList
@@ -292,7 +297,7 @@ export default {
             if (this.data['engine-type'] === 'petrol') {
                 let baseTax = this.data['engine-volume'] <= 3000 ? 50 : 100
                 let engineCoefficient = this.data['engine-volume'] / 1000
-                let age = new Date().getFullYear() - this.data['year']
+                let age = new Date().getFullYear() - this.data['year'] - 1
                 let yearCoefficient = 0
                 if (age < 1) {
                     yearCoefficient = 1
@@ -305,7 +310,7 @@ export default {
             } else if (this.data['engine-type'] === 'diesel') {
                 let baseTax = this.data['engine-volume'] <= 3500 ? 75 : 150
                 let engineCoefficient = this.data['engine-volume'] / 1000
-                let age = new Date().getFullYear() - this.data['year']
+                let age = new Date().getFullYear() - this.data['year'] - 1
                 let yearCoefficient = 0
                 if (age < 1) {
                     yearCoefficient = 1

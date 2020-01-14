@@ -118,8 +118,8 @@ export default {
   data() {
     return {
       header: {
-        title: 'Автомобили с США',
-        subtitle: 'Профессиональные подбор, покупка, доставка и таможенное оформление <br> транспортных средств со всех аукционов США «под ключ»',
+        title: 'Автомобили из США',
+        subtitle: 'Профессиональные подбор, покупка, доставка, таможенное оформление и сертификация автомобилей, мотоциклов и других видов транспортных средств с аукционов США',
         backImage: {
             desktop: 'images/new-bg-usa.jpg',
             mobile: 'images/new-bg-usa-mob.jpg'
@@ -132,9 +132,9 @@ export default {
         multilang: false,
         showAboutImport: true,
         bannerLinks: [
-          {title: 'Автомобили из США', href: '/usa'},
-          {title: 'Автомобили из Грузии', href: '/georgia'},
-          {title: 'Автомобили из ЕС', href: '/eu'}
+          {title: 'США', href: '/usa'},
+          {title: 'Грузия', href: '/georgia'},
+          {title: 'Евросоюз', href: '/eu'}
         ]
       },
       advantages: {
@@ -147,32 +147,32 @@ export default {
             text: 'Более 10 лет опыта работы в сфере внешнеэкономической деятельности'
           },
           {
-            icon: 'images/about-USA-2.png',
-            text: 'Профессиональный подбор и проверка автомобилей (бесплатный отчет Carfax)'
-          },
-          {
-            icon: 'images/about-USA-4.png',
-            text: 'Работаем без посредников и "под ключ"'
-          },
-          {
-            icon: 'images/about-USA-5.png',
-            text: 'Прозрачная система оплаты за авто напрямую аукциону'
-          },
-          {
-            icon: 'images/about-USA-7.png',
-            text: 'Предлагаем лучшую цену на рынке (у нас нет скрытых и дополнительных платежей)'
-          },
-          {
-            icon: 'images/about-USA-9.png',
-            text: 'Особые условия для постоянных и системных клиентов'
-          },
-          {
             icon: 'images/about-USA-10.png',
             text: 'Официальные юридические отношения с клиентами'
           },
           {
             icon: 'images/about-USA-11.png',
             text: 'Являемся лицензированным <a href="http://sfs.gov.ua/dovidniki--reestri--perelik/reestri/94921.html"> таможенным брокером</a> (Таможенное оформление любого автомобиля всего за 3 часа)'
+          },
+          {
+            icon: 'images/about-USA-4.png',
+            text: 'Работаем без посредников и "под ключ"'
+          },
+          {
+            icon: 'images/about-USA-2.png',
+            text: 'Профессиональный подбор и проверка автомобилей (бесплатный отчет Carfax)'
+          },
+          {
+            icon: 'images/about-USA-9.png',
+            text: 'Особые условия для постоянных и системных клиентов'
+          },
+          {
+            icon: 'images/about-USA-7.png',
+            text: 'Предлагаем лучшую цену на рынке (у нас нет скрытых и дополнительных платежей)'
+          },
+          {
+            icon: 'images/about-USA-5.png',
+            text: 'Прозрачная система оплаты за авто напрямую аукциону'
           },
           {
             icon: 'images/about-USA-12.png',
@@ -238,7 +238,8 @@ export default {
       consultationTitle: 'Нужна квалифицированная помощь?',
       footer: {
         slogan: 'Пока вы думаете, остальные уже ездят!',
-        backgroundImage: 'images/footer-bg-USA.jpg'
+        // backgroundImage: 'images/footer-bg-USA.jpg'
+        backgroundImage: 'images/demo-footer.jpg'
       }
     }
   },

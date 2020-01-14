@@ -92,8 +92,8 @@ export default {
     },
     mounted() {
         this.posts.forEach(post => {
-            if(post.description.length > 200) {
-                post.description = post.description.slice(0, 200) + '...'
+            if(post.description.length > 190) {
+                post.description = post.description.slice(0, 190) + '...'
             }
         })
     }
@@ -209,6 +209,11 @@ export default {
     font-family: muller-l, serif;
     font-size: 12px;
     margin-bottom: 7px
+}
+
+.blog__content {
+    height: 105px;
+    overflow-y: hidden;
 }
 
 .swiper-button-prev,

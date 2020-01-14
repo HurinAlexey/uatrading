@@ -196,7 +196,7 @@ export default {
         showAboutImport: false,
         bannerLinks: [
           {title: 'Товары', href: '/'},
-          {title: 'Автомобили', href: '/usa'}
+          {title: 'Транспортные средства', href: '/usa'}
         ]
       },
       advantages: {
@@ -235,7 +235,8 @@ export default {
       consultationTitle: 'Нужен надежный таможенный брокер?',
       footer: {
         slogan: 'Мы не решаем проблем – мы их не допускаем!',
-        backgroundImage: 'images/footer-tb.jpg',
+        // backgroundImage: 'images/footer-tb.jpg',
+        backgroundImage: 'images/demo-footer.jpg',
         withoutNav: true
       }
     }
@@ -592,6 +593,21 @@ export default {
     }
     .work__block {
         padding-top: 25px
+    }
+}
+
+@media screen and (min-width:768px) {
+    .work__item:nth-of-type(1) {
+        order: 1;
+    }
+    .work__item:nth-of-type(2) {
+        order: 3;
+    }
+    .work__item:nth-of-type(3) {
+        order: 2;
+    }
+    .work__item:nth-of-type(4) {
+        order: 4;
     }
 }
 

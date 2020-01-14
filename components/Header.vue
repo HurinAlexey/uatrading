@@ -649,14 +649,6 @@ h2 {
     transition: all .8s
 }
 
-.category.category.two-items li::after {
-    left: 50%;
-}
-
-.category.category.two-items li:hover::after {
-    left: 0;
-}
-
 .category li:not(:last-child) {
     border-right-width: 1px;
     border-right-style: solid;

@@ -33,19 +33,17 @@
                         <p>Консультация по всем вопросам таможенного оформления и оптимизации налогообложения</p>
                     </div>
                     <div class="what__item pos-r c-after w33 w50-md w100-esm">
-                        <p>Расчет таможенных платежей (с учетом данных каталога schwacke и таможенных оформлений аналогичных авто)</p>
+                        <p>Оформление предварительной декларации (ПД)</p>
                     </div>
                     <div class="what__item pos-r c-after w33 w50-md w100-esm">
-                        <p>Оформление предварительной декларации (ПД)</p>
+                        <p>Декларирование автомобиля таможенным органам</p>
+                    </div>
+                    <div class="what__item pos-r c-after w33 w50-md w100-esm">
+                        <p>Расчет таможенных платежей (с учетом данных каталога schwacke и таможенных оформлений аналогичных авто)</p>
                     </div>
                     <div class="what__item pos-r c-after w33 w50-md w100-esm">
                         <p>Получение документов о соответствии автомобиля экологическим нормам ЕВРО 2-6</p>
                     </div>
-
-                    <div class="what__item pos-r c-after w33 w50-md w100-esm">
-                        <p>Декларирование автомобиля таможенным органам</p>
-                    </div>
-
                     <div class="what__item pos-r c-after w33 w50-md w100-esm">
                         <p>Представление интересов клиента на всех этапах таможенного оформления</p>
                     </div>
@@ -96,7 +94,7 @@ export default {
     return {
       header: {
         title: 'Таможенно-брокерские услуги',
-        subtitle: 'Профессиональное таможенное оформление и сертификация <br> транспортных средств с Евросоюза «под ключ»',
+        subtitle: 'Профессиональное таможенное оформление и сертификация автомобилей, мотоциклов и других видов транспортных средств с Евросоюза «под ключ»',
         backImage: {
             desktop: 'images/new-bg-es.jpg',
             mobile: 'images/new-bg-es-mob.jpg'
@@ -108,9 +106,9 @@ export default {
         multilang: false,
         showAboutImport: true,
         bannerLinks: [
-          {title: 'Автомобили из США', href: '/usa'},
-          {title: 'Автомобили из Грузии', href: '/georgia'},
-          {title: 'Автомобили из ЕС', href: '/eu'}
+          {title: 'США', href: '/usa'},
+          {title: 'Грузия', href: '/georgia'},
+          {title: 'Евросоюз', href: '/eu'}
         ]
       },
       advantages: {
@@ -121,16 +119,16 @@ export default {
             text: 'Является лицензированным <a href="http://tradecar.hostronavt.ru/sfs.gov.ua/dovidniki--reestri--perelik/reestri/94921.html"> <br> таможенным брокером</a>'
           },
           {
-            icon: 'images/why-2.png',
-            text: 'Более 10 лет опыта работы в сфере внешнеэкономической деятельности'
-          },
-          {
-            icon: 'images/why-3.png',
-            text: 'Таможенное оформление любого автомобиля всего за 3 часа'
-          },
-          {
             icon: 'images/why-4.png',
             text: 'Минимизируем риски повышения таможенной стоимости'
+          },
+          {
+            icon: 'images/why-8.png',
+            text: 'На счету более тысячи растаможенных авто'
+          },
+          {
+            icon: 'images/why-2.png',
+            text: 'Более 10 лет опыта работы в сфере внешнеэкономической деятельности'
           },
           {
             icon: 'images/why-5.png',
@@ -141,12 +139,12 @@ export default {
             text: 'Официальные юридические отношения с клиентами'
           },
           {
-            icon: 'images/why-7.png',
-            text: 'Особые условия для постоянных и системных клиентов'
+            icon: 'images/why-3.png',
+            text: 'Таможенное оформление любого автомобиля всего за 3 часа'
           },
           {
-            icon: 'images/why-8.png',
-            text: 'На счету более тысячи растаможенных авто'
+            icon: 'images/why-7.png',
+            text: 'Особые условия для постоянных и системных клиентов'
           }
         ],
         withSvg: true
@@ -219,7 +217,8 @@ export default {
       consultationTitle: 'Нужна квалифицированная помощь?',
       footer: {
         slogan: 'Пока вы думаете, остальные уже ездят!',
-        backgroundImage: 'images/footer-bg-EU.jpg'
+        // backgroundImage: 'images/footer-bg-EU.jpg'
+        backgroundImage: 'images/demo-footer.jpg'
       }
     }
   },

@@ -37,8 +37,8 @@
             M19.995,21.1H7.448V3.373h12.547V21.1z"></path>
                         </svg>
                         <div class="footer__tel">
-                            <a href="tel_3A+380939580034" class="block">+38 (093) 958 00 34</a>
-                            <a href="tel_3A+380967609069" class="block">+38 (096) 760 90 69</a>
+                            <a href="tel:+380939580034" class="block">+38 (093) 958 00 34</a>
+                            <a href="tel:+380967609069" class="block">+38 (096) 760 90 69</a>
                         </div>
                     </div>
                     <div class="flex ai-c footer__item">
@@ -81,7 +81,7 @@
                 h105.968c0.829,0,1.5-0.671,1.5-1.5v-17.145C205.034,177.825,204.363,177.154,203.534,177.154z"></path>
                         </svg>
                         <div>
-                            Киев
+                            Киев, Полтава
                         </div>
                     </div>
                 </div>
