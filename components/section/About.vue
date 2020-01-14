@@ -37,7 +37,7 @@
 
 .about__title:after {
     width: 47px;
-    height: 187px;
+    height: 257px;
     background-color: #cc9557;
     top: 65px;
     left: 1px
@@ -104,6 +104,9 @@
     .about__description {
         width: 360px
     }
+    .about__title::after {
+        height: 382px;
+    }
     .about__title svg {
         width: 140px
     }
@@ -114,6 +117,9 @@
         -webkit-align-self: flex-end;
         -ms-flex-item-align: end;
         align-self: flex-end
+    }
+    .about__title::after {
+        height: 432px;
     }
     .about__title svg {
         width: 430px
