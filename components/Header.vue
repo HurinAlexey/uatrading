@@ -309,8 +309,8 @@ header {
     left: 0;
     display: block;
     width: 100%;
-    height: 70px;
-    background-image: linear-gradient(180deg,rgba(0,0,0,.3) 0,rgba(0,0,0,.3) 20%,transparent);
+    height: 100px;
+    background-image: linear-gradient(180deg,rgba(0,0,0,.15) 0,rgba(0,0,0,.15) 20%,transparent);
     z-index: 2;
 }
 

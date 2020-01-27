@@ -114,7 +114,7 @@ export default {
     return {
       header: {
         title: 'Таможенно-брокерские услуги',
-        subtitle: 'Профессиональное таможенное оформление и сертификация автомобилей с Грузии «под ключ»',
+        subtitle: 'Профессиональное таможенное оформление и сертификация автомобилей<br> с Грузии «под ключ»',
         backImage: {
             desktop: 'images/georgia-bg-main.jpg',
             mobile: 'images/georgia-bg-main-mob.jpg'
@@ -248,8 +248,7 @@ export default {
       consultationTitle: 'Нужна квалифицированная помощь?',
       footer: {
         slogan: 'Пока вы думаете, остальные уже ездят!',
-        // backgroundImage: 'images/footer-bg-georgia.jpg'
-        backgroundImage: 'images/demo-footer.jpg'
+        backgroundImage: 'images/footer-bg-georgia.jpg'
       }
     }
   },

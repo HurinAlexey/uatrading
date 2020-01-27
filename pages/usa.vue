@@ -119,7 +119,7 @@ export default {
     return {
       header: {
         title: 'Автомобили из США',
-        subtitle: 'Профессиональные подбор, покупка, доставка, таможенное оформление и сертификация автомобилей, мотоциклов и других видов транспортных средств с аукционов США',
+        subtitle: 'Профессиональные подбор, покупка, доставка, таможенное оформление и<br> сертификация автомобилей, мотоциклов и других видов транспортных<br> средств с аукционов США',
         backImage: {
             desktop: 'images/new-bg-usa.jpg',
             mobile: 'images/new-bg-usa-mob.jpg'
@@ -238,8 +238,7 @@ export default {
       consultationTitle: 'Нужна квалифицированная помощь?',
       footer: {
         slogan: 'Пока вы думаете, остальные уже ездят!',
-        // backgroundImage: 'images/footer-bg-USA.jpg'
-        backgroundImage: 'images/demo-footer.jpg'
+        backgroundImage: 'images/footer-bg-USA.jpg'
       }
     }
   },

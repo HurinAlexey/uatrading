@@ -235,8 +235,7 @@ export default {
       consultationTitle: 'Нужен надежный таможенный брокер?',
       footer: {
         slogan: 'Мы не решаем проблем – мы их не допускаем!',
-        // backgroundImage: 'images/footer-tb.jpg',
-        backgroundImage: 'images/demo-footer.jpg',
+        backgroundImage: 'images/footer-tb.jpg',
         withoutNav: true
       }
     }

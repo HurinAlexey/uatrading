@@ -36,21 +36,23 @@
 
                 <swiper :options="swiperOption">
                     <swiper-slide v-for="(post, index) of posts" :key="index">
-                        <nuxt-link 
-                            :to="'/blog/' + post.slug" 
-                            class="blog__item pos-r block"
-                        >
-                            <img v-lazy="'/uploads' + post.imageUrl" :alt="post.title">
-                            <div class="blog__text">
-                                <div class="blog__name">
-                                    {{post.title}}
+                        <div class="swiper-slide-wrapper">
+                            <nuxt-link 
+                                :to="'/blog/' + post.slug" 
+                                class="blog__item pos-r block"
+                            >
+                                <img v-lazy="'/uploads' + post.imageUrl" :alt="post.title">
+                                <div class="blog__text">
+                                    <div class="blog__name">
+                                        {{post.title}}
+                                    </div>
+                                    <div class="blog__date">{{new Date(post.date) | date}}</div>
+                                    <div class="blog__content">
+                                        {{ post.description }}
+                                    </div>
                                 </div>
-                                <div class="blog__date">{{new Date(post.date) | date}}</div>
-                                <div class="blog__content">
-                                    {{ post.description }}
-                                </div>
-                            </div>
-                        </nuxt-link>
+                            </nuxt-link>
+                        </div>
                     </swiper-slide>
                     <div class="swiper-button-prev" slot="button-prev"></div>
                     <div class="swiper-button-next" slot="button-next"></div>
@@ -180,6 +182,14 @@ export default {
     color: #828282
 }
 
+.blog__container {
+    margin: 0 -15px
+}
+
+.swiper-slide-wrapper {
+    padding: 10px
+}
+
 .blog__item {
     position: relative;
     background-color: #fff;
@@ -190,8 +200,8 @@ export default {
 }
 
 .blog__item:hover {
-    -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, .5);
-    box-shadow: 0 0 15px rgba(0, 0, 0, .5)
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3)
 }
 
 .blog__item:hover::before {

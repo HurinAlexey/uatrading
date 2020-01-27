@@ -94,7 +94,7 @@ export default {
     return {
       header: {
         title: 'Таможенно-брокерские услуги',
-        subtitle: 'Профессиональное таможенное оформление и сертификация автомобилей, мотоциклов и других видов транспортных средств с Евросоюза «под ключ»',
+        subtitle: 'Профессиональное таможенное оформление и сертификация автомобилей,<br> мотоциклов и других видов транспортных средств с Евросоюза «под ключ»',
         backImage: {
             desktop: 'images/new-bg-es.jpg',
             mobile: 'images/new-bg-es-mob.jpg'
@@ -217,8 +217,7 @@ export default {
       consultationTitle: 'Нужна квалифицированная помощь?',
       footer: {
         slogan: 'Пока вы думаете, остальные уже ездят!',
-        // backgroundImage: 'images/footer-bg-EU.jpg'
-        backgroundImage: 'images/demo-footer.jpg'
+        backgroundImage: 'images/footer-bg-EU.jpg'
       }
     }
   },

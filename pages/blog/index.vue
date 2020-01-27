@@ -235,11 +235,9 @@ export default {
         top: 0;
         right: 100%;
         display: block;
-        border: 15px solid transparent;
-        border-right-width: 25px;
-        border-left-width: 25px;
-        border-right-color: #cc9557;
-        border-bottom-color: #cc9557;
+        width: 50px;
+        height: 30px;
+        background: url("/images/category-before.png") center no-repeat;
     }
 }
 
