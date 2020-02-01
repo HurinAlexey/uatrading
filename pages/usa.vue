@@ -8,12 +8,12 @@
       <LazyHydrate when-visible>
           <app-about />
       </LazyHydrate>
-      
-      <LazyHydrate when-visible>
-          <app-advantages :data="advantages" />
-      </LazyHydrate>
 
       <div class="cars-bg lazy-bg">
+      
+        <LazyHydrate style="position:relative;z-index:1;" when-visible>
+            <app-advantages :data="advantages" />
+        </LazyHydrate>
 
         <section class="what pos-r">
             <div class="container">
