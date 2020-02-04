@@ -21,7 +21,7 @@
             :id="data.idPrefix + '-' + form.type"
             class="calculator-form"
             :class="{'active': index === 0}"
-            @submit.prevent="onSubmit($event)"
+            @submit.stop.prevent="onSubmit($event)"
         >
             <input type="hidden" name="engine-type" :value="form.type" />
             <div 
@@ -99,7 +99,7 @@
                                     v-model="filterInput" 
                                     name="search"
                                     placeholder="Поиск..."
-                                    @blur="filterAuctions" 
+                                    @input="filterAuctions" 
                                 />
                             </li>
                             <li
