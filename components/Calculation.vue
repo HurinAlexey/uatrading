@@ -361,7 +361,7 @@ export default {
         calculateBusExciseTax() {
             let engineVolume = this.data['engine-volume']
             let taxPerUnit = 0
-            if (this.data['age'] === 'В использовании более 8 лет') {
+            if (this.data['age'] === 'Новый') {
                 taxPerUnit = 0.003
             } else if (this.data['engine-type'] === 'diesel' && engineVolume > 2500 && engineVolume <= 5000) {
                 taxPerUnit = 0.003
