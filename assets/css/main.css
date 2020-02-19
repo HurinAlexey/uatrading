@@ -833,3 +833,19 @@ blockquote {
         width: initial
     }
 }
+
+.ql-size-small {
+    font-size: 12px;
+}
+.ql-size-large {
+    font-size: 16px;
+}
+.ql-size-huge {
+    font-size: 18px;
+}
+.ql-font-serif {
+    font-family: serif;
+}
+.ql-font-monospace {
+    font-family: monospace;
+}
