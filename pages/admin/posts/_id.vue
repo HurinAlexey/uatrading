@@ -39,7 +39,7 @@
                 </el-upload>
             </el-form-item>
             <el-form-item label="Текст">
-                <div class="switch-wrap">
+                <!-- <div class="switch-wrap">
                     <span>Редактор</span>
                     <el-switch v-model="showEditor" />
                 </div>
@@ -56,7 +56,8 @@
                     type="textarea"
                     :rows="10"
                     v-model="post.text"
-                />
+                /> -->
+                <div id="froala"></div>
             </el-form-item>
             <el-form-item label="Описание">
                 <el-input
@@ -95,9 +96,11 @@ export default {
     },
     data() {
         return {
+            text: '',
             image: null,
             loading: false,
             showEditor: true,
+            editor: null,
             editorOption: {
                 modules: {
                     toolbar: [
@@ -128,7 +131,18 @@ export default {
                             let currentCategory = categories.find(item => category === item._id)
                             return currentCategory.title
                         })
+
         return {post, categories, fileList}
+    },
+    head() {
+        return {
+            script: [
+                { src: 'https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js' }
+            ],
+            link: [
+                { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' }
+            ]
+        }
     },
     methods: {
         handleImageChange(file, fileList) {
@@ -136,9 +150,11 @@ export default {
             this.fileList = fileList.slice(1)
         },
         onSubmit() {
+            console.log('asd')
             this.$refs.form.validate(async valid => {
                 if (valid) {
                     this.loading = true
+                    let text = document.querySelector('#froala .fr-view').innerHTML
 
                     try {
                         let formData = {
@@ -146,17 +162,21 @@ export default {
                             title: this.post.title,
                             slug: this.post.slug,
                             order: this.post.order,
-                            text: this.post.text,
+                            text: text,
                             description: this.post.description,
                             metaTitle: this.post.metaTitle,
                             metaDescription: this.post.metaDescription,
                             keywords: this.post.keywords,
                             image: this.image
                         }
-                        formData.categories = this.post.categories.map(category => {
-                            let currentCategory = this.categories.find(item => category === item.title)
-                            return currentCategory._id
-                        })
+                        if (this.post.categories.length > 0) {
+                            formData.categories = this.post.categories.map(category => {
+                                let currentCategory = this.categories.find(item => category === item.title)
+                                return currentCategory._id
+                            })
+                        } else {
+                            formData.categories = []
+                        }
                         await this.$store.dispatch('post/update', formData)
                             .then(post => {
                                 this.$message.success('Изменения сохранены!')
@@ -182,6 +202,48 @@ export default {
         onEditorChange({ editor, html, text }) {
             this.post.text = html
         }
+    },
+    mounted() {
+        let postText = this.post.text
+        new FroalaEditor('#froala', {
+            toolbarButtons: {
+                'moreText': {
+                    'buttons': ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'textColor', 'backgroundColor', 'inlineClass', 'inlineStyle', 'clearFormatting']
+                },
+                'moreParagraph': {
+                    'buttons': ['alignLeft', 'alignCenter', 'formatOLSimple', 'alignRight', 'alignJustify', 'formatOL', 'formatUL', 'paragraphFormat', 'paragraphStyle', 'lineHeight', 'outdent', 'indent', 'quote']
+                },
+                'moreRich': {
+                    'buttons': ['insertLink', 'insertImage', 'insertTable', 'emoticons', 'specialCharacters', 'embedly', 'insertHR']
+                },
+                'moreMisc': {
+                    'buttons': ['undo', 'redo', 'fullscreen', 'print', 'spellChecker', 'selectAll', 'html', 'help']
+                }
+            },
+            toolbarButtonsXS: [['undo', 'redo'], ['bold', 'italic', 'underline']],
+            events: {
+                'initialized': function () {
+                    this.html.set(postText)
+                },
+                "image.beforeUpload": function(files) {
+                    var editor = this;
+                    if (files.length) {
+                        // Create a File Reader.
+                        var reader = new FileReader();
+                        // Set the reader to insert images when they are loaded.
+                        reader.onload = function(e) {
+                            var result = e.target.result;
+                            editor.image.insert(result, null, null, editor.image.get());
+                        };
+                        // Read image as base64.
+                        reader.readAsDataURL(files[0]);
+                    }
+                    editor.popups.hideAll();
+                    // Stop default upload chain.
+                    return false;
+                }
+            }
+        })
     }
 }
 </script>

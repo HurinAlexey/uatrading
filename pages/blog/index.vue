@@ -69,7 +69,7 @@
                 </div>
             </div>
         </section>
-        <div v-if="pages.length > 1" class="pagination">
+        <div v-if="pages > 1" class="pagination">
             <span
                 v-for="page in pages"
                 :key="page"
@@ -98,7 +98,7 @@ export default {
         }
     },
     async asyncData({store, query}) {
-        const currentPage = query.page
+        const currentPage = query.page || 1
         let meta = await store.dispatch('meta/fetchByPageName', 'blog')
         if(!meta) {
             meta = {
@@ -119,7 +119,7 @@ export default {
             })
         }
         let bigPost = null
-        if (!currentPage || currentPage === '1') {
+        if (currentPage == '1') {
             bigPost = posts[0]
             posts = posts.slice(1)
         }

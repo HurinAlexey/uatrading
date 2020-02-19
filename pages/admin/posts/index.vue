@@ -28,9 +28,9 @@
                         <time class="time">{{new Date(post.date) | date}}</time>
                         <div class="buttons-group">
                             <el-button type="danger" size="small" @click="deletePost(post.title, post._id)">Удалить</el-button>
-                            <nuxt-link :to="`/admin/posts/${post._id}`">
+                            <a :href="`/admin/posts/${post._id}`">
                                 <el-button type="warning" size="small">Редактировать</el-button>
-                            </nuxt-link>
+                            </a>
                         </div>
                     </div>
                 </div>

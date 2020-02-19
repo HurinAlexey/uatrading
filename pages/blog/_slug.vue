@@ -24,7 +24,7 @@
                                 <div v-html="post.text" class="post-text" />
                             </div>
                         </div>
-                        <button class="back-button flex ai-c" @click="$router.go(-1)">
+                        <button class="back-button flex ai-c" @click="$router.push('/blog')">
                             <img src="/images/arrow-left.png" alt="back" /> Вернуться
                         </button>
                     </main>
@@ -191,12 +191,14 @@ export default {
     margin-bottom: 30px;
 
     .post-image {
+        position: relative;
         display: block;
         width: 400px;
         max-width: 45%;
         height: auto;
         margin: 0 20px 20px 0;
         float: left;
+        z-index: 2;
     }
 
     .post-date {

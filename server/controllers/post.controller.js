@@ -7,7 +7,11 @@ module.exports.create = async (req, res) => {
   if (candidate) {
     res.status(409).json({message: 'Пост с таким URL уже существует.'})
   } else {
-    const categories = req.body.categories.split(',')
+    let categories = []
+    if (req.body.categories && req.body.categories.length > 0) {
+      categories = req.body.categories.split(',')
+    }
+
     const post = new Post({
       title: req.body.title,
       slug: req.body.slug,
@@ -93,7 +97,10 @@ module.exports.update = async (req, res) => {
   if (candidate && String(candidate._id) !== String(req.params.id)) {
     res.status(409).json({message: 'Пост с таким URL уже существует.'})
   } else {
-    const categories = req.body.categories.split(',')
+    let categories = []
+    if (req.body.categories && req.body.categories.length > 0) {
+      categories = req.body.categories.split(',')
+    }
     const $set = {
       title: req.body.title,
       slug: req.body.slug,
