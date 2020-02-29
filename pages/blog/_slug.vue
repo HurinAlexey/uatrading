@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="blog__box pos-r flex ai-c fw-w-sm">
                     <div class="flex ai-c w100-sm opacity left-animate">
-                        <h1 class="blog__title">Блог</h1>
+                        <nuxt-link to="/blog"><h1 class="blog__title">Блог</h1></nuxt-link>
                         <span class="pos-r blog__descr blog__descr--post">{{post.title}}</span>
                     </div>
                     <svg class="svg-animate" height="10" width="1000">
