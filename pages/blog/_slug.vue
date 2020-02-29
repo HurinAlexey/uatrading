@@ -168,8 +168,6 @@ export default {
 .blog__descr {
     font-size: 14px;
     padding: 0 15px;
-    white-space: nowrap;
-    font-family: muller-r, serif
 }
 
 .blog__descr--post {
