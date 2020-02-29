@@ -100,8 +100,9 @@ export default {
                 description: '',
                 metaTitle: '',
                 metaDescription: '',
-                keyywords: ''
+                keywords: ''
             },
+            contentImages: [],
             loading: false,
             showEditor: true,
             editorOption: {
@@ -151,7 +152,6 @@ export default {
                             .then(post => {
                                 this.$message.success('Пост создан!')
                                 this.$router.push(`/admin/posts/${post._id}`)
-                                // window.location.pathname = `/admin/posts/${post._id}`
                             })
                     } catch (e) {} finally {
                         this.loading = false
@@ -161,7 +161,40 @@ export default {
                 }
             })
         },
-        onEditorChange({ editor, html, text }) {
+        base64ToBlob(base64, mime) {
+            mime = mime || '';
+            var sliceSize = 1024;
+            var byteChars = window.atob(base64);
+            var byteArrays = [];
+
+            for (var offset = 0, len = byteChars.length; offset < len; offset += sliceSize) {
+                var slice = byteChars.slice(offset, offset + sliceSize);
+
+                var byteNumbers = new Array(slice.length);
+                for (var i = 0; i < slice.length; i++) {
+                    byteNumbers[i] = slice.charCodeAt(i);
+                }
+
+                var byteArray = new Uint8Array(byteNumbers);
+
+                byteArrays.push(byteArray);
+            }
+
+            return new Blob(byteArrays, {type: mime});
+        },
+        async onEditorChange({ quill, html, text }) {
+            let image = html.match(/<img src="(data:.+)"/)
+            if (image) {
+                let base64 = image[1]
+                let mime = base64.match(/data:(.+);/)[1]
+                let base64ImageContent = base64.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+                let blob = this.base64ToBlob(base64ImageContent, mime)
+                var formData = new FormData()
+                formData.append('file', blob)
+
+                let res = await this.$axios.post('/api/post/uploadImage', formData)
+                console.log(res)
+            }
             if (html) this.post.text = html
         }
     }

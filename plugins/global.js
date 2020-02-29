@@ -8,7 +8,7 @@ Vue.filter('date', value => {
     let day = String(value.getDate())
     if (day.length === 1) day = '0' + day
     let date = year + month + day
-    return moment(date).format('DD MMM YYYY')
+    return moment(date).locale('uk').format('DD MMMM YYYY')
 })
 
 Vue.filter('float', (value, num) => {

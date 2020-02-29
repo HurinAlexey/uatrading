@@ -5,7 +5,8 @@
             <div class="container">
                 <div class="blog__box pos-r flex ai-c fw-w-sm">
                     <div class="flex ai-c w100-sm opacity left-animate">
-                        <h1 class="blog__title">{{post.title}}</h1>
+                        <h1 class="blog__title">Блог</h1>
+                        <span class="pos-r blog__descr blog__descr--post">{{post.title}}</span>
                     </div>
                     <svg class="svg-animate" height="10" width="1000">
                         <line x1="0" y1="5" x2="100%" y2="5" stroke-width="9" stroke="#cc9557"></line>
@@ -15,12 +16,12 @@
 
                     <main class="main-content">
                         <div class="post">
+                            <div class="post-date flex ai-c jc-fe">
+                                <img src="/images/clock-black.png" alt="clock" />
+                                {{new Date(post.date) | date}}
+                            </div>
                             <img class="post-image" :src="'/uploads' + post.imageUrl" :alt="post.title" />
                             <div class="post-content pos-r">
-                                <div class="post-date flex ai-c jc-fe">
-                                    <img src="/images/clock-black.png" alt="clock" />
-                                    {{new Date(post.date) | date}}
-                                </div>
                                 <div v-html="post.text" class="post-text" />
                             </div>
                         </div>
@@ -84,15 +85,23 @@ export default {
     },
     head() {
         return {
-            title: this.post.metaTitle || this.post.title,
+            title: (this.post.metaTitle && this.post.metaTitle !== 'undefined') ? this.post.metaTitle : this.post.title,
             meta: [
-                { hid: 'description', name: 'description', content: this.post.metaDescription || this.post.description },
-                { hid: 'keywords', name: 'keywords', content: this.post.keywords }
+                { hid: 'description', name: 'description', content: (this.post.metaDescription && this.post.metaDescription !== 'undefined') ? this.post.metaDescription : this.post.description },
+                { hid: 'keywords', name: 'keywords', content: (this.post.keywords && this.post.keywords !== 'undefined') ? this.post.keywords : '' }
             ]
         }
     },
     mounted() {
         document.querySelector('body').classList.remove('body-fix')
+
+        let router = this.$router
+        document.querySelectorAll('.read-also').forEach(el => {
+            el.onclick = function(e) {
+                let path = this.getAttribute('data-href')
+                if (path) router.push(path)
+            }
+        })
     }
 }
 </script>
@@ -145,11 +154,26 @@ export default {
     line-height: 1;
 }
 
+.blog__title::after {
+    position: absolute;
+    content: "";
+    display: block;
+    background-color: #a19699;
+    width: 1px;
+    height: 45px;
+    top: 5px;
+    right: -3px
+}
+
 .blog__descr {
     font-size: 14px;
     padding: 0 15px;
     white-space: nowrap;
     font-family: muller-r, serif
+}
+
+.blog__descr--post {
+    font-family: NokiaPureText_Bd, muller-r, serif
 }
 
 .main-content {
@@ -193,11 +217,15 @@ export default {
     .post-image {
         position: relative;
         display: block;
-        width: 400px;
-        max-width: 45%;
-        height: auto;
-        margin: 0 20px 20px 0;
-        float: left;
+        width: 100%;
+        height: 400px;
+        // width: 400px;
+        // max-width: 45%;
+        // height: auto;
+        // margin: 0 20px 20px 0;
+        margin-bottom: 30px;
+        // float: left;
+        object-fit: contain;
         z-index: 2;
     }
 
@@ -353,6 +381,7 @@ export default {
         float: none;
         width: 500px;
         max-width: 100%;
+        height: auto;
         margin: 0 auto 30px;
     }
 

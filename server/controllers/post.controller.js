@@ -134,3 +134,11 @@ module.exports.remove = async (req, res) => {
     res.status(500).json(e)
   }
 }
+
+module.exports.uploadImage = async (req, res) => {
+  if (req.file) {
+    res.json({filname: req.file.filename})
+  } else {
+    res.status(500).json({message: 'Failure upload image.'})
+  }
+}

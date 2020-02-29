@@ -17,7 +17,7 @@
                 <div class="blog__container flex jc-sb fw-w">
 
                     <main class="main-content">
-                        <div class="category-label">Новости</div>
+                        <div v-if="bigPost" class="category-label">Новости</div>
 
                         <nuxt-link v-if="bigPost" :to="`/blog/${bigPost.slug}`" class="big-post pos-r">
                             <img class="post-image" v-lazy="'/uploads' + bigPost.imageUrl" :alt="bigPost.title" />
@@ -410,8 +410,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(/images/pagination.jpg);
-    background-size: cover;
+    background-color: #342027;
 
     .page-link {
         display: block;

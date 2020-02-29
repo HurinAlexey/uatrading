@@ -50,4 +50,11 @@ router.delete(
   ctr.remove
 )
 
+router.post(
+  '/uploadImage',
+  passport.authenticate('jwt', {session: false}),
+  upload.single('image'),
+  ctr.uploadImage
+)
+
 module.exports = router
