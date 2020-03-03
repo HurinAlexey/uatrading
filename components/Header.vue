@@ -131,7 +131,6 @@
                       </svg>
                       <div class="info__tel-wrap">
                           <a href="tel:+380939580034" class="block">+38 (093) 958 00 34</a>
-                          <a href="tel:+380967609069" class="block">+38 (096) 760 90 69</a>
                       </div>
                   </div>
               </div>
