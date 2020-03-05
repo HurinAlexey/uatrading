@@ -122,11 +122,10 @@ export default {
         subtitle: 'Профессиональные подбор, покупка, доставка, таможенное оформление и<br> сертификация автомобилей, мотоциклов и других видов транспортных<br> средств с аукционов США',
         backImage: {
             desktop: 'images/new-bg-usa.jpg',
-            mobile: 'images/new-bg-usa-mob.jpg'
+            mobile: 'images/new-bg-usa-mobile.jpg'
         },
         frontImage: {
-            desktop: 'images/new-avto-usa.png',
-            mobile: 'images/new-avto-usa-mob.png'
+            desktop: 'images/new-avto-usa.png'
         },
         usaBackground: true,
         multilang: false,

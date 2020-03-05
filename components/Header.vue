@@ -14,7 +14,7 @@
                     alt="back image" 
                   />
                   <img 
-                    v-if="data.frontImage" 
+                    v-if="data.frontImage && imageSize == 'desktop'" 
                     v-lazy="frontImage" 
                     data-depth="0.15" 
                     alt="front image" />
@@ -173,7 +173,7 @@
 </template>
 
 <script>
-import Parallax from 'parallax-js'
+import {isMobile} from 'mobile-device-detect'
 
 export default {
   props: ['data'],
@@ -228,17 +228,20 @@ export default {
       }
   },
   beforeMount() {
-    if (window.outerWidth <= 992) {
+    if (window.outerWidth <= 500) {
         this.imageSize = 'mobile'
     }
   },
   mounted() {
-    const scene = document.getElementById('scene')
-    var parallaxInstance
-    if (scene) parallaxInstance = new Parallax(scene)    
+    if (!isMobile) {
+        const Parallax = require('parallax-js')
+        const scene = document.getElementById('scene')
+        var parallaxInstance
+        if (scene) parallaxInstance = new Parallax(scene)  
+    }  
 
     window.onresize = () => {
-        if (window.outerWidth <= 992) {
+        if (window.outerWidth <= 500) {
             this.imageSize = 'mobile'
         } else {
             this.imageSize = 'desktop'
@@ -322,6 +325,9 @@ header {
 }
 
 .parallax img {
+    position: absolute;
+    top: 0;
+    left: 0;
     display: block;
     width: 100%;
     height: 100%;

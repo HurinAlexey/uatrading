@@ -165,7 +165,7 @@
 </template>
 
 <script>
-import Parallax from 'parallax-js'
+import {isMobile} from 'mobile-device-detect'
 import LazyHydrate from 'vue-lazy-hydration'
 
 export default {
@@ -263,8 +263,11 @@ export default {
   mounted() {
     document.querySelector('body').classList.remove('body-fix')
 
-    const questionsScene = document.getElementsByClassName('questions')[0]
-    const questionsParallaxInstance = new Parallax(questionsScene)
+    if (!isMobile) {
+        const Parallax = require('parallax-js')
+        const questionsScene = document.getElementsByClassName('questions')[0]
+        const questionsParallaxInstance = new Parallax(questionsScene)
+    }
   }
 }
 </script>
@@ -330,6 +333,11 @@ export default {
 .problems .questions__list-wrap {
     display: block;
     width: 100%;
+}
+.problems .questions__list-wrap:not(:first-of-type) {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 .problems .questions__list li:nth-of-type(1) {
     font-size: 13px;
