@@ -263,7 +263,7 @@ export default {
   mounted() {
     document.querySelector('body').classList.remove('body-fix')
 
-    if (!isMobile) {
+    if (window.outerWidth > 500) {
         const Parallax = require('parallax-js')
         const questionsScene = document.getElementsByClassName('questions')[0]
         const questionsParallaxInstance = new Parallax(questionsScene)

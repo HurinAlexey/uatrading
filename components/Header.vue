@@ -173,7 +173,8 @@
 </template>
 
 <script>
-import {isMobile} from 'mobile-device-detect'
+// import {isMobile} from 'mobile-device-detect'
+// import Parallax from 'parallax-js'
 
 export default {
   props: ['data'],
@@ -233,13 +234,12 @@ export default {
     }
   },
   mounted() {
-    if (!isMobile) {
+    if (window.outerWidth > 500) {
         const Parallax = require('parallax-js')
         const scene = document.getElementById('scene')
         var parallaxInstance
         if (scene) parallaxInstance = new Parallax(scene)  
-    }  
-
+    }
     window.onresize = () => {
         if (window.outerWidth <= 500) {
             this.imageSize = 'mobile'

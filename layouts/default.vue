@@ -16,14 +16,12 @@
 <script>
 import $ from 'jquery'
 import LazyHydrate from 'vue-lazy-hydration'
-import AppCallbackForm from '@/components/CallbackForm.vue'
-import AppCustomsCalculator from '@/components/CustomsCalculator.vue'
 
 export default {
   components: {
     LazyHydrate,
-    AppCallbackForm,
-    AppCustomsCalculator
+    AppCallbackForm: () => import('@/components/CallbackForm.vue'),
+    AppCustomsCalculator: () => import('@/components/CustomsCalculator.vue')
   },
   // head() {
   //     return {
