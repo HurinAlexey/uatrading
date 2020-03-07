@@ -117,7 +117,7 @@ export default {
         subtitle: 'Профессиональное таможенное оформление и сертификация <br>автомобилей с Грузии «под ключ»',
         backImage: {
             desktop: 'images/georgia-bg-main.jpg',
-            mobile: 'images/georgia-bg-main-mob.jpg'
+            mobile: 'images/georgia-bg-main-mobile.jpg'
         },
         georgiaBackground: true,
         multilang: false,

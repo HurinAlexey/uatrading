@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
     font-family: NokiaPureHeadline;
     font-display: swap;
     src: url("/fonts/NokiaPureHeadline_ULt.woff2") format('woff2'),
@@ -78,7 +78,7 @@
          url("/fonts/Fontfabric - MullerLight.woff") format('woff'),
          url("/fonts/Fontfabric - MullerLight.otf") format('truetype');
     font-weight: 300
-}
+} */
 
 body {
     color: #1f1f1f;

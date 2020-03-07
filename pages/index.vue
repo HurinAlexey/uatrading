@@ -183,11 +183,10 @@ export default {
         subtitle: 'Грамотные решения для внешнеэкономической деятельности',
         backImage: {
             desktop: 'images/tb-bg.jpg',
-            mobile: 'images/tb-bg-mob.jpg'
+            mobile: 'images/tb-bg-mobile.jpg'
         },
         frontImage: {
-            desktop: 'images/dude.png',
-            mobile: 'images/dude.png'
+            desktop: 'images/dude.png'
         },
         imagePosition: 'bottom',
         tbBackground: true,

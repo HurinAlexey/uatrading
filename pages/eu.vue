@@ -97,11 +97,10 @@ export default {
         subtitle: 'Профессиональное таможенное оформление и сертификация автомобилей,<br> мотоциклов и других видов транспортных средств с Евросоюза «под ключ»',
         backImage: {
             desktop: 'images/new-bg-es.jpg',
-            mobile: 'images/new-bg-es-mob.jpg'
+            mobile: 'images/new-bg-es-mobile.jpg'
         },
         frontImage: {
-            desktop: 'images/new-avto-es.png',
-            mobile: 'images/new-avto-es-mob.png'
+            desktop: 'images/new-avto-es.png'
         },
         multilang: false,
         showAboutImport: true,
