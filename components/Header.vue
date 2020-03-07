@@ -173,9 +173,6 @@
 </template>
 
 <script>
-// import {isMobile} from 'mobile-device-detect'
-// import Parallax from 'parallax-js'
-
 export default {
   props: ['data'],
   data() {

@@ -87,7 +87,16 @@ module.exports = {
       layouts: true
     },
     cache: true,
-    extend (config, ctx) {
+    extend(config, { dev, isClient }) {
+      if (isClient) {
+        const vendor = config.entry.vendor
+        const vendor2 = [
+          'element-ui',
+          'vue-quill-editor'
+        ]
+        config.entry.vendor = vendor.filter(x => !vendor2.includes(x))
+        config.entry.vendor2 = vendor2
+      }
     }
   }
 }

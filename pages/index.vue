@@ -165,7 +165,6 @@
 </template>
 
 <script>
-import {isMobile} from 'mobile-device-detect'
 import LazyHydrate from 'vue-lazy-hydration'
 
 export default {
@@ -279,7 +278,6 @@ export default {
     overflow: hidden;
     background-color: #ececec;
     background-image: linear-gradient(to bottom, rgba(78, 63, 66, 1), rgba(0, 0, 0, 1));
-    // background-image:url(~static/images/questions-bg.png);
     background-size: cover;
 }
 

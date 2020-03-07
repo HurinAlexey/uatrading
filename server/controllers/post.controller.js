@@ -36,7 +36,7 @@ module.exports.create = async (req, res) => {
 
 module.exports.getAll = async (req, res) => {
   try {
-    const posts = await Post.find().sort({date: -1})
+    const posts = await Post.find({}, {_id: 1, slug: 1, date: 1, order: 1, title: 1, description: 1, imageUrl: 1}).sort({date: -1})
     res.json(posts)
   } catch (e) {
     res.status(500).json(e)
@@ -50,7 +50,7 @@ module.exports.getByPageNumber = async (req, res) => {
     let from = (req.params.page - 1) * count
     if (from < 0) from = 0
     let to = Number(from + count)
-    const posts = await Post.find().sort({date: -1})
+    const posts = await Post.find({}, {_id: 1, slug: 1, date: 1, order: 1, title: 1, description: 1, imageUrl: 1}).sort({date: -1})
     const result = {}
     if (posts.length <= count) {
       result.posts = posts
@@ -66,7 +66,10 @@ module.exports.getByPageNumber = async (req, res) => {
 
 module.exports.getByCategory = async (req, res) => {
   try {
-    const posts = await Post.find({categories: req.params.id}).sort({order: 1})
+    const posts = await Post.find(
+      {categories: req.params.id}, 
+      {_id: 1, slug: 1, order: 1, title: 1, imageUrl: 1}
+    ).sort({order: 1})
     res.json(posts)
   } catch (e) {
     res.status(500).json(e)

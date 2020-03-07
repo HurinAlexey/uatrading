@@ -1,14 +1,16 @@
 import Vue from 'vue'
-import moment from 'moment'
+
+const months = [
+    'Січня', 'Лютого', 'Березня', 'Квітня', 'Травня', 'Червня', 'Липня', 'Серпня', 'Вересня', 'Жовтня', 'Листопада', 'Грудня'
+]
 
 Vue.filter('date', value => {
     let year = String(value.getFullYear())
-    let month = String(value.getMonth() + 1)
-    if (month.length === 1) month = '0' + month
+    let month = months[value.getMonth()].toLowerCase()
     let day = String(value.getDate())
     if (day.length === 1) day = '0' + day
-    let date = year + month + day
-    return moment(date).locale('uk').format('DD MMMM YYYY')
+    let date = day + ' ' + month + ' ' + year
+    return date
 })
 
 Vue.filter('float', (value, num) => {
