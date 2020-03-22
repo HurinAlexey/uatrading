@@ -73,7 +73,6 @@
             <span
                 v-for="page in pages"
                 :key="page"
-                :to="`/blog?page=${page}`" 
                 class="page-link"
                 :class="{'active': page == currentPage}"
                 @click.prevent="changePage(page)"
@@ -127,10 +126,21 @@ export default {
     },
     head() {
         return {
-            title: this.meta.title,
+            title: this.currentPage == 1 ? this.meta.title : this.meta.title + ` - ${this.currentPage}`,
             meta: [
-                { hid: 'description', name: 'description', content: this.meta.description },
-                { hid: 'keywords', name: 'keywords', content: this.meta.keywords }
+                {
+                    hid: 'description', 
+                    name: 'description', 
+                    content: this.currentPage == 1 ? this.meta.description : this.meta.description + ` Страница блога ${this.currentPage}.`
+                },
+                { 
+                    hid: 'keywords', 
+                    name: 'keywords', 
+                    content: this.meta.keywords 
+                }
+            ],
+            link: [
+                { rel: 'canonical', href: 'https://ubtrading.com.ua/blog' }
             ]
         }
     },
@@ -143,7 +153,11 @@ export default {
                 bigPost = posts[0]
                 posts = posts.slice(1)
             }
-            this.$router.push(`/blog?page=${page}`)
+            if (page == 1) {
+                this.$router.push('/blog')
+            } else {
+                this.$router.push(`/blog?page=${page}`)
+            }
             this.posts = posts
             this.bigPost = bigPost
             this.currentPage = page

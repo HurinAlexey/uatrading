@@ -151,7 +151,7 @@ export default {
           },
           {
             icon: 'images/about-USA-11.png',
-            text: 'Являемся лицензированным <a href="http://sfs.gov.ua/dovidniki--reestri--perelik/reestri/94921.html"> таможенным брокером</a> (Таможенное оформление любого автомобиля всего за 3 часа)'
+            text: 'Являемся лицензированным <a href="http://sfs.gov.ua/dovidniki--reestri--perelik/reestri/94921.html" rel="nofollow"> таможенным брокером</a> (Таможенное оформление любого автомобиля всего за 3 часа)'
           },
           {
             icon: 'images/about-USA-4.png',
@@ -228,7 +228,7 @@ export default {
               title: 'Таможенное оформление',
               text: `<p>в отличии от большинства  фирм по доставке авто из-за рубежа, мы являемся 
                     лицензированным
-                    <a href=" http://sfs.gov.ua/dovidniki--reestri--perelik/reestri/94921.html" target="_blank">таможенным брокером</a>
+                    <a href=" http://sfs.gov.ua/dovidniki--reestri--perelik/reestri/94921.html" target="_blank" rel="nofollow">таможенным брокером</a>
                     с большим опытом растаможки всех видов товаров в Украине.  Проведем 
                     таможенное оформление любого авто до 3 часов без каких-либо рисков 
                     для клиента</p>`
@@ -260,6 +260,9 @@ export default {
       meta: [
         { hid: 'description', name: 'description', content: this.meta.description },
         { hid: 'keywords', name: 'keywords', content: this.meta.keywords }
+      ],
+      link: [
+        { rel: 'canonical', href: 'https://ubtrading.com.ua/usa' }
       ]
     }
   },

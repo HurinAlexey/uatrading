@@ -5,6 +5,9 @@ module.exports = {
   ** Headers of the page
   */
   head: {
+    htmlAttrs: {
+      lang: 'ru',
+    },
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
@@ -32,6 +35,7 @@ module.exports = {
   plugins: [
     '@/plugins/global',
     '@/plugins/axios',
+    '@/plugins/jsonld',
     '@/plugins/lazyload',
     { src: '~plugins/draggable.js', ssr: false },
     { src: '~plugins/quill-editor.js', ssr: false },

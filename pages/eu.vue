@@ -115,7 +115,7 @@ export default {
         items: [
           {
             icon: 'images/why-1.png',
-            text: 'Является лицензированным <a href="http://tradecar.hostronavt.ru/sfs.gov.ua/dovidniki--reestri--perelik/reestri/94921.html"> <br> таможенным брокером</a>'
+            text: 'Является лицензированным <a href="http://tradecar.hostronavt.ru/sfs.gov.ua/dovidniki--reestri--perelik/reestri/94921.html" rel="nofollow"> <br> таможенным брокером</a>'
           },
           {
             icon: 'images/why-4.png',
@@ -155,9 +155,9 @@ export default {
                         ЕВРО 2 – для б/у легковых автомобилей, не ниже ЕВРО 5 – для новых 
                         легковых и грузовых автомобилей);</p>
                     <p>Проверить снятие б/у автомобиля с регистрации в уполномоченных органах 
-                        (<i><a href="https://historiapojazdu.gov.pl/" target="_blank">Польша</a>, 
-                            <a href="https://www.regitra.lt/" target="_blank">Литва</a>, 
-                            <a href="https://www.eteenindus.mnt.ee/" target="_blank">Эстония</a></i>)</p>`
+                        (<i><a href="https://historiapojazdu.gov.pl/" target="_blank" rel="nofollow">Польша</a>, 
+                            <a href="https://www.regitra.lt/" target="_blank" rel="nofollow">Литва</a>, 
+                            <a href="https://eteenindus.mnt.ee/main.jsf" target="_blank" rel="nofollow">Эстония</a></i>)</p>`
           },
           {
               title: 'Перед пересечением границы',
@@ -168,7 +168,7 @@ export default {
                     <p>Оплата таможенных платежей собственником автомобиля (Оплата проводится собственником 
                         авто либо лицом по доверенности через кассу банка или онлайн банкинг, а также любым лицом 
                         через терминал банка непосредственно на расчетный счет таможни, в которой планируется 
-                        таможенное оформление. <a href="http://kyiv.sfs.gov.ua/dfs-u-regioni/mitnitsya/kontakti/" target="_blank">Реквизиты Киевской городской таможни</a></p>
+                        таможенное оформление. <a href="http://kyiv.sfs.gov.ua/dfs-u-regioni/mitnitsya/kontakti/" target="_blank" rel="nofollow">Реквизиты Киевской городской таможни</a></p>
                     <p>Оформление таможенным брокером предварительной декларация (ПД) для пропуска авто на 
                         территорию Украины</p>`
           },
@@ -181,7 +181,7 @@ export default {
           },
           {
               title: 'Перед таможенным оформлением',
-              text: `<p>Получить от <a href="https://mtu.gov.ua/content/perelik-priznachenih-organiv-iz-sertifikacii-kolisnih-transportnih-zasobiv.html" target="_blank"> 
+              text: `<p>Получить от <a href="https://mtu.gov.ua/content/perelik-priznachenih-organiv-iz-sertifikacii-kolisnih-transportnih-zasobiv.html" target="_blank" rel="nofollow"> 
                         уполномоченных органов</a> сертификат или справку на соответствие транспортного средства 
                         экологическим нормам </p>
                     <p>Доставить автомобиль в зону таможенного контроля внутренней таможни, в которой проводилось 
@@ -196,7 +196,7 @@ export default {
                         платёж – не обязательные)</p>
                     <p>Подтверждение соответствия автомобиля экологичным нормам в Украине (сертификат 
                         соответствия или справка от 
-                        <a href="https://mtu.gov.ua/content/perelik-priznachenih-organiv-iz-sertifikacii-kolisnih-transportnih-zasobiv.html" target="_blank">уполномоченных органов</a>)</p>
+                        <a href="https://mtu.gov.ua/content/perelik-priznachenih-organiv-iz-sertifikacii-kolisnih-transportnih-zasobiv.html" target="_blank" rel="nofollow">уполномоченных органов</a>)</p>
                     <p>Документы на автомобиль (техпаспорт – для б/у авто)</p>
                     <p>Документы на собственника автомобиля (паспорт, код ИНН, загранпаспорт, нотариальная 
                         доверенность (в случае пересечения границы лицом по доверенности)</p>
@@ -239,6 +239,9 @@ export default {
       meta: [
         { hid: 'description', name: 'description', content: this.meta.description },
         { hid: 'keywords', name: 'keywords', content: this.meta.keywords }
+      ],
+      link: [
+        { rel: 'canonical', href: 'https://ubtrading.com.ua/eu' }
       ]
     }
   },

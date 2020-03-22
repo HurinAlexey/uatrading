@@ -103,7 +103,7 @@
                   <div class="cons">
                       <button class="block btn" @click="showForm">Бесплатная консультация</button>
                   </div>
-                  <a href="https://facebook.com" class="block facebook" title="facebook">
+                  <a href="https://facebook.com" class="block facebook" title="facebook" rel="nofollow">
                       <svg viewBox="0 0 155.139 155.139" width="18" height="18">
                           <path style="fill:#ffffff;" d="M89.584,155.139V84.378h23.742l3.562-27.585H89.584V39.184
       c0-7.984,2.208-13.425,13.67-13.425l14.595-0.006V1.08C115.325,0.752,106.661,0,96.577,0C75.52,0,61.104,12.853,61.104,36.452
@@ -135,9 +135,9 @@
                   </div>
               </div>
               <button class="burger" :class="{'burger-open': isNavOpen}" @click="toggleNav" title="burger">
-                  <div class="burger-top"></div>
-                  <div class="burger-middle"></div>
-                  <div class="burger-bottom"></div>
+                  <span class="burger-top" />
+                  <span class="burger-middle" />
+                  <span class="burger-bottom" />
               </button>
   
   
@@ -787,7 +787,8 @@ h2 {
         top: -3px;
         z-index: 101
     }
-    .burger>div {
+    .burger>span {
+        display: block;
         position: absolute;
         left: 0;
         width: 100%;

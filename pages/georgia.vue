@@ -32,7 +32,7 @@
                 <div class="container flex fw-w jc-fe">
                     <div class="what__item pos-r c-after w33 w50-md w100-esm">
                         <h4>Большой выбор</h4>
-                        <p>авторынок <a href="https://autopapa.ge/ru/page/about?currency=usd" target="_blank">AUTOPAPA</a> 
+                        <p>авторынок <a href="https://autopapa.ge/ru/page/about?currency=usd" target="_blank" rel="nofollow">AUTOPAPA</a> 
                           самый большой и современный авторынок на Кавказе, общая площадь  которого составляет  
                           225 тыс. квадратных метров, вместимостью 5000 автомобилей с Кореи, ЕС, аукционов США</p>
                     </div>
@@ -47,9 +47,9 @@
                         <p>в отличии от большинства авто с США, авто с Грузии импортируются в 
                           Украину уже отремонтированными. На территории авторынка можно провести тест драйв, полную 
                           диагностику авто в СТО, а также самостоятельно проверить состояние автомобиля до ремонта 
-                          по базах данным <a href="https://autoastat.com/" target="_blank">AUTOASTAT</a>, 
-                          <a href="https://autoauctions.io/" target="_blank">AUTOAUCTIONS</a>, 
-                          <a href="https://www.carfax.eu/" target="_blank">CARFAX</a></p>
+                          по базах данным <a href="https://autoastat.com/ru/" target="_blank" rel="nofollow">AUTOASTAT</a>, 
+                          <a href="https://autoauctions.io/" target="_blank" rel="nofollow">AUTOAUCTIONS</a>, 
+                          <a href="https://www.carfax.eu/" target="_blank" rel="nofollow">CARFAX</a></p>
                     </div>
                     <div class="what__item pos-r c-after w33 w50-md w100-esm">
                         <h4>Хорошая цена</h4>
@@ -133,7 +133,7 @@ export default {
         items: [
           {
             icon: 'images/about-USA-11.png',
-            text: 'Является лицензированным <a href="http://sfs.gov.ua/dovidniki--reestri--perelik/reestri/94921.html"> <br>таможенным брокером</a>'
+            text: 'Является лицензированным <a href="http://sfs.gov.ua/dovidniki--reestri--perelik/reestri/94921.html" rel="nofollow"> <br>таможенным брокером</a>'
           },
           {
             icon: 'images/why-4.png',
@@ -173,18 +173,18 @@ export default {
                       легковых автомобилей, не ниже ЕВРО 5 – для новых легковых и грузовых автомобилей)</p>
                     <p>Проверить текущее техническое состояние автомобиля воспользовавшись местными СТО</p>
                     <p>Проверить состояние автомобиля до ремонта на основе данных интернет-сайтов результатов 
-                      торгов с аукционов США <a href="https://autoastat.com/" target="_blank">AUTOASTAT</a>, 
-                      <a href="https://autoauctions.io/" target="_blank">AUTOAUCTIONS</a> (в течении года хранятся 
+                      торгов с аукционов США <a href="https://autoastat.com/ru/" target="_blank" rel="nofollow">AUTOASTAT</a>, 
+                      <a href="https://autoauctions.io/" target="_blank" rel="nofollow">AUTOAUCTIONS</a> (в течении года хранятся 
                       данные о результатах торгов, цене покупки, фото автомобиля на момент торгов со всеми видимыми повреждениями)</p>
                     <p>Проверить всю страховую историю автомобиля на основе данных Министерства юстиции США 
-                      <a href="https://www.carfax.eu/" target="_blank">CARFAX</a></p>
+                      <a href="https://www.carfax.eu/" target="_blank" rel="nofollow">CARFAX</a></p>
                     <p>Узнать цену покупки авто в США перекупщиками с Грузии на основе данных интернет-сайтов 
-                      <a href="https://autoastat.com/" target="_blank">AUTOASTAT</a>,  
-                      <a href="https://autoauctions.io/" target="_blank">AUTOAUCTIONS</a> для понимания 
+                      <a href="https://autoastat.com/ru/" target="_blank" rel="nofollow">AUTOASTAT</a>,  
+                      <a href="https://autoauctions.io/" target="_blank" rel="nofollow">AUTOAUCTIONS</a> для понимания 
                       адекватности цены продажи вам автомобиля</p>
                     <p>Узнать ориентировочную цену автомобиля происхождением с ЕС на основе цен на аналогичные 
-                      авто с автоплощадок <a href="https://www.mobile.de/" target="_blank">MOBILE</a>, 
-                      <a href="https://www.autoscout24.com/" target="_blank">AUTOSCOUT24</a> для понимания адекватности 
+                      авто с автоплощадок <a href="https://www.mobile.de/" target="_blank" rel="nofollow">MOBILE</a>, 
+                      <a href="https://www.autoscout24.com/" target="_blank" rel="nofollow">AUTOSCOUT24</a> для понимания адекватности 
                       цены продажи вам автомобиля</p>
                     <p>Уточнить в таможенного брокера в Украине точную сумму таможенных платежей подлежащих 
                       оплате в госбюджет при таможенном оформлении</p>
@@ -216,7 +216,7 @@ export default {
           },
           {
               title: 'Перед таможенным оформлением',
-              text: `<p>Получить от <a href="https://mtu.gov.ua/content/perelik-priznachenih-organiv-iz-sertifikacii-kolisnih-transportnih-zasobiv.html" target="_blank">уполномоченных органов</a> 
+              text: `<p>Получить от <a href="https://mtu.gov.ua/content/perelik-priznachenih-organiv-iz-sertifikacii-kolisnih-transportnih-zasobiv.html" target="_blank" rel="nofollow">уполномоченных органов</a> 
                         сертификат или справку на соответствие транспортного средства экологическим нормам</p>
                     <p>Доставить автомобиль в зону таможенного контроля внутренней таможни, в которой проводилось 
                         оформление предварительной декларации (ПД), на протяжении установленных законодательством 
@@ -229,7 +229,7 @@ export default {
                       (счет-фактура) – обязательные; экспортная таможенная декларация, SWIFT платёж – не 
                       обязательные)</p>
                     <p>Подтверждение соответствия автомобиля экологичным нормам в Украине (сертификат соответствия 
-                      или справка от <a href="https://mtu.gov.ua/content/perelik-priznachenih-organiv-iz-sertifikacii-kolisnih-transportnih-zasobiv.html" target="_blank">
+                      или справка от <a href="https://mtu.gov.ua/content/perelik-priznachenih-organiv-iz-sertifikacii-kolisnih-transportnih-zasobiv.html" target="_blank" rel="nofollow">
                       уполномоченных органов</a>)</p>
                     <p>Документы на автомобиль (техпаспорт – для б/у авто)</p>
                     <p>Документы на собственника автомобиля (паспорт, код ИНН, нотариальная доверенность (в случае 
@@ -271,6 +271,9 @@ export default {
       meta: [
         { hid: 'description', name: 'description', content: this.meta.description },
         { hid: 'keywords', name: 'keywords', content: this.meta.keywords }
+      ],
+      link: [
+        { rel: 'canonical', href: 'https://ubtrading.com.ua/georgia' }
       ]
     }
   },

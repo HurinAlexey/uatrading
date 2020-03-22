@@ -5,8 +5,8 @@
             <div class="container">
                 <div class="blog__box pos-r flex ai-c fw-w-sm">
                     <div class="flex ai-c w100-sm opacity left-animate">
-                        <nuxt-link to="/blog"><h1 class="blog__title">Блог</h1></nuxt-link>
-                        <span class="pos-r blog__descr blog__descr--post">{{post.title}}</span>
+                        <nuxt-link to="/blog"><span class="blog__title">Блог</span></nuxt-link>
+                        <h1 class="pos-r blog__descr blog__descr--post">{{post.title}}</h1>
                     </div>
                     <svg class="svg-animate" height="10" width="1000">
                         <line x1="0" y1="5" x2="100%" y2="5" stroke-width="9" stroke="#cc9557"></line>
@@ -81,7 +81,40 @@ export default {
                 posts: categoryPosts
             })
         }
-        return {post, categoriesData}
+
+        // const schema = {
+        //     "@context": "http://schema.org",
+        //     "@type": "BreadcrumbList",
+        //     "itemListElement": [
+        //         {
+        //             "@type": "ListItem",
+        //             "position": 1,
+        //             "item": {
+        //                 "@id": "https://ubtrading.com.ua/blog",
+        //                 "name": "Blog page"
+        //             }
+        //         },
+        //         {
+        //             "@type": "ListItem",
+        //             "position": 2,
+        //             "item": {
+        //                 "@id": "https://ubtrading.com.ua/blog/" + slug,
+        //                 "name": (post.metaTitle && post.metaTitle !== 'undefined') ? post.metaTitle : post.title
+        //             }
+        //         }
+        //     ]
+        // }
+        const breadcrumbs = [
+            {
+                url: 'https://ubtrading.com.ua/blog',
+                text: 'Blog'
+            },
+            {
+                url: 'https://ubtrading.com.ua/blog/' + slug,
+                text: (post.metaTitle && post.metaTitle !== 'undefined') ? post.metaTitle : post.title
+            }
+        ]
+        return {post, categoriesData, breadcrumbs}
     },
     head() {
         return {
@@ -89,7 +122,25 @@ export default {
             meta: [
                 { hid: 'description', name: 'description', content: (this.post.metaDescription && this.post.metaDescription !== 'undefined') ? this.post.metaDescription : this.post.description },
                 { hid: 'keywords', name: 'keywords', content: (this.post.keywords && this.post.keywords !== 'undefined') ? this.post.keywords : '' }
+            ],
+            link: [
+                { rel: 'canonical', href: 'https://ubtrading.com.ua/blog/' + this.$route.params.slug }
             ]
+        }
+    },
+    jsonld() {
+        const items = this.breadcrumbs.map((item, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            item: {
+                '@id': item.url,
+                name: item.text,
+            }
+        }))
+        return {
+            '@context': 'http://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: items,
         }
     },
     mounted() {
@@ -145,6 +196,7 @@ export default {
 }
 
 .blog__title {
+    display: block;
     position: relative;
     padding-right: 10px;
     color: #a19699;
