@@ -1,18 +1,9 @@
-/* @font-face {
+@font-face {
     font-family: NokiaPureHeadline;
     font-display: swap;
     src: url("/fonts/NokiaPureHeadline_ULt.woff2") format('woff2'),
          url("/fonts/NokiaPureHeadline_ULt.woff") format('woff'),
          url("/fonts/NokiaPureHeadline_ULt.ttf") format('opentype');
-    font-weight: 100
-}
-
-@font-face {
-    font-family: NokiaPureText_Bd;
-    font-display: swap;
-    src: url("/fonts/NokiaPureTextBd.woff2") format('woff2'),
-         url("/fonts/NokiaPureText_Bd.woff") format('woff'),
-         url("/fonts/NokiaPureText_Bd.ttf") format('opentype');
     font-weight: 100
 }
 
@@ -23,15 +14,6 @@
          url("/fonts/Fontfabric - MullerBold.woff") format('woff'),
          url("/fonts/Fontfabric - MullerBold.otf") format('truetype');
     font-weight: 700
-}
-
-@font-face {
-    font-family: NokiaPureText_Lt;
-    font-display: swap;
-    src: url("/fonts/NokiaPureText_Lt.woff2") format('woff2'),
-         url("/fonts/NokiaPureText_Lt.woff") format('woff'),
-         url("/fonts/NokiaPureText_Lt.ttf") format('opentype');
-    font-weight: 100
 }
 
 @font-face {
@@ -54,15 +36,6 @@
 }
 
 @font-face {
-    font-family: muller-r;
-    font-display: swap;
-    src: url("/fonts/Fontfabric - MullerRegular.woff2") format('woff2'),
-         url("/fonts/Fontfabric - MullerRegular.woff") format('woff'),
-         url("/fonts/Fontfabric - MullerRegular.otf") format('truetype');
-    font-weight: 400
-}
-
-@font-face {
     font-family: muller-ultra;
     font-display: swap;
     src: url("/fonts/Fontfabric - MullerUltraLight.woff2") format('woff2'),
@@ -78,11 +51,38 @@
          url("/fonts/Fontfabric - MullerLight.woff") format('woff'),
          url("/fonts/Fontfabric - MullerLight.otf") format('truetype');
     font-weight: 300
+}
+
+/* @font-face {
+    font-family: NokiaPureText_Bd;
+    font-display: swap;
+    src: url("/fonts/NokiaPureTextBd.woff2") format('woff2'),
+         url("/fonts/NokiaPureText_Bd.woff") format('woff'),
+         url("/fonts/NokiaPureText_Bd.ttf") format('opentype');
+    font-weight: 100
+}
+
+@font-face {
+    font-family: NokiaPureText_Lt;
+    font-display: swap;
+    src: url("/fonts/NokiaPureText_Lt.woff2") format('woff2'),
+         url("/fonts/NokiaPureText_Lt.woff") format('woff'),
+         url("/fonts/NokiaPureText_Lt.ttf") format('opentype');
+    font-weight: 100
+}
+
+@font-face {
+    font-family: muller-r;
+    font-display: swap;
+    src: url("/fonts/Fontfabric - MullerRegular.woff2") format('woff2'),
+         url("/fonts/Fontfabric - MullerRegular.woff") format('woff'),
+         url("/fonts/Fontfabric - MullerRegular.otf") format('truetype');
+    font-weight: 400
 } */
 
 body {
     color: #1f1f1f;
-    font-family: NokiaPureText_Lt, serif;
+    font-family: NokiaPureHeadline, serif;
     font-size: 14px;
     line-height: 1.5;
     background-color: #ececec;

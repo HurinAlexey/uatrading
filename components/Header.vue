@@ -425,7 +425,7 @@ header {
 
 .nav__title {
     font-size: 13px;
-    font-family: muller-r, serif
+    font-family: muller-l, serif
 }
 
 .nav__num {
@@ -457,7 +457,7 @@ header {
 
 .nav__link {
     padding-right: 15px;
-    font-family: muller-r, serif
+    font-family: muller-l, serif
 }
 
 .nav__link:after {
@@ -499,7 +499,7 @@ header {
 
 .info__tel {
     padding-left: 25px;
-    font-family: muller-thin, serif;
+    font-family: muller-l, serif;
     font-size: 16px;
     line-height: 20px;
 }
@@ -521,7 +521,7 @@ header {
 .lang {
     padding-top: 3px;
     font-size: 16px;
-    font-family: muller-thin, serif
+    font-family: muller-l, serif
 }
 
 .lang>li>a {

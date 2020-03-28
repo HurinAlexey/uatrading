@@ -300,7 +300,7 @@ export default {
 }
 
 .problems .white-text {
-    font-family: NokiaPureText_Lt, serif;
+    font-family: muller-b, serif;
     font-size: 20px;
     color: #fff;
     margin-left: 40px;

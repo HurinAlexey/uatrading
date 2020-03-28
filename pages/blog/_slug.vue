@@ -49,6 +49,16 @@
                     </aside>
 
                 </div>
+
+                <ul v-if="breadcrumbs" class="breadcrumbs">
+                    <li v-for="(item, index) of breadcrumbs" :key="index">
+                        <span v-if="!item.path">{{ item.text }}</span>
+                        <span v-else>
+                            <router-link :to="item.path">{{ item.text }}</router-link>
+                            <span class="separator">/</span>
+                        </span>
+                    </li>
+                </ul>
             </div>
         </section>
     </div>
@@ -82,32 +92,16 @@ export default {
             })
         }
 
-        // const schema = {
-        //     "@context": "http://schema.org",
-        //     "@type": "BreadcrumbList",
-        //     "itemListElement": [
-        //         {
-        //             "@type": "ListItem",
-        //             "position": 1,
-        //             "item": {
-        //                 "@id": "https://ubtrading.com.ua/blog",
-        //                 "name": "Blog page"
-        //             }
-        //         },
-        //         {
-        //             "@type": "ListItem",
-        //             "position": 2,
-        //             "item": {
-        //                 "@id": "https://ubtrading.com.ua/blog/" + slug,
-        //                 "name": (post.metaTitle && post.metaTitle !== 'undefined') ? post.metaTitle : post.title
-        //             }
-        //         }
-        //     ]
-        // }
         const breadcrumbs = [
             {
+                url: 'https://ubtrading.com.ua',
+                path: '/',
+                text: 'Таможенно-брокерские услуги'
+            },
+            {
                 url: 'https://ubtrading.com.ua/blog',
-                text: 'Blog'
+                path: '/blog',
+                text: 'Блог'
             },
             {
                 url: 'https://ubtrading.com.ua/blog/' + slug,
@@ -223,7 +217,7 @@ export default {
 }
 
 .blog__descr--post {
-    font-family: NokiaPureText_Bd, muller-r, serif
+    font-family: NokiaPureHeadline, muller-r, serif
 }
 
 .main-content {
@@ -443,6 +437,24 @@ export default {
         width: 100%;
         height: 250px;
         margin: 0 0 15px;
+    }
+}
+
+.breadcrumbs {
+    position: relative;
+    top: -10px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    color: #979797;
+
+    a:hover {
+        color: #cc9557;
+    }
+
+    .separator {
+        display: inline-block;
+        margin: 0 5px;
     }
 }
 

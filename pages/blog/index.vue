@@ -67,6 +67,16 @@
                     </aside>
 
                 </div>
+
+                <ul v-if="breadcrumbs" class="breadcrumbs">
+                    <li v-for="(item, index) of breadcrumbs" :key="index">
+                        <span v-if="!item.path">{{ item.text }}</span>
+                        <span v-else>
+                            <router-link :to="item.path">{{ item.text }}</router-link>
+                            <span class="separator">/</span>
+                        </span>
+                    </li>
+                </ul>
             </div>
         </section>
         <div v-if="pages > 1" class="pagination">
@@ -93,7 +103,18 @@ export default {
         return {
             header: {
                 showAboutImport: true
-            }
+            },
+            breadcrumbs: [
+                {
+                    url: 'https://ubtrading.com.ua',
+                    path: '/',
+                    text: 'Таможенно-брокерские услуги'
+                },
+                {
+                    url: 'https://ubtrading.com.ua/blog',
+                    text: 'Блог'
+                }
+            ]
         }
     },
     async asyncData({store, query}) {
@@ -142,6 +163,21 @@ export default {
             link: [
                 { rel: 'canonical', href: 'https://ubtrading.com.ua/blog' }
             ]
+        }
+    },
+    jsonld() {
+        const items = this.breadcrumbs.map((item, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            item: {
+                '@id': item.url,
+                name: item.text,
+            }
+        }))
+        return {
+            '@context': 'http://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: items,
         }
     },
     methods: {
@@ -415,6 +451,23 @@ export default {
 
     &:hover .post-image {
         transform: scale(1.05);
+    }
+}
+
+.breadcrumbs {
+    position: relative;
+    top: -10px;
+    display: flex;
+    flex-wrap: wrap;
+    color: #979797;
+
+    a:hover {
+        color: #cc9557;
+    }
+
+    .separator {
+        display: inline-block;
+        margin: 0 5px;
     }
 }
 

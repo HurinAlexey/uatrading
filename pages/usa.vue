@@ -96,7 +96,7 @@
       
     </main>
     <LazyHydrate when-visible>
-        <app-footer :data="footer" />
+        <app-footer :data="footer" :breadcrumbs="breadcrumbs" />
     </LazyHydrate>
   </div>
 </template>
@@ -117,6 +117,17 @@ export default {
   },
   data() {
     return {
+      breadcrumbs: [
+        {
+          url: 'https://ubtrading.com.ua',
+          path: '/',
+          text: 'Таможенно-брокерские услуги',
+        },
+        {
+          url: 'https://ubtrading.com.ua/usa',
+          text: 'Автомобили из США'
+        }
+      ],
       header: {
         title: 'Автомобили из США',
         subtitle: 'Профессиональные подбор, покупка, доставка, таможенное оформление и<br> сертификация автомобилей, мотоциклов и других видов транспортных<br> средств с аукционов США',
@@ -264,6 +275,21 @@ export default {
       link: [
         { rel: 'canonical', href: 'https://ubtrading.com.ua/usa' }
       ]
+    }
+  },
+  jsonld() {
+    const items = this.breadcrumbs.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@id': item.url,
+        name: item.text,
+      }
+    }))
+    return {
+      '@context': 'http://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: items,
     }
   },
   mounted() {

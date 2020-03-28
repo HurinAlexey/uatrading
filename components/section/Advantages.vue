@@ -104,7 +104,7 @@ export default {
 .why__sub-title {
     font-size: 40px;
     color: #fff;
-    font-family: muller-r, serif;
+    font-family: muller-b, serif;
     margin-left: 140px
 }
 

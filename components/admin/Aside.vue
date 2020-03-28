@@ -92,7 +92,7 @@ export default {
         height: 100%;
         background-color: transparent;
         border: none;
-        font-family: NokiaPureText_Lt;
+        font-family: NokiaPureHeadline;
         text-align: left;
         color: #303133;
         cursor: pointer;

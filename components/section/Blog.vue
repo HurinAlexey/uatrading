@@ -153,7 +153,7 @@ export default {
     font-size: 14px;
     padding: 0 15px;
     white-space: nowrap;
-    font-family: muller-r, serif
+    font-family: muller-l, serif
 }
 
 .blog__category {
@@ -168,7 +168,7 @@ export default {
 }
 
 .blog__name {
-    font-family: muller-b, serif
+    font-family: NokiaPureHeadline, serif
 }
 
 .blog__text {

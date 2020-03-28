@@ -115,7 +115,7 @@ export default {
     }
   },
   mounted() {
-    (function(){ document.fontsloaded=0;var d=document;var w=window;function l(){var s = d.createElement('link'); s.rel = 'stylesheet'; s.async = true; s.href = '/css/fonts.css'; var ss = document.getElementsByTagName('link')[0]; ss.parentNode.insertBefore(s, ss);}//эта строка обычная для кода JivoSite
+    /* (function(){ document.fontsloaded=0;var d=document;var w=window;function l(){var s = d.createElement('link'); s.rel = 'stylesheet'; s.async = true; s.href = '/css/fonts.css'; var ss = document.getElementsByTagName('link')[0]; ss.parentNode.insertBefore(s, ss);}//эта строка обычная для кода JivoSite
         function zy(){
             //удаляем EventListeners
             if(w.detachEvent){//поддержка IE8
@@ -129,9 +129,7 @@ export default {
                 w.removeEventListener("touchmove", zy, false);
                 w.removeEventListener("resize", zy, false);
             }
-            //запускаем функцию загрузки JivoSite
             if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}
-            //Устанавливаем куку по которой отличаем первый и второй хит
             var cookie_date = new Date ( );
             cookie_date.setTime ( cookie_date.getTime()+60*60*28*1000); //24 часа для Москвы
             d.cookie = "FontsLoaded=1;path=/;expires=" + cookie_date.toGMTString();
@@ -149,7 +147,7 @@ export default {
                 w.addEventListener("resize", zy, {capture: false, passive: true});
             }
         }else {zy();}
-    })();
+    })(); */
 
     this.useAllScrollFuncrions()
     

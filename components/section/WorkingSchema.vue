@@ -184,7 +184,7 @@ export default {
 }
 
 .work--tb .svg-wrap svg line:last-child {
-    webkit-transition-delay: .3s;
+    -webkit-transition-delay: .3s;
     transition-delay: .3s;
 }
 

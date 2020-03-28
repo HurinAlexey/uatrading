@@ -3,6 +3,16 @@
         class="footer footer--tb pos-r lazy-bg"
         :style="{backgroundImage: `url(${data.backgroundImage})`}"
     >
+        <ul v-if="breadcrumbs" class="footer__breadcrumbs">
+            <li v-for="(item, index) of breadcrumbs" :key="index">
+                <span v-if="!item.path">{{ item.text }}</span>
+                <span v-else>
+                    <router-link :to="item.path">{{ item.text }}</router-link>
+                    <span class="separator">/</span>
+                </span>
+            </li>
+        </ul>
+
         <nav v-if="!data.withoutNav" class="footer__nav">
             <div class="container">
                     <ul class="footer__menu flex fw-w jc-sa">
@@ -96,7 +106,7 @@
 
 <script>
 export default {
-    props: ['data'],
+    props: ['data', 'breadcrumbs'],
     data() {
         return {
             links: [
@@ -178,6 +188,24 @@ export default {
 
 .footer__item-wrap {
     width: 50%;
+}
+
+.footer__breadcrumbs {
+    position: absolute;
+    left: 50px;
+    bottom: calc(100% + 20px);
+    display: flex;
+    flex-wrap: wrap;
+    color: #979797;
+
+    a:hover {
+        color: #cc9557;
+    }
+
+    .separator {
+        display: inline-block;
+        margin: 0 5px;
+    }
 }
 
 .footer__nav {
@@ -296,6 +324,11 @@ export default {
     .footer__reestr {
         margin-top: 0;
         top: calc(75% - 20px);
+    }
+
+    .footer__breadcrumbs {
+        left: 15px;
+        bottom: calc(100% + 10px);
     }
 }
 </style>

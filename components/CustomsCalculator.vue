@@ -457,7 +457,7 @@ export default {
     z-index: 100 !important;
 
     * {
-        font-family: NokiaPureText_Lt, serif;
+        font-family: NokiaPureHeadline, serif;
     }
 }
 
