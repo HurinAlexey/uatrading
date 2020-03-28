@@ -257,7 +257,7 @@ export default {
     font-size: 14px;
     padding: 0 15px;
     white-space: nowrap;
-    font-family: muller-r, serif
+    font-family: NokiaPureHeadline, serif
 }
 
 .main-content {

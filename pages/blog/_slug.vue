@@ -217,7 +217,7 @@ export default {
 }
 
 .blog__descr--post {
-    font-family: NokiaPureHeadline, muller-r, serif
+    font-family: NokiaPureHeadline, serif
 }
 
 .main-content {

@@ -172,7 +172,8 @@ export default {
 }
 
 .blog__text {
-    padding: 15px 15px 30px
+    padding: 15px 15px 30px;
+    min-height: 310px;
 }
 
 .blog__date {
