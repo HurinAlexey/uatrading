@@ -212,7 +212,7 @@ export default {
 }
 
 .blog__descr {
-    font-size: 16px;
+    font-size: 18px;
     padding: 0 15px;
 }
 
@@ -286,7 +286,7 @@ export default {
     }
 
     .post-text {
-        font-size: 15px;
+        font-size: 17px;
     }
 }
 
