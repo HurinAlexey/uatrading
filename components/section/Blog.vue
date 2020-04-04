@@ -168,12 +168,12 @@ export default {
 }
 
 .blog__name {
-    font-family: NokiaPureHeadline, serif
+    font-family: muller-b, serif
 }
 
 .blog__text {
     padding: 15px 15px 30px;
-    min-height: 310px;
+    min-height: 270px;
 }
 
 .blog__date {
