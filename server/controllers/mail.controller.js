@@ -9,7 +9,7 @@ const smtpOptions = {
     secure: true,
     auth: {
         user: 'ukrbroktrading.host@gmail.com',
-        pass: 'foxtrottango'
+        pass: '@BravoTango22&'
     },
     tls: {
         rejectUnauthorized: false
@@ -23,7 +23,7 @@ module.exports.sendCallbackMail = (req, res) => {
 
         const mailOptions = {
             from: 'ukrbroktrading.host@gmail.com',
-            to: 'tanatosvii@gmail.com',
+            to: 'ukrbroktrading.host@gmail.com',
             subject: 'UBTrading - Callback',
             text: `Пользователь ${req.body.name} просит Вас перезвонить по номеру ${req.body.phone}.`
         }
