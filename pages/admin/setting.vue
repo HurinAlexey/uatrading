@@ -109,7 +109,10 @@ export default {
         }
     },
     async asyncData({store}) {
-        const options = await store.dispatch('option/fetch')
+        let options = await store.dispatch('option/fetch')
+        options = options.sort((a, b) => {
+            return String(a.title).localeCompare(b.title)
+        })
         return {options}
     },
     methods: {

@@ -130,7 +130,12 @@
        M19.995,21.1H7.448V3.373h12.547V21.1z"></path>
                       </svg>
                       <div class="info__tel-wrap">
-                          <a href="tel:+380939580034" class="block">+38 (093) 958 00 34</a>
+                          <a 
+                            v-for="(item, index) of phones" 
+                            :key="index"
+                            :href="item.href" 
+                            class="block"
+                        >{{ item.text }}</a>
                       </div>
                   </div>
               </div>
@@ -174,82 +179,82 @@
 
 <script>
 export default {
-  props: ['data'],
-  data() {
-      return {
-        isNavOpen: false,
-        imageSize: 'desktop'
-      }
-  },
-  computed: {
-      titleWrapClasses() {
-          if (this.$route.path === '/') {
-              return 'title-wrap-tb w100'
-          }
-          return 'title-wrap w50 w66-lg w75-md w100-sm'
-      },
-      backImage() {
-          if (this.data.backImage) {
-            return this.data.backImage[this.imageSize]
-          }
-      },
-      frontImage() {
-          if (this.data.frontImage) {
-            return this.data.frontImage[this.imageSize]
-          }
-      }
-  },
-  methods: {
-      showForm() {
-          this.$root.$emit('toggleform', true)
-      },
-      togglePhones() {
-          document.querySelector('.info__tel-wrap').classList.toggle('info__tel-open')
-      },
-      toggleNav() {
-          this.isNavOpen = !this.isNavOpen
-          if (this.isNavOpen) {
-            document.body.classList.add('body-fix')
-          } else {
+    props: ['data', 'phones'],
+    data() {
+        return {
+            isNavOpen: false,
+            imageSize: 'desktop'
+        }
+    },
+    computed: {
+        titleWrapClasses() {
+            if (this.$route.path === '/') {
+                return 'title-wrap-tb w100'
+            }
+            return 'title-wrap w50 w66-lg w75-md w100-sm'
+        },
+        backImage() {
+            if (this.data.backImage) {
+                return this.data.backImage[this.imageSize]
+            }
+        },
+        frontImage() {
+            if (this.data.frontImage) {
+                return this.data.frontImage[this.imageSize]
+            }
+        }
+    },
+    methods: {
+        showForm() {
+            this.$root.$emit('toggleform', true)
+        },
+        togglePhones() {
+            document.querySelector('.info__tel-wrap').classList.toggle('info__tel-open')
+        },
+        toggleNav() {
+            this.isNavOpen = !this.isNavOpen
+            if (this.isNavOpen) {
+                document.body.classList.add('body-fix')
+            } else {
+                document.body.classList.remove('body-fix')
+            }
+        },
+        closeNav() {
+            this.isNavOpen = false
             document.body.classList.remove('body-fix')
-          }
-      },
-      closeNav() {
-          this.isNavOpen = false
-          document.body.classList.remove('body-fix')
-      },
-      openCustomsCalculator() {
-          this.$root.$emit('opencustomscalculator')
-      },
-      openCustomsCalculatorWithDelivery() {
-          this.$root.$emit('opencustomscalculatorwithdev')
-      }
-  },
-  beforeMount() {
-    if (window.outerWidth <= 500) {
-        this.imageSize = 'mobile'
-    }
-  },
-  mounted() {
-    if (window.outerWidth > 500) {
-        const Parallax = require('parallax-js')
-        const scene = document.getElementById('scene')
-        var parallaxInstance
-        if (scene) parallaxInstance = new Parallax(scene)  
-    }
-    window.onresize = () => {
+        },
+        openCustomsCalculator() {
+            this.$root.$emit('opencustomscalculator')
+        },
+        openCustomsCalculatorWithDelivery() {
+            this.$root.$emit('opencustomscalculatorwithdev')
+        }
+    },
+    beforeMount() {
         if (window.outerWidth <= 500) {
             this.imageSize = 'mobile'
-        } else {
-            this.imageSize = 'desktop'
+        }
+    },
+    mounted() {
+        if (window.outerWidth > 500) {
+            const Parallax = require('parallax-js')
+            const scene = document.getElementById('scene')
+            var parallaxInstance
+            if (scene) parallaxInstance = new Parallax(scene)  
+        }
+        window.onresize = () => {
+            if (window.outerWidth <= 500) {
+                this.imageSize = 'mobile'
+            } else {
+                this.imageSize = 'desktop'
+            }
+        }
+    },
+    watch: {
+        imageSize(value) {
+            this.imageSize = value
         }
     }
-  },
-  watch: {
-      imageSize(value) {
-          this.imageSize = value
-      }
-  }
 }
 </script>
 

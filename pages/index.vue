@@ -1,7 +1,7 @@
 <template>
   <div id="content">
     <LazyHydrate when-visible>
-        <app-header :data="header" />
+        <app-header :data="header" :phones="phones" />
     </LazyHydrate>
     <main>
 
@@ -159,7 +159,7 @@
 
     </main>
     <LazyHydrate when-visible>
-        <app-footer :data="footer" />
+        <app-footer :data="footer" :phones="phones" />
     </LazyHydrate>
   </div>
 </template>
@@ -247,7 +247,14 @@ export default {
           keywords: ''
         }
       }
-      return {meta}
+      let phones = await store.dispatch('option/fetchByTitle', 'phones')
+      phones = phones.value.split(',')
+      phones = phones.map(item => {
+        let result = {text: item}
+        result.href = 'tel:+' + item.replace(/\D/gi, '')
+        return result
+      })
+      return {meta, phones}
   },
   head() {
       return {

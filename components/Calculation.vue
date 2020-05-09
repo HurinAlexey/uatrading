@@ -143,10 +143,14 @@ export default {
             },
             deliveryPayments: [],
             deliveryPaymentsDict: {
-                'forwarding_services': 'Экспедиционные услуги', 
+                'forwarding_services_klaypeda': 'Экспедиционные услуги', 
+                'forwarding_services_odessa': 'Экспедиционные услуги', 
                 'customs_brokerage_services': 'Таможенно-брокерские услуги', 
                 'custom_terminal': 'Таможенный терминал',
-                'delivery_odessa_kiev': 'Доставка Одесса-Киев',
+                'delivery_odessa_kiev_car': 'Доставка Одесса-Киев',
+                'delivery_odessa_kiev_moto': 'Доставка Одесса-Киев',
+                'delivery_klaypeda_kiev_car': 'Доставка Клайпеда-Киев',
+                'delivery_klaypeda_kiev_moto': 'Доставка Клайпеда-Киев',
                 'car_certification': 'Сертификация автомобиля',
                 'commission': 'Комиссия'
             },
@@ -190,7 +194,7 @@ export default {
             let result = [
                 {title: 'Аукционный сбор', usd: this.auctionFee, uah: this.auctionFee * this.currency['USD']},
                 {
-                    title: 'Доставка до Одессы',
+                    title: this.data.delivery.port === 'Клайпеда – Литва' ? 'Доставка до Клайпеды' : 'Доставка до Одессы',
                     usd: this.data.delivery.cost + this.shipDelivery + 150,
                     uah: (this.data.delivery.cost + this.shipDelivery + 150) * this.currency['USD']
                 }
@@ -262,8 +266,27 @@ export default {
             return result
         },
         deliveryPaymentsList() {
-            let paymentsList = ['forwarding_services', 'customs_brokerage_services', /*'custom_terminal',*/ 'commission']
-            if (this.data.delivery.odessaKiev) paymentsList.push('delivery_odessa_kiev')
+            let paymentsList = []
+            if (this.data.delivery.port === 'Клайпеда – Литва') {
+                paymentsList.push('forwarding_services_klaypeda')
+            } else {
+                paymentsList.push('forwarding_services_odessa')
+            }
+            paymentsList.push('customs_brokerage_services', 'commission')
+            if (this.data.delivery.odessaKiev) {
+                if (this.data['transport-type'] === 'moto') {
+                    paymentsList.push('delivery_odessa_kiev_moto')
+                } else {
+                    paymentsList.push('delivery_odessa_kiev_car')
+                }
+            }
+            if (this.data.delivery.klaypedaKiev) {
+                if (this.data['transport-type'] === 'moto') {
+                    paymentsList.push('delivery_playpeda_kiev_moto')
+                } else {
+                    paymentsList.push('delivery_klaypeda_kiev_car')
+                }
+            }
             if (this.data.delivery.certification) paymentsList.push('car_certification')
             return paymentsList
         }
@@ -432,7 +455,11 @@ export default {
             let portsData = await this.$store.dispatch('calculator/getData', 'ship_delivery')
             for (let item of portsData.data) {
                 if (item['Port'] === this.data.delivery['to']) {
-                    return item['Cost']
+                    if (this.data.delivery.port === 'Клайпеда – Литва') {
+                        return this.data['transport-type'] === 'moto' ? item['Klaypeda Moto'] : item['Klaypeda Car']
+                    } else {
+                        return this.data['transport-type'] === 'moto' ? item['Odessa Moto'] : item['Odessa Car']
+                    }
                 }
             }
         },

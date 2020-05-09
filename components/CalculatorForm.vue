@@ -53,7 +53,7 @@
             </div>
 
             <div 
-                v-if="delivery && (data.idPrefix === 'passenger' || data.idPrefix === 'truck')"
+                v-if="delivery && (data.idPrefix !== 'bus')"
                 class="form-control-wrap"
             >
                 <label>Расчет доставки с США</label>
@@ -70,15 +70,15 @@
                 <div class="form-control-wrap">
                     <label>{{auction.label}}</label>
                     <div class="dropdown">
-                        <input type="hidden" :name="auction.name" :value="auction.options[0]" ref="activeAuction" />
+                        <input type="hidden" :name="auction.name" :value="activeAuction" ref="activeAuction" />
                         <div class="form-control" @click="toggleDropdown($event)">
-                            {{auction.options[0]}}
+                            {{activeAuction}}
                         </div>
                         <ul class="dropdown-list">
                             <li
                                 v-for="(option, index) of auction.options"
                                 :key="index"
-                                :class="{'active': index === 0}"
+                                :class="{'active': activeAuction === option}"
                                 @click="changeAuction($event)"
                             >{{option}}</li>
                         </ul>
@@ -89,7 +89,7 @@
                     <label>Доставка по США: от</label>
                     <div class="dropdown">
                         <input type="hidden" name="delivery-from" :value="activeDeliveryFrom['Auction Location']" />
-                        <div class="form-control" @click="toggleDropdown($event)">
+                        <div class="form-control" @click="toggleDropdown($event)" id="delivery-from-control">
                             {{activeDeliveryFrom['Auction Location']}}
                         </div>
                         <ul class="dropdown-list">
@@ -105,7 +105,7 @@
                             <li
                                 v-for="(option, index) of deliveryFromListFiltered"
                                 :key="index"
-                                :class="{'active': index === 0}"
+                                :class="{'active': activeDeliveryFrom['Auction Location'] === option['Auction Location']}"
                                 @click="changeDeliveryFrom($event)"
                             >{{option['Auction Location']}}</li>
                         </ul>
@@ -117,14 +117,14 @@
                     <div v-if="deliveryFromListFiltered.length > 0" class="dropdown">
                         <input type="hidden" name="delivery-to" :value="activeDeliveryTo.port" />
                         <input type="hidden" name="delivery-cost" :value="activeDeliveryTo.cost" />
-                        <div class="form-control" @click="toggleDropdown($event)" ref="deliveryTo">
+                        <div class="form-control" @click="toggleDropdown($event)" id="delivery-to-control">
                             {{activeDeliveryTo.port}} - <span class="cost">{{activeDeliveryTo.cost}} $</span>
                         </div>
                         <ul class="dropdown-list">
                             <li
                                 v-for="(option, index) of deliveryToList"
                                 :key="index"
-                                :class="{'active': index === 0}"
+                                :class="{'active': activeDeliveryTo.port === option.port}"
                                 @click="changeDeliveryTo($event)"
                             >{{option.port}} - {{option.cost}} $</li>
                         </ul>
@@ -132,10 +132,34 @@
                 </div>
 
                 <div class="form-control-wrap">
+                    <label>{{deliveryPorts.label}}</label>
+                    <div class="dropdown">
+                        <input type="hidden" :name="deliveryPorts.name" :value="activeDeliveryPort" />
+                        <div class="form-control" @click="toggleDropdown($event)">{{activeDeliveryPort}}</div>
+                        <ul class="dropdown-list">
+                            <li
+                                v-for="(option, index) of deliveryPorts.options"
+                                :key="index"
+                                :class="{'active': activeDeliveryPort === option}"
+                                @click="changeDeliveryPort($event)"
+                            >{{option}}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div v-if="activeDeliveryPort === 'Одесса – Украина'" class="form-control-wrap">
                     <label>Доставка Одесса - Киев</label>
                     <div class="checkbox-wrap">
-                        <div class="checkbox" @click="onCheck($event, 'deliveryOdessaKiev')">
-                            <input type="checkbox" name="delivery" class="display-n" />
+                        <div class="checkbox" :class="{'checked': deliveryOdessaKiev}" @click="deliveryOdessaKiev = !deliveryOdessaKiev">
+                            <img src="images/check.png" alt="check">
+                        </div>
+                    </div>
+                </div>
+
+                <div v-if="activeDeliveryPort === 'Клайпеда – Литва'" class="form-control-wrap">
+                    <label>Доставка Клайпеда - Киев</label>
+                    <div class="checkbox-wrap">
+                        <div class="checkbox" :class="{'checked': deliveryKlaypedaKiev}" @click="deliveryKlaypedaKiev = !deliveryKlaypedaKiev">
                             <img src="images/check.png" alt="check">
                         </div>
                     </div>
@@ -179,6 +203,15 @@ export default {
             deliveryToList.push({port: item, cost: 0})
         }
 
+        const deliveryPorts = {
+            label: 'Порт доставки',
+            name: 'deliveryPort',
+            options: [
+                'Одесса – Украина', 
+                'Клайпеда – Литва'
+            ]
+        }
+
         return {
             errorMessage: '',
             showDelivery: false,
@@ -194,7 +227,10 @@ export default {
             ports,
             deliveryToList,
             activeDeliveryTo: deliveryToList[0],
+            deliveryPorts,
+            activeDeliveryPort: '',
             deliveryOdessaKiev: false,
+            deliveryKlaypedaKiev: false,
             carCertification: false
         }
     },
@@ -222,7 +258,8 @@ export default {
             const dropdown = target.closest('.dropdown')
             const currentOption = target.textContent
 
-            target.parentElement.querySelector('.active').classList.remove('active')
+            let activeOption = target.parentElement.querySelector('.active')
+            if (activeOption) activeOption.classList.remove('active')
             target.classList.add('active')
 
             dropdown.querySelector('.form-control').textContent = currentOption
@@ -260,14 +297,27 @@ export default {
             }
         },
         changeAuction($event) {
-            this.selectOption($event)
+            $event.target.closest('.dropdown').classList.remove('open')
             this.activeAuction = $event.target.textContent
             this.deliveryFromList = this.transportation.filter(item => item['Auction'] === this.activeAuction)
             this.deliveryFromListFiltered = this.deliveryFromList            
             this.filterInput = ''
+
+            this.activeDeliveryFrom = this.deliveryFromList[0]
+            let deliveryFromElem = $event.target.closest('form').querySelector('input[name="delivery-from"]')
+            deliveryFromElem.value = this.deliveryFromList[0]['Auction Location']
+
+            let toList = []
+            for (let item of this.ports) {
+                if (this.activeDeliveryFrom[item]) {
+                    toList.push({port: item, cost: this.activeDeliveryFrom[item]})
+                }
+            }
+            this.deliveryToList = toList
+            this.activeDeliveryTo = toList[0]
         },
         changeDeliveryFrom($event) {
-            this.selectOption($event)
+            $event.target.closest('.dropdown').classList.remove('open')
             let targetTitle = $event.target.textContent
             this.activeDeliveryFrom = this.transportation.find(item => item['Auction Location'] === targetTitle)
 
@@ -279,12 +329,15 @@ export default {
             }
             this.deliveryToList = toList
             this.activeDeliveryTo = toList[0]
-            this.$refs.deliveryTo.innerHTML = `${this.activeDeliveryTo.port} - ${this.activeDeliveryTo.cost} $`
         },
         changeDeliveryTo($event) {
-            this.selectOption($event)
+            $event.target.closest('.dropdown').classList.remove('open')
             let targetText = $event.target.textContent
             this.activeDeliveryTo = this.deliveryToList.find(item => targetText.indexOf(item.port) !== -1)
+        },
+        changeDeliveryPort($event) {
+            $event.target.closest('.dropdown').classList.remove('open')
+            this.activeDeliveryPort = $event.target.textContent
         },
         filterAuctions() {
             this.deliveryFromListFiltered = this.deliveryFromList.filter(item => {
@@ -322,7 +375,9 @@ export default {
                     from: this.activeDeliveryFrom['Auction Location'],
                     to: this.activeDeliveryTo.port,
                     cost: this.activeDeliveryTo.cost,
-                    odessaKiev: this.deliveryOdessaKiev,
+                    port: this.activeDeliveryPort,
+                    odessaKiev: this.activeDeliveryPort === 'Одесса – Украина' && this.deliveryOdessaKiev,
+                    klaypedaKiev: this.activeDeliveryPort === 'Клайпеда – Литва' && this.deliveryKlaypedaKiev,
                     certification: this.carCertification
                 }
                 data.delivery = delivery

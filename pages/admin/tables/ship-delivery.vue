@@ -24,8 +24,20 @@
                 label="Port"
             />
             <el-table-column
-                prop="Cost"
-                label="Cost"
+                prop="Odessa Car"
+                label="Odessa Car"
+            />
+            <el-table-column
+                prop="Odessa Moto"
+                label="Odessa Moto"
+            />
+            <el-table-column
+                prop="Klaypeda Car"
+                label="Klaypeda Car"
+            />
+            <el-table-column
+                prop="Klaypeda Moto"
+                label="Klaypeda Moto"
             />
         </el-table>
     </div>

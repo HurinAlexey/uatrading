@@ -1,6 +1,6 @@
 <template>
     <div id="content">
-        <app-header :data="header" class="blog-header" />
+        <app-header :data="header" :phones="phones" class="blog-header" />
         <section class="blog">
             <div class="container">
                 <div class="blog__box pos-r flex ai-c fw-w-sm">
@@ -80,6 +80,13 @@ export default {
         }
     },
     async asyncData({store, params}) {
+        let phones = await store.dispatch('option/fetchByTitle', 'phones')
+        phones = phones.value.split(',')
+        phones = phones.map(item => {
+            let result = {text: item}
+            result.href = 'tel:+' + item.replace(/\D/gi, '')
+            return result
+        })
         const slug = params.slug
         let post = await store.dispatch('post/fetchBySlug', slug)
         let categories = await store.dispatch('category/fetch')
@@ -108,7 +115,7 @@ export default {
                 text: (post.metaTitle && post.metaTitle !== 'undefined') ? post.metaTitle : post.title
             }
         ]
-        return {post, categoriesData, breadcrumbs}
+        return {phones, post, categoriesData, breadcrumbs}
     },
     head() {
         return {

@@ -1,7 +1,7 @@
 <template>
   <div id="content">
     <LazyHydrate when-visible>
-        <app-header :data="header" />
+        <app-header :data="header" :phones="phones" />
     </LazyHydrate>
     <main>
         
@@ -91,7 +91,7 @@
       
     </main>
     <LazyHydrate when-visible>
-        <app-footer :data="footer" :breadcrumbs="breadcrumbs" />
+        <app-footer :data="footer" :breadcrumbs="breadcrumbs" :phones="phones" />
     </LazyHydrate>
   </div>
 </template>
@@ -272,9 +272,16 @@ export default {
         keywords: ''
       }
     }
+    let phones = await store.dispatch('option/fetchByTitle', 'phones')
+    phones = phones.value.split(',')
+    phones = phones.map(item => {
+      let result = {text: item}
+      result.href = 'tel:+' + item.replace(/\D/gi, '')
+      return result
+    })
     let {posts} = await store.dispatch('post/fetchByPageNumber', 1)
     posts = posts.slice(0, 4)
-    return {meta, blogPosts: posts}
+    return {meta, phones, blogPosts: posts}
   },
   head() {
     return {

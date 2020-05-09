@@ -1,6 +1,6 @@
 <template>
     <div id="content">
-        <app-header :data="header" class="blog-header" />
+        <app-header :data="header" :phones="phones" class="blog-header" />
         <section class="blog">
             <div class="container">
                 <div class="blog__box pos-r c-after flex ai-c fw-w-sm">
@@ -127,6 +127,13 @@ export default {
                 keywords: ''
             }
         }
+        let phones = await store.dispatch('option/fetchByTitle', 'phones')
+        phones = phones.value.split(',')
+        phones = phones.map(item => {
+            let result = {text: item}
+            result.href = 'tel:+' + item.replace(/\D/gi, '')
+            return result
+        })
         let data = await store.dispatch('post/fetchByPageNumber', currentPage)
         let {posts, pages} = data
         let categories = await store.dispatch('category/fetch')
@@ -143,7 +150,7 @@ export default {
             bigPost = posts[0]
             posts = posts.slice(1)
         }
-        return {meta, posts, pages, currentPage, bigPost, categoriesData}
+        return {meta, phones, posts, pages, currentPage, bigPost, categoriesData}
     },
     head() {
         return {

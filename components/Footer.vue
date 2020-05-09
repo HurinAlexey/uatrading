@@ -47,7 +47,12 @@
             M19.995,21.1H7.448V3.373h12.547V21.1z"></path>
                         </svg>
                         <div class="footer__tel">
-                            <a href="tel:+380939580034" class="block">+38 (093) 958 00 34</a>
+                            <a 
+                                v-for="(item, index) of phones" 
+                                :key="index"
+                                :href="item.href" 
+                                class="block"
+                            >{{ item.text }}</a>
                         </div>
                     </div>
                     <div class="flex ai-c footer__item">
@@ -106,7 +111,7 @@
 
 <script>
 export default {
-    props: ['data', 'breadcrumbs'],
+    props: ['data', 'breadcrumbs', 'phones'],
     data() {
         return {
             links: [
