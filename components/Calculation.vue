@@ -282,7 +282,7 @@ export default {
             }
             if (this.data.delivery.klaypedaKiev) {
                 if (this.data['transport-type'] === 'moto') {
-                    paymentsList.push('delivery_playpeda_kiev_moto')
+                    paymentsList.push('delivery_klaypeda_kiev_moto')
                 } else {
                     paymentsList.push('delivery_klaypeda_kiev_car')
                 }
