@@ -8,8 +8,8 @@ const smtpOptions = {
     port: 465,
     secure: true,
     auth: {
-        user: 'ukrbroktrading.host@gmail.com',
-        pass: '@BravoTango22&'
+        user: 'ukrbroktrading.ltd@gmail.com',
+        pass: 'lxqdsodpywvwdqav'
     },
     tls: {
         rejectUnauthorized: false
@@ -22,8 +22,8 @@ module.exports.sendCallbackMail = (req, res) => {
         const transporter = nodemailer.createTransport(smtpOptions)
 
         const mailOptions = {
-            from: 'ukrbroktrading.host@gmail.com',
-            to: 'ukrbroktrading.host@gmail.com',
+            from: 'ukrbroktrading.ltd@gmail.com',
+            to: 'ukrbroktrading.ltd@gmail.com',
             subject: 'UBTrading - Callback',
             text: `Пользователь ${req.body.name} просит Вас перезвонить по номеру ${req.body.phone}.`
         }
@@ -48,7 +48,7 @@ module.exports.sendCalculation = async (req, res) => {
         const transporter = nodemailer.createTransport(smtpOptions)
         const email = new Email({
             message: {
-                from: 'ukrbroktrading.host@gmail.com'
+                from: 'ukrbroktrading.ltd@gmail.com'
             },
             transport: transporter
         })
@@ -77,7 +77,7 @@ module.exports.sendCalculation = async (req, res) => {
         // const transporter = nodemailer.createTransport(smtpOptions)
         // const templatePath = path.resolve(__dirname, '../../assets/email-templates/calculation')
         // let sendCalculationTemplate = transporter.templateSender(new EmailTemplate(templatePath), {
-        //     from: 'ukrbroktrading.host@gmail.com'
+        //     from: 'ukrbroktrading.ltd@gmail.com'
         // })
         
         // sendCalculationTemplate({
