@@ -155,7 +155,8 @@ export default {
                 'commission': 'Комиссия'
             },
             auctionFee: 0,
-            shipDelivery: 0
+            shipDelivery: 0,
+            temporaryDeliveryAmount: 0
         }
     },
     computed: {
@@ -172,7 +173,7 @@ export default {
         },
         finalBid() {
             let costUah = +this.data['cost'] * this.currency[this.data['currency']]
-            if (this.data.delivery) return costUah + 500 * this.currency['USD']
+            if (this.data.delivery) return costUah + (this.temporaryDeliveryAmount + this.auctionFee) * this.currency['USD']
             return costUah
         },
         importTax() {
@@ -484,6 +485,8 @@ export default {
             this.deliveryPayments = paymentsList
             this.auctionFee = await this.calculateAuctionBid()
             this.shipDelivery = await this.calculateShipDelivery()
+            let temporaryDeliveryAmountOption = await this.$store.dispatch('option/fetchByTitle', 'temporary_delivery_amount')
+            this.temporaryDeliveryAmount = +temporaryDeliveryAmountOption.value
         }
     }
 }
