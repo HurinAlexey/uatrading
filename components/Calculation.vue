@@ -427,7 +427,7 @@ export default {
             }
 
             for (let item of feeList.data) {
-                if (this.data['cost'] >= item['Price from'] && (this.data['cost'] <= item['Price to'] || !item['Price to'])) {
+                if (this.data['cost'] >= +item['Price from'] && (this.data['cost'] <= +item['Price to'] || !item['Price to'])) {
                     let itemFee = item['Buyer fee']
                     if (typeof(itemFee) == 'number') {
                         fee = itemFee
@@ -438,6 +438,8 @@ export default {
                             fee = this.data['cost'] * Number(isPercent[1]) / 100
                         } else if (isFormula) {
                             fee = Number(isFormula[1]) + (this.data['cost'] * Number(isFormula[2]) / 100)
+                        } else {
+                            fee = Number(itemFee)
                         }
                     } else {
                         throw new Error('Неверный формат значения.')
@@ -445,7 +447,7 @@ export default {
                 }
             }
             for (let item of internetBidList.data) {
-                if (this.data['cost'] >= item['Price from'] && (this.data['cost'] <= item['Price to'] || !item['Price to'])) {
+                if (this.data['cost'] >= +item['Price from'] && (this.data['cost'] <= +item['Price to'] || !item['Price to'])) {
                     internetBid = item['Buyer fee']
                 }
             }

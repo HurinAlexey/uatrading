@@ -882,6 +882,7 @@ blockquote::after {
     padding-bottom: 10px;
     border-bottom: 1px solid #cc9557;
     cursor: pointer;
+    font-weight: 700;
     transition: all .2s;
 }
 .read-also:hover {
@@ -902,4 +903,10 @@ blockquote::after {
     flex: 1;
     height: 1px;
     background-color: #cc9557;
+}
+
+.post .post-text img {
+    display: block;
+    margin: 10px auto;
+    clear: both;
 }
