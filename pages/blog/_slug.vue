@@ -151,7 +151,11 @@ export default {
         document.querySelectorAll('.read-also').forEach(el => {
             el.onclick = function(e) {
                 let path = this.getAttribute('data-href')
-                if (path) router.push(path)
+                if ( path && (path.startsWith('http://') || path.startsWith('https://')) ) {
+                    window.location.href = path
+                } else if (path) {
+                    router.push(path)
+                }
             }
         })
     }
